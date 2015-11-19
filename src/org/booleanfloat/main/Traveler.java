@@ -62,30 +62,5 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
         for(Location loc : locations) {
             if(loc != null) { loc.paint(ctx, g); }
         }
-
-//        if(mausoleum == null) {
-//            return;
-//        }
-//
-//        if(link != null) {
-//            link.paint(ctx, g);
-//        }
-//
-//        if(churchLink != null) {
-//            churchLink.paint(ctx, g);
-//        }
-
-//        TileMatrix center = mausoleum.area.getCentralTile().matrix(ctx);
-//
-//        if(center.inViewport()) {
-//            if(center.reachable()) {
-//                g.setColor(Color.GREEN);
-//            }
-//            else {
-//                g.setColor(Color.RED);
-//            }
-//
-//            g.drawPolygon(center.getBounds());
-//        }
     }
 }
