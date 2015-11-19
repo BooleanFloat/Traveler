@@ -14,12 +14,15 @@ public class Link {
     private ArrayList<Tile> waypoints;
     private ArrayList<Tile> path;
 
+    private ArrayList<Obstacle> obstacles;
+
     private double distance;
 
-    public Link(Location location1, Location location2, ArrayList<Tile> waypoints) {
+    public Link(Location location1, Location location2, ArrayList<Tile> waypoints, ArrayList<Obstacle> obstacles) {
         this.location1 = location1;
         this.location2 = location2;
         this.waypoints = waypoints;
+        this.obstacles = obstacles;
 
         this.waypoints.add(0, this.location1.area.getCentralTile());
         this.waypoints.add(this.location2.area.getCentralTile());
@@ -31,10 +34,14 @@ public class Link {
             Tile start = waypoints.get(i);
             Tile end = waypoints.get(i + 1);
 
+            if(start.floor() != end.floor()) {
+                continue;
+            }
+
             int dx = end.x() - start.x();
             int dy = end.y() - start.y();
             double distance = start.distanceTo(end);
-            double steps = Math.round(distance / 6);
+            double steps = Math.round(distance / 3);
 
             this.distance += distance;
 
@@ -67,6 +74,10 @@ public class Link {
 
     public ArrayList<Tile> getPath() {
         return path;
+    }
+
+    public ArrayList<Obstacle> getObstacles() {
+        return obstacles;
     }
 
     public void paint(ClientContext ctx, Graphics g) {

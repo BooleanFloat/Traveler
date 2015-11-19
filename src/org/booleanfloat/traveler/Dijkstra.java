@@ -34,7 +34,7 @@ class Edge {
 
 public class Dijkstra {
     private static HashMap<Location, Vertex> vertices;
-    private static HashMap<String, ArrayList<Tile>> paths;
+    private static HashMap<String, ArrayList<Link>> paths;
 
     public static void init(Location[] locations) {
         vertices = new HashMap<>();
@@ -52,10 +52,11 @@ public class Dijkstra {
         }
     }
 
-    public static ArrayList<Tile> getPath(Location start, Location end) {
+    public static ArrayList<Link> getPath(Location start, Location end) {
         String name = start.name + " - " + end.name;
 
-        ArrayList<Tile> path = paths.get(name);
+        ArrayList<Link> path = paths.get(name);
+
         if(path != null) {
             return path;
         }
@@ -71,7 +72,7 @@ public class Dijkstra {
                 Vertex next = locations.get(i + 1);
 
                 System.out.println(vertex.location.links.get(next.location));
-                path.addAll(vertex.location.links.get(next.location).getPath());
+                path.add(vertex.location.links.get(next.location));
             }
 
             paths.put(name, path);

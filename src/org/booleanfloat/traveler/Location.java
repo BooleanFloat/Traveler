@@ -23,13 +23,12 @@ public class Location {
     }
 
     public void paint(ClientContext ctx, Graphics g) {
-        g.setColor(Color.GREEN);
-
-        TileMatrix matrix = this.area.getCentralTile().matrix(ctx);
-
-        if(!matrix.reachable()) {
-            g.setColor(Color.RED);
+        if(this.area.getCentralTile().floor() != ctx.players.local().tile().floor()) {
+            return;
         }
+
+        g.setColor(Color.GREEN);
+        TileMatrix matrix = this.area.getCentralTile().matrix(ctx);
 
         if(matrix.inViewport()) {
             g.drawPolygon(matrix.getBounds());

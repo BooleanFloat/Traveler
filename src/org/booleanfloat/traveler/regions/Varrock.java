@@ -1,16 +1,21 @@
 package org.booleanfloat.traveler.regions;
 
 import org.booleanfloat.traveler.Location;
+import org.booleanfloat.traveler.Obstacle;
+import org.booleanfloat.traveler.OneWayLink;
 import org.booleanfloat.traveler.TwoWayLink;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Varrock {
 
     public static Location castleCourtyard;
+    public static Location castleEntrance;
+    public static Location castleTrainingRoom;
     public static Location clothesStore;
     public static Location eastBank;
     public static Location eastGate;
@@ -23,6 +28,16 @@ public class Varrock {
         castleCourtyard = new Location("Varrock castle courtyard", new Area(
                 new Tile(3214, 3449, 0),
                 new Tile(3211, 3448, 0)
+        ));
+
+        castleEntrance = new Location("Varrock castle entrance", new Area(
+                new Tile(3213, 3471, 0),
+                new Tile(3212, 3469, 0)
+        ));
+
+        castleTrainingRoom = new Location("Varrock castle traning room", new Area(
+                new Tile(3205, 3473, 1),
+                new Tile(3202, 3470, 1)
         ));
 
         clothesStore = new Location("Varrock clothing store", new Area(
@@ -60,11 +75,42 @@ public class Varrock {
                 new Tile(3181, 3434, 0)
         ));
 
+        new TwoWayLink(castleCourtyard, castleEntrance);
+
+        new OneWayLink(castleEntrance, castleTrainingRoom,
+                new ArrayList<>(Arrays.asList(
+                        new Tile(3212, 3472, 0),
+                        new Tile(3213, 3476, 1),
+                        new Tile(3207, 3473, 1)
+                )),
+                new ArrayList<>(Arrays.asList(
+                        new Obstacle(11807, "Climb-up", new Tile(3213, 3475, 1)),
+                        new Obstacle(11773, "Open", new Tile(3207, 3473, 1))
+                ))
+        );
+
+        new OneWayLink(castleTrainingRoom, castleEntrance,
+                new ArrayList<>(Arrays.asList(
+                        new Tile(3207, 3473, 1),
+                        new Tile(3213, 3476, 1),
+                        new Tile(3212, 3472, 0)
+                )),
+                new ArrayList<>(Arrays.asList(
+                        new Obstacle(11773, "Open", new Tile(3207, 3473, 1)),
+                        new Obstacle(11799, "Climb-down", new Tile(3213, 3475, 1))
+                ))
+        );
+
         new TwoWayLink(castleCourtyard, fountain);
 
-        new TwoWayLink(clothesStore, fountain, new ArrayList<>(Arrays.asList(
-                new Tile(3210, 3415, 0)
-        )));
+        new TwoWayLink(clothesStore, fountain,
+                new ArrayList<>(Arrays.asList(
+                        new Tile(3210, 3415, 0)
+                )),
+                new ArrayList<>(Arrays.asList(
+                        new Obstacle(11775, "Open", new Tile(3209, 3415, 0))
+                ))
+        );
 
         new TwoWayLink(clothesStore, southGate, new ArrayList<>(Arrays.asList(
                 new Tile(3210, 3415, 0)

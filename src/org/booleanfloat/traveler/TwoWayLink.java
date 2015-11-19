@@ -7,12 +7,19 @@ import java.util.Collections;
 
 public class TwoWayLink {
     public TwoWayLink(Location location1, Location location2) {
-        this(location1, location2, new ArrayList<>());
+        this(location1, location2, new ArrayList<>(), new ArrayList<>());
     }
 
     public TwoWayLink(Location location1, Location location2, ArrayList<Tile> waypoints) {
-        new Link(location1, location2, waypoints);
+        this(location1, location2, waypoints, new ArrayList<>());
+    }
+
+    public TwoWayLink(Location location1, Location location2, ArrayList<Tile> waypoints, ArrayList<Obstacle> obstacles) {
+        new Link(location1, location2, waypoints, obstacles);
+
         Collections.reverse(waypoints);
-        new Link(location2, location1, waypoints);
+        Collections.reverse(obstacles);
+
+        new Link(location2, location1, waypoints, obstacles);
     }
 }

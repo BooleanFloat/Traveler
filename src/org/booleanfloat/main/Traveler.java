@@ -2,6 +2,7 @@ package org.booleanfloat.main;
 
 import org.booleanfloat.traveler.Dijkstra;
 import org.booleanfloat.traveler.Location;
+import org.booleanfloat.traveler.regions.Lumbridge;
 import org.booleanfloat.traveler.regions.Varrock;
 import org.booleanfloat.tasks.*;
 import org.powerbot.script.*;
@@ -20,9 +21,14 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
     public void start() {
         System.out.println("start");
         Varrock.init();
+        Lumbridge.init();
 
         Dijkstra.init(new Location[]{
+                Lumbridge.castleBank,
+                Lumbridge.castleCourtyard,
                 Varrock.castleCourtyard,
+                Varrock.castleEntrance,
+                Varrock.castleTrainingRoom,
                 Varrock.clothesStore,
                 Varrock.eastBank,
                 Varrock.eastGate,
@@ -33,7 +39,7 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
         });
 
         taskList.addAll(Arrays.asList(
-                new Traverse(ctx, Varrock.fountain, Varrock.clothesStore)
+//                new Traverse(ctx, Lumbridge.castleBank, Lumbridge.castleCourtyard)
         ));
     }
 
@@ -49,7 +55,11 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
     @Override
     public void repaint(Graphics g) {
         Location[] locations = new Location[] {
+                Lumbridge.castleBank,
+                Lumbridge.castleCourtyard,
                 Varrock.castleCourtyard,
+                Varrock.castleEntrance,
+                Varrock.castleTrainingRoom,
                 Varrock.clothesStore,
                 Varrock.eastBank,
                 Varrock.eastGate,
