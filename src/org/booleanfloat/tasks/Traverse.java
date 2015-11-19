@@ -2,7 +2,6 @@ package org.booleanfloat.tasks;
 
 import org.booleanfloat.traveler.Dijkstra;
 import org.booleanfloat.traveler.Location;
-import org.booleanfloat.traveler.regions.Varrock;
 import org.powerbot.script.Condition;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;

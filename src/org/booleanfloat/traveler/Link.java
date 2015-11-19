@@ -16,10 +16,6 @@ public class Link {
 
     private double distance;
 
-    public Link(Location location1, Location location2) {
-        this(location1, location2, new ArrayList<>());
-    }
-
     public Link(Location location1, Location location2, ArrayList<Tile> waypoints) {
         this.location1 = location1;
         this.location2 = location2;

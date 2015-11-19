@@ -1,6 +1,5 @@
 package org.booleanfloat.traveler.regions;
 
-import org.booleanfloat.traveler.Link;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.TwoWayLink;
 import org.powerbot.script.Area;
