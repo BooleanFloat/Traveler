@@ -20,14 +20,13 @@ public class Link {
     public Link(Location start, Location end, ArrayList<Traversable> steps) {
         this.start = start;
         this.end = end;
-        this.steps = steps;
 
         // add start and end to the steps array
-        this.steps.add(0, new Step(this.start.area.getCentralTile()));
-        this.steps.add(new Step(this.end.area.getCentralTile()));
+        steps.add(0, new Step(this.start.area.getCentralTile()));
+        steps.add(new Step(this.end.area.getCentralTile()));
 
         // auto fill steps between every two Step objects
-        this.steps = autofillSteps(this.steps);
+        this.steps = autofillSteps(steps);
 
         this.start.addLink(end, this);
     }
@@ -45,7 +44,7 @@ public class Link {
             newSteps.add(start);
 
             // only fill path between two Step objects
-            if(!start.getClass().toString().equals("Step") || !end.getClass().toString().equals("Step")) {
+            if(!(start instanceof Step) || !(end instanceof Step)) {
                 continue;
             }
 
@@ -143,6 +142,8 @@ public class Link {
         int x2;
         int y2;
 
+        int playerFloor = ctx.players.local().tile().floor();
+
         g.setColor(Color.MAGENTA);
 
         for(Traversable step : steps) {
@@ -151,7 +152,7 @@ public class Link {
             x2 = matrix.mapPoint().x;
             y2 = matrix.mapPoint().y;
 
-            if(matrix.onMap()) {
+            if(matrix.onMap() && step.getTile().floor() == playerFloor) {
                 g.drawLine(x1, y1, x2, y2);
             }
 
@@ -167,6 +168,8 @@ public class Link {
         int x2;
         int y2;
 
+        int playerFloor = ctx.players.local().tile().floor();
+
         g.setColor(Color.MAGENTA);
 
         for(Traversable step : steps) {
@@ -175,7 +178,7 @@ public class Link {
             x2 = matrix.centerPoint().x;
             y2 = matrix.centerPoint().y;
 
-            if(x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1) {
+            if(x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1 && step.getTile().floor() == playerFloor) {
                 g.drawLine(x1, y1, x2, y2);
             }
 
@@ -185,11 +188,13 @@ public class Link {
     }
 
     private void drawWorldTiles(ClientContext ctx, Graphics g) {
+        int playerFloor = ctx.players.local().tile().floor();
+
+        g.setColor(Color.PINK);
         for(Traversable step : steps) {
             TileMatrix matrix = step.getTile().matrix(ctx);
 
-            if(matrix.inViewport()) {
-                g.setColor(Color.PINK);
+            if(matrix.inViewport() && step.getTile().floor() == playerFloor) {
                 g.drawPolygon(matrix.getBounds());
             }
         }

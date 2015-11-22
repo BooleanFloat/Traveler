@@ -50,7 +50,7 @@ public class Dijkstra {
         }
     }
 
-    public static ArrayList<Link> getPath(Location start, Location end) {
+    public static ArrayList<Link> getLinks(Location start, Location end) {
         String name = start.name + " - " + end.name;
 
         ArrayList<Link> path = paths.get(name);

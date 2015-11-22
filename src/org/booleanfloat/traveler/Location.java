@@ -23,21 +23,20 @@ public class Location {
     }
 
     public void paint(ClientContext ctx, Graphics g) {
-        if(this.area.getCentralTile().floor() != ctx.players.local().tile().floor()) {
-            return;
-        }
-
         g.setColor(Color.GREEN);
-        TileMatrix matrix = this.area.getCentralTile().matrix(ctx);
 
-        if(matrix.inViewport()) {
-            g.drawPolygon(matrix.getBounds());
-            g.drawString(this.name, matrix.centerPoint().x, matrix.centerPoint().y);
-        }
+        if(this.area.getCentralTile().floor() == ctx.players.local().tile().floor()) {
+            TileMatrix matrix = this.area.getCentralTile().matrix(ctx);
 
-        if(matrix.onMap()) {
-            g.fillRect(matrix.mapPoint().x - 2, matrix.mapPoint().y - 2, 4, 4);
-            g.drawString(this.name, matrix.mapPoint().x, matrix.mapPoint().y);
+            if(matrix.inViewport()) {
+                g.drawPolygon(matrix.getBounds());
+                g.drawString(this.name, matrix.centerPoint().x, matrix.centerPoint().y);
+            }
+
+            if(matrix.onMap()) {
+                g.fillRect(matrix.mapPoint().x - 2, matrix.mapPoint().y - 2, 4, 4);
+                g.drawString(this.name, matrix.mapPoint().x, matrix.mapPoint().y);
+            }
         }
 
 //        for(Link link : links.values()) {
