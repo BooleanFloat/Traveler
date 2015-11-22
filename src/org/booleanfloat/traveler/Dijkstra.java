@@ -86,8 +86,7 @@ public class Dijkstra {
         }
     }
 
-    private static void computePaths(Vertex source)
-    {
+    private static void computePaths(Vertex source) {
         source.minDistance = 0.0;
 
         PriorityQueue<Vertex> vertexQueue = new PriorityQueue<>();
@@ -112,8 +111,7 @@ public class Dijkstra {
         }
     }
 
-    private static ArrayList<Vertex> getShortestPathTo(Vertex target)
-    {
+    private static ArrayList<Vertex> getShortestPathTo(Vertex target) {
         ArrayList<Vertex> path = new ArrayList<>();
 
         for (Vertex vertex = target; vertex != null; vertex = vertex.previous) {

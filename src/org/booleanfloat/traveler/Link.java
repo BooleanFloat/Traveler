@@ -15,11 +15,6 @@ public class Link {
     private Location end;
     private ArrayList<Traversable> steps;
 
-    private ArrayList<Tile> waypoints;
-    private ArrayList<Tile> path;
-
-    private ArrayList<Obstacle> obstacles;
-
     private double distance;
 
     public Link(Location start, Location end, ArrayList<Traversable> steps) {
@@ -33,6 +28,8 @@ public class Link {
 
         // auto fill steps between every two Step objects
         this.steps = autofillSteps(this.steps);
+
+        this.start.addLink(end, this);
     }
 
     private ArrayList<Traversable> autofillSteps(ArrayList<Traversable> steps) {
@@ -129,12 +126,8 @@ public class Link {
         return distance;
     }
 
-    public ArrayList<Tile> getPath() {
-        return path;
-    }
-
-    public ArrayList<Obstacle> getObstacles() {
-        return obstacles;
+    public ArrayList<Traversable> getSteps() {
+        return steps;
     }
 
     public void paint(ClientContext ctx, Graphics g) {
@@ -144,15 +137,16 @@ public class Link {
     }
 
     private void drawMapPath(ClientContext ctx, Graphics g) {
-        int x1 = waypoints.get(0).matrix(ctx).mapPoint().x;
-        int y1 = waypoints.get(0).matrix(ctx).mapPoint().y;
+        TileMatrix start = steps.get(0).getTile().matrix(ctx);
+        int x1 = start.mapPoint().x;
+        int y1 = start.mapPoint().y;
         int x2;
         int y2;
 
         g.setColor(Color.MAGENTA);
 
-        for(Tile step : path) {
-            TileMatrix matrix = step.matrix(ctx);
+        for(Traversable step : steps) {
+            TileMatrix matrix = step.getTile().matrix(ctx);
 
             x2 = matrix.mapPoint().x;
             y2 = matrix.mapPoint().y;
@@ -167,15 +161,16 @@ public class Link {
     }
 
     private void drawWorldPath(ClientContext ctx, Graphics g) {
-        int x1 = waypoints.get(0).matrix(ctx).centerPoint().x;
-        int y1 = waypoints.get(0).matrix(ctx).centerPoint().y;
+        TileMatrix start = steps.get(0).getTile().matrix(ctx);
+        int x1 = start.centerPoint().x;
+        int y1 = start.centerPoint().y;
         int x2;
         int y2;
 
         g.setColor(Color.MAGENTA);
 
-        for(Tile step : path) {
-            TileMatrix matrix = step.matrix(ctx);
+        for(Traversable step : steps) {
+            TileMatrix matrix = step.getTile().matrix(ctx);
 
             x2 = matrix.centerPoint().x;
             y2 = matrix.centerPoint().y;
@@ -190,8 +185,8 @@ public class Link {
     }
 
     private void drawWorldTiles(ClientContext ctx, Graphics g) {
-        for(Tile step : path) {
-            TileMatrix matrix = step.matrix(ctx);
+        for(Traversable step : steps) {
+            TileMatrix matrix = step.getTile().matrix(ctx);
 
             if(matrix.inViewport()) {
                 g.setColor(Color.PINK);
