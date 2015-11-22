@@ -1,20 +1,23 @@
 package org.booleanfloat.traveler;
 
-import org.powerbot.script.Tile;
+import org.booleanfloat.traveler.steps.Traversable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class OneWayLink {
-    public OneWayLink(Location location1, Location location2) {
-        this(location1, location2, new ArrayList<>(), new ArrayList<>());
+    public OneWayLink(Location start, Location end) {
+        this(start, end, new ArrayList<>());
     }
 
-    public OneWayLink(Location location1, Location location2, ArrayList<Tile> waypoints) {
-        this(location1, location2, waypoints, new ArrayList<>());
+    public OneWayLink(Location start, Location end, ArrayList<Traversable> steps) {
+        new Link(start, end, steps);
     }
 
-    public OneWayLink(Location location1, Location location2, ArrayList<Tile> waypoints, ArrayList<Obstacle> obstacles) {
-        new Link(location1, location2, waypoints, obstacles);
-    }
+//    public OneWayLink(Location start, Location end, ArrayList<Tile> waypoints) {
+//        this(start, end, waypoints, new ArrayList<>());
+//    }
+//
+//    public OneWayLink(Location start, Location end, ArrayList<Tile> waypoints, ArrayList<Obstacle> obstacles) {
+//        new Link(start, end, waypoints, obstacles);
+//    }
 }

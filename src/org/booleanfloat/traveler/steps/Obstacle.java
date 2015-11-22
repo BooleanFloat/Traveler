@@ -1,17 +1,15 @@
-package org.booleanfloat.traveler;
+package org.booleanfloat.traveler.steps;
 
-import org.powerbot.script.Area;
+import org.booleanfloat.traveler.steps.Traversable;
 import org.powerbot.script.Filter;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
-import org.powerbot.script.rt4.Game;
 import org.powerbot.script.rt4.GameObject;
 
-public class Obstacle {
+public class Obstacle implements Traversable {
     private int id;
     private String interaction;
     private Tile position;
-    private Area area;
     private GameObject object;
 
     public Obstacle(int id, String interaction, Tile position) {
@@ -20,6 +18,12 @@ public class Obstacle {
         this.position = position;
     }
 
+    @Override
+    public Tile getTile() {
+        return position;
+    }
+
+    @Override
     public boolean isObstructing(ClientContext ctx) {
         object = ctx.objects.id(id).select(new Filter<GameObject>() {
             @Override
@@ -28,11 +32,15 @@ public class Obstacle {
             }
         }).nearest().poll();
 
-//        System.out.println(object + " - " + object.inViewport());
-
         return object.inViewport();
     }
 
+    @Override
+    public boolean isTraversable(ClientContext ctx) {
+        return true;
+    }
+
+    @Override
     public boolean traverse(ClientContext ctx) {
         return object != null && object.interact(interaction);
     }

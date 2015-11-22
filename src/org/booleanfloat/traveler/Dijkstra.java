@@ -1,7 +1,5 @@
 package org.booleanfloat.traveler;
 
-import org.powerbot.script.Tile;
-
 import java.util.*;
 
 class Vertex implements Comparable<Vertex> {

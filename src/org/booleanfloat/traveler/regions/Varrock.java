@@ -1,13 +1,13 @@
 package org.booleanfloat.traveler.regions;
 
 import org.booleanfloat.traveler.Location;
-import org.booleanfloat.traveler.Obstacle;
+import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.OneWayLink;
 import org.booleanfloat.traveler.TwoWayLink;
+import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -77,70 +77,58 @@ public class Varrock {
 
         new TwoWayLink(castleCourtyard, castleEntrance);
 
-        new OneWayLink(castleEntrance, castleTrainingRoom,
-                new ArrayList<>(Arrays.asList(
-                        new Tile(3212, 3472, 0),
-                        new Tile(3213, 3476, 1),
-                        new Tile(3207, 3473, 1)
-                )),
-                new ArrayList<>(Arrays.asList(
-                        new Obstacle(11807, "Climb-up", new Tile(3213, 3475, 1)),
-                        new Obstacle(11773, "Open", new Tile(3207, 3473, 1))
-                ))
-        );
+        new OneWayLink(castleEntrance, castleTrainingRoom, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3212, 3472, 0)),
+                new Obstacle(11807, "Climb-up", new Tile(3213, 3475, 1)),
+                new Step(new Tile(3213, 3476, 1)),
+                new Step(new Tile(3207, 3473, 1)),
+                new Obstacle(11773, "Open", new Tile(3207, 3473, 1))
+        )));
 
-        new OneWayLink(castleTrainingRoom, castleEntrance,
-                new ArrayList<>(Arrays.asList(
-                        new Tile(3207, 3473, 1),
-                        new Tile(3213, 3476, 1),
-                        new Tile(3212, 3472, 0)
-                )),
-                new ArrayList<>(Arrays.asList(
-                        new Obstacle(11773, "Open", new Tile(3207, 3473, 1)),
-                        new Obstacle(11799, "Climb-down", new Tile(3213, 3475, 1))
-                ))
-        );
+        new OneWayLink(castleTrainingRoom, castleEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3207, 3473, 1)),
+                new Obstacle(11773, "Open", new Tile(3207, 3473, 1)),
+                new Step(new Tile(3213, 3476, 1)),
+                new Obstacle(11799, "Climb-down", new Tile(3213, 3475, 1)),
+                new Step(new Tile(3212, 3472, 0))
+        )));
 
         new TwoWayLink(castleCourtyard, fountain);
 
-        new TwoWayLink(clothesStore, fountain,
-                new ArrayList<>(Arrays.asList(
-                        new Tile(3210, 3415, 0)
-                )),
-                new ArrayList<>(Arrays.asList(
-                        new Obstacle(11775, "Open", new Tile(3209, 3415, 0))
-                ))
-        );
+        new TwoWayLink(clothesStore, fountain, new ArrayList<>(Arrays.asList(
+                new Obstacle(11775, "Open", new Tile(3209, 3415, 0)),
+                new Step(new Tile(3210, 3415, 0))
+        )));
 
         new TwoWayLink(clothesStore, southGate, new ArrayList<>(Arrays.asList(
-                new Tile(3210, 3415, 0)
+                new Step(new Tile(3210, 3415, 0))
         )));
 
         new TwoWayLink(castleCourtyard, grandExchange, new ArrayList<>(Arrays.asList(
-                new Tile(3202, 3454, 0),
-                new Tile(3197, 3462, 0),
-                new Tile(3195, 3489, 0)
+                new Step(new Tile(3202, 3454, 0)),
+                new Step(new Tile(3197, 3462, 0)),
+                new Step(new Tile(3195, 3489, 0))
         )));
 
         new TwoWayLink(eastBank, eastGate, new ArrayList<>(Arrays.asList(
-                new Tile(3255, 3427, 0)
+                new Step(new Tile(3255, 3427, 0))
         )));
 
         new TwoWayLink(fountain, eastGate);
 
         new TwoWayLink(fountain, eastBank, new ArrayList<>(Arrays.asList(
-                new Tile(3253, 3428, 0)
+                new Step(new Tile(3253, 3428, 0))
         )));
 
         new TwoWayLink(fountain, southGate);
 
         new TwoWayLink(fountain, westBank, new ArrayList<>(Arrays.asList(
-                new Tile(3183, 3429, 0)
+                new Step(new Tile(3183, 3429, 0))
         )));
 
         new TwoWayLink(grandExchange, westBank, new ArrayList<>(Arrays.asList(
-                new Tile(3166, 3461, 0),
-                new Tile(3183, 3448, 0)
+                new Step(new Tile(3166, 3461, 0)),
+                new Step(new Tile(3183, 3448, 0))
         )));
     }
 }
