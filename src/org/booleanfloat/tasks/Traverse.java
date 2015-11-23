@@ -23,7 +23,8 @@ public class Traverse extends Task<ClientContext> {
 
     @Override
     public boolean activate() {
-        return !end.area.contains(ctx.players.local());
+        return !end.area.contains(ctx.players.local().tile())
+                && !end.area.contains(ctx.movement.destination());
     }
 
     @Override
@@ -43,9 +44,9 @@ public class Traverse extends Task<ClientContext> {
                         obstructing = path.lastTraversal.isObstructing(ctx);
                     }
 
-                    return Math.abs(dx) < 4 && Math.abs(dy) < 4 && obstructing;
+                    return Math.abs(dx) < 4 && Math.abs(dy) < 4 && !obstructing;
                 }
-            }, 400, 8);
+            }, 250, 6);
         }
     }
 

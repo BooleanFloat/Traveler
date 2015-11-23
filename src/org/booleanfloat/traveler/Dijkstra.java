@@ -45,7 +45,7 @@ public class Dijkstra {
         for(Vertex vertex : vertices.values()) {
             for (Link link : vertex.location.links.values()) {
                 Vertex target = vertices.get(link.getOtherLocation(vertex.location));
-                vertex.edges.add(new Edge(target, link.getDistance()));
+                vertex.edges.add(new Edge(target, link.getWeight()));
             }
         }
     }

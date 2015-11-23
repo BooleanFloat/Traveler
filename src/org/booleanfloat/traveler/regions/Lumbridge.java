@@ -25,13 +25,12 @@ public class Lumbridge {
                 new Tile(3221, 3218, 0)
         ));
 
-        new OneWayLink(castleBank, castleCourtyard,
-                new ArrayList<>(Arrays.asList(
-                        new Step(new Tile(3206, 3209, 2)),
-                        new Obstacle(16673, "Climb-down", new Tile(3205, 3208, 2)),
-                        new Obstacle(16672, "Climb-down", new Tile(3205, 3208, 1)),
-                        new Step(new Tile(3215, 3210, 0)),
-                        new Step(new Tile(3215, 3218, 0))
+        new OneWayLink(castleBank, castleCourtyard, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3206, 3209, 2)),
+                new Obstacle(16673, "Climb-down", new Tile(3205, 3208, 2)),
+                new Obstacle(16672, "Climb-down", new Tile(3205, 3208, 1)),
+                new Step(new Tile(3215, 3210, 0)),
+                new Step(new Tile(3215, 3218, 0))
         ))) ;
     }
 }

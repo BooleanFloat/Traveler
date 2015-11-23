@@ -1,6 +1,5 @@
 package org.booleanfloat.traveler;
 
-import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.Traversable;
 import org.powerbot.script.Tile;
@@ -15,7 +14,7 @@ public class Link {
     private Location end;
     private ArrayList<Traversable> steps;
 
-    private double distance;
+    private double weight;
 
     public Link(Location start, Location end, ArrayList<Traversable> steps) {
         this.start = start;
@@ -58,6 +57,8 @@ public class Link {
             double distance = startTile.distanceTo(endTile);
             double amount = Math.round(distance / 3);
 
+            weight += distance;
+
             for(int j = 1; j < amount; j++) {
                 double x = startTile.x() + (j * dx / amount);
                 double y = startTile.y() + (j * dy / amount);
@@ -71,48 +72,6 @@ public class Link {
         return newSteps;
     }
 
-//    public Link(Location start, Location end, ArrayList<Tile> waypoints, ArrayList<Obstacle> obstacles) {
-//        this.start = start;
-//        this.end = end;
-//        this.waypoints = waypoints;
-//        this.obstacles = obstacles;
-//
-//        this.waypoints.add(0, this.start.area.getCentralTile());
-//        this.waypoints.add(this.end.area.getCentralTile());
-//
-//        path = new ArrayList<>();
-//        distance = 0;
-//
-//        for(int i = 0; i < waypoints.size() -1; i++) {
-//            Tile start = waypoints.get(i);
-//            Tile end = waypoints.get(i + 1);
-//
-//            if(start.floor() != end.floor()) {
-//                continue;
-//            }
-//
-//            int dx = end.x() - start.x();
-//            int dy = end.y() - start.y();
-//            double distance = start.distanceTo(end);
-//            double steps = Math.round(distance / 3);
-//
-//            this.distance += distance;
-//
-//            path.add(start);
-//
-//            for(int j = 1; j < steps; j++) {
-//                double x = start.x() + (j * dx / steps);
-//                double y = start.y() + (j * dy / steps);
-//
-//                path.add(new Tile((int)x, (int)y));
-//            }
-//
-//            path.add(end);
-//        }
-//
-//        this.start.addLink(this.end, this);
-//    }
-
     public Location getOtherLocation(Location location) {
         if(location == start) {
             return end;
@@ -121,8 +80,8 @@ public class Link {
         return start;
     }
 
-    public double getDistance() {
-        return distance;
+    public double getWeight() {
+        return weight;
     }
 
     public ArrayList<Traversable> getSteps() {
@@ -190,9 +149,13 @@ public class Link {
     private void drawWorldTiles(ClientContext ctx, Graphics g) {
         int playerFloor = ctx.players.local().tile().floor();
 
-        g.setColor(Color.PINK);
         for(Traversable step : steps) {
             TileMatrix matrix = step.getTile().matrix(ctx);
+
+            g.setColor(Color.PINK);
+            if(step.isObstructing(ctx)) {
+                g.setColor(Color.RED);
+            }
 
             if(matrix.inViewport() && step.getTile().floor() == playerFloor) {
                 g.drawPolygon(matrix.getBounds());

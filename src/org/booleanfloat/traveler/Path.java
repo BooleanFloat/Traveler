@@ -1,5 +1,7 @@
 package org.booleanfloat.traveler;
 
+import org.booleanfloat.traveler.steps.Obstacle;
+import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.Traversable;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.TileMatrix;
@@ -30,22 +32,26 @@ public class Path {
     }
 
     public boolean traverse(ClientContext ctx) {
-        boolean foundCurrentSection = false;
         int floor = ctx.players.local().tile().floor();
         Traversable furthestStep = null;
 
         for(Traversable step : steps) {
             TileMatrix matrix = step.getTile().matrix(ctx);
-            if(step.getTile().floor() == floor && (matrix.inViewport() || matrix.onMap())) {
-                if(!foundCurrentSection) {
-                    foundCurrentSection = true;
-                }
-                else {
-                    furthestStep = step;
+            if(step.getTile().floor() == floor) {
 
-                    if(furthestStep.isObstructing(ctx)) {
-                        break;
+                if(step instanceof Step) {
+                    if(matrix.reachable() && (matrix.onMap() || matrix.inViewport())) {
+                        furthestStep = step;
                     }
+                }
+                else if(step instanceof Obstacle) {
+                    if(matrix.inViewport()) {
+                        furthestStep = step;
+                    }
+                }
+
+                if(furthestStep != null && furthestStep.isObstructing(ctx)) {
+                    break;
                 }
             }
         }

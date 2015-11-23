@@ -1,6 +1,7 @@
 package org.booleanfloat.traveler;
 
 import org.powerbot.script.Area;
+import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.TileMatrix;
 
@@ -11,11 +12,13 @@ public class Location {
     public String name;
     public Area area;
     public HashMap<Location, Link> links;
+    private Tile center;
 
     public Location(String name, Area area) {
         this.name = name;
         this.area = area;
         this.links = new HashMap<>();
+        this.center = area.getCentralTile();
     }
 
     public void addLink(Location other, Link link) {
@@ -23,19 +26,23 @@ public class Location {
     }
 
     public void paint(ClientContext ctx, Graphics g) {
-        g.setColor(Color.GREEN);
+        Tile pos = ctx.players.local().tile();
 
-        if(this.area.getCentralTile().floor() == ctx.players.local().tile().floor()) {
-            TileMatrix matrix = this.area.getCentralTile().matrix(ctx);
+        if(Math.abs(center.x() - pos.x()) < 100 && Math.abs(center.y() - pos.y()) < 100) {
+            g.setColor(Color.GREEN);
 
-            if(matrix.inViewport()) {
-                g.drawPolygon(matrix.getBounds());
-                g.drawString(this.name, matrix.centerPoint().x, matrix.centerPoint().y);
-            }
+            if(this.area.getCentralTile().floor() == ctx.players.local().tile().floor()) {
+                TileMatrix matrix = center.matrix(ctx);
 
-            if(matrix.onMap()) {
-                g.fillRect(matrix.mapPoint().x - 2, matrix.mapPoint().y - 2, 4, 4);
-                g.drawString(this.name, matrix.mapPoint().x, matrix.mapPoint().y);
+                if(matrix.inViewport()) {
+                    g.drawPolygon(matrix.getBounds());
+                    g.drawString(this.name, matrix.centerPoint().x, matrix.centerPoint().y);
+                }
+
+                if(matrix.onMap()) {
+                    g.fillRect(matrix.mapPoint().x - 2, matrix.mapPoint().y - 2, 4, 4);
+                    g.drawString(this.name, matrix.mapPoint().x, matrix.mapPoint().y);
+                }
             }
         }
 
