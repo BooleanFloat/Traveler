@@ -39,7 +39,7 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
         });
 
         taskList.addAll(Arrays.asList(
-//                new Traverse(ctx, Varrock.clothesStore, Varrock.grandExchange)
+                new Traverse(ctx, Varrock.grandExchange, Varrock.castleTrainingRoom)
         ));
     }
 

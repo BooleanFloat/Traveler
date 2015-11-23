@@ -25,12 +25,13 @@ public class Obstacle implements Traversable {
 
     @Override
     public boolean isObstructing(ClientContext ctx) {
+        ctx.objects.select();
         object = ctx.objects.id(id).select(new Filter<GameObject>() {
             @Override
             public boolean accept(GameObject gameObject) {
                 return gameObject.tile().equals(position);
             }
-        }).nearest().poll();
+        }).poll();
 
         return object.inViewport();
     }
@@ -42,6 +43,8 @@ public class Obstacle implements Traversable {
 
     @Override
     public boolean traverse(ClientContext ctx) {
+        System.out.println("obstacle object: " + object);
+
         return object != null && object.interact(interaction);
     }
 

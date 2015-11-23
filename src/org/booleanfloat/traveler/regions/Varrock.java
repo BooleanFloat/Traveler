@@ -79,8 +79,8 @@ public class Varrock {
 
         new OneWayLink(castleEntrance, castleTrainingRoom, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3212, 3472, 0)),
-                new Obstacle(11807, "Climb-up", new Tile(3213, 3475, 1)),
-                new Step(new Tile(3213, 3476, 1)),
+                new Obstacle(11807, "Climb-up", new Tile(3213, 3474, 0)),
+                new Step(new Tile(3212, 3476, 1)),
                 new Step(new Tile(3207, 3473, 1)),
                 new Obstacle(11773, "Open", new Tile(3207, 3473, 1))
         )));
@@ -88,7 +88,7 @@ public class Varrock {
         new OneWayLink(castleTrainingRoom, castleEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3207, 3473, 1)),
                 new Obstacle(11773, "Open", new Tile(3207, 3473, 1)),
-                new Step(new Tile(3213, 3476, 1)),
+                new Step(new Tile(3212, 3476, 1)),
                 new Obstacle(11799, "Climb-down", new Tile(3213, 3475, 1)),
                 new Step(new Tile(3212, 3472, 0))
         )));
