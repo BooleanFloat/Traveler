@@ -55,7 +55,7 @@ public class Link {
             int dx = endTile.x() - startTile.x();
             int dy = endTile.y() - startTile.y();
             double distance = startTile.distanceTo(endTile);
-            double amount = Math.round(distance / 3);
+            double amount = Math.round(distance / 6);
 
             weight += distance;
 

@@ -3,6 +3,7 @@ package org.booleanfloat.tasks;
 import org.booleanfloat.traveler.Path;
 import org.booleanfloat.traveler.Location;
 import org.powerbot.script.Condition;
+import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 
 import java.util.concurrent.Callable;
@@ -35,18 +36,20 @@ public class Traverse extends Task<ClientContext> {
             Condition.wait(new Callable<Boolean>() {
                 @Override
                 public Boolean call() throws Exception {
-                    int dx = ctx.players.local().tile().x() - ctx.movement.destination().x();
-                    int dy = ctx.players.local().tile().y() - ctx.movement.destination().y();
+                    Tile pos = ctx.players.local().tile();
+                    Tile dest = ctx.movement.destination();
 
-                    boolean obstructing = false;
+                    boolean isClose = (Math.abs(pos.x() - dest.x()) < 5 && Math.abs(pos.y() - dest.y()) < 5);
+                    boolean isDifferentFloor = pos.floor() != dest.floor();
+                    boolean isObstructing = false;
 
                     if(path.lastTraversal != null) {
-                        obstructing = path.lastTraversal.isObstructing(ctx);
+                        isObstructing = path.lastTraversal.isObstructing(ctx);
                     }
 
-                    return Math.abs(dx) < 4 && Math.abs(dy) < 4 && !obstructing;
+                    return isClose || isDifferentFloor || isObstructing;
                 }
-            }, 250, 6);
+            }, 500, 10);
         }
     }
 

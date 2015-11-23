@@ -3,6 +3,7 @@ package org.booleanfloat.traveler;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.Traversable;
+import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.TileMatrix;
 
@@ -32,12 +33,19 @@ public class Path {
     }
 
     public boolean traverse(ClientContext ctx) {
-        int floor = ctx.players.local().tile().floor();
+        Tile pos = ctx.players.local().tile();
         Traversable furthestStep = null;
 
         for(Traversable step : steps) {
-            TileMatrix matrix = step.getTile().matrix(ctx);
-            if(step.getTile().floor() == floor) {
+            Tile tile = step.getTile();
+
+            if(Math.abs(pos.x() - tile.x()) > 40 || Math.abs(pos.y() - tile.y()) > 40) {
+                continue;
+            }
+
+            TileMatrix matrix = tile.matrix(ctx);
+
+            if(tile.floor() == pos.floor()) {
 
                 if(step instanceof Step) {
                     if(matrix.reachable() && (matrix.onMap() || matrix.inViewport())) {

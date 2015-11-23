@@ -34,12 +34,14 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
         }
 
         taskList.addAll(Arrays.asList(
-                new Traverse(ctx, Misthalin.Lumbridge.Castle.Courtyard, Misthalin.HamEntrance)
+                new Traverse(ctx, Misthalin.Lumbridge.Castle.Bank, Misthalin.Varrock.Castle.TrainingRoom)
+//                new Traverse(ctx, Misthalin.Lumbridge.Castle.Courtyard, Misthalin.Lumbridge.Castle.Bank)
         ));
     }
 
     @Override
     public void poll() {
+        System.out.println("poll");
         for (Task t : taskList) {
             if (t.activate()) {
                 t.execute();
@@ -60,9 +62,9 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
 
     @Override
     public void repaint(Graphics g) {
-        for(Location loc : locations) {
-            if(loc != null) { loc.paint(ctx, g); }
-        }
+//        for(Location loc : locations) {
+//            if(loc != null) { loc.paint(ctx, g); }
+//        }
     }
 
     private void getNearestGameObject(int id) {

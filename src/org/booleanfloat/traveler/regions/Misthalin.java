@@ -34,6 +34,18 @@ public class Misthalin {
                 new Step(new Tile(3167, 3247, 0)),
                 new Step(new Tile(3197, 3218, 0))
         )));
+
+        new TwoWayLink(Lumbridge.Center, Varrock.SouthGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3234, 3218, 0)),
+                new Step(new Tile(3234, 3225, 0)),
+                new Step(new Tile(3258, 3225, 0)),
+                new Step(new Tile(3252, 3254, 0)),
+                new Step(new Tile(3239, 3283, 0)),
+                new Step(new Tile(3238, 3306, 0)),
+                new Step(new Tile(3226, 3309, 0)),
+                new Step(new Tile(3205, 3343, 0)),
+                new Step(new Tile(3211, 3380, 0))
+        )));
     }
 
     public static ArrayList<Location> getLocations() {
@@ -286,6 +298,7 @@ public class Misthalin {
                 new OneWayLink(BackEntrance, Bank,  new ArrayList<>(Arrays.asList(
                         new Step(new Tile(3202, 3218, 0)),
                         new Step(new Tile(3203, 3214, 0)),
+                        new Step(new Tile(3206, 3209, 0)),
                         new Obstacle(16671, "Climb-up", new Tile(3205, 3208, 0)),
                         new Obstacle(16672, "Climb-up", new Tile(3205, 3208, 1)),
                         new Step(new Tile(3205, 3210, 2))
