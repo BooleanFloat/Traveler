@@ -1,7 +1,6 @@
 package org.booleanfloat.traveler.steps;
 
-import org.booleanfloat.traveler.steps.Traversable;
-import org.powerbot.script.Filter;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.GameObject;

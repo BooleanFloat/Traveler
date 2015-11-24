@@ -1,5 +1,7 @@
 package org.booleanfloat.traveler;
 
+import org.booleanfloat.traveler.links.Link;
+
 import java.util.*;
 
 class Vertex implements Comparable<Vertex> {
@@ -69,7 +71,6 @@ public class Dijkstra {
                 Vertex vertex = locations.get(i);
                 Vertex next = locations.get(i + 1);
 
-                System.out.println(vertex.location.links.get(next.location));
                 path.add(vertex.location.links.get(next.location));
             }
 
@@ -97,6 +98,11 @@ public class Dijkstra {
 
             for (Edge edge : vertex.edges) {
                 Vertex target = edge.target;
+
+                if(target == null) {
+                    continue;
+//                    System.out.println(source.location);
+                }
 
                 double weight = edge.weight;
                 double distance = vertex.minDistance + weight;

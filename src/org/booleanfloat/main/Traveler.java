@@ -1,9 +1,10 @@
 package org.booleanfloat.main;
 
 import org.booleanfloat.traveler.Dijkstra;
+import org.booleanfloat.traveler.Init;
 import org.booleanfloat.traveler.Location;
-import org.booleanfloat.traveler.regions.Misthalin;
 import org.booleanfloat.tasks.*;
+import org.booleanfloat.traveler.regions.*;
 import org.powerbot.script.*;
 import org.powerbot.script.rt4.ClientContext;
 
@@ -22,10 +23,9 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
     public void start() {
         System.out.println("start");
 
-        Misthalin.initLocations();
-        Misthalin.initLinks();
+        Init.init();
 
-        locations.addAll(Misthalin.getLocations());
+        locations.addAll(Init.getLocations());
 
         Dijkstra.init(locations.toArray(new Location[locations.size()]));
 
@@ -34,8 +34,7 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
         }
 
         taskList.addAll(Arrays.asList(
-                new Traverse(ctx, Misthalin.Lumbridge.Castle.Bank, Misthalin.Varrock.Castle.TrainingRoom)
-//                new Traverse(ctx, Misthalin.Lumbridge.Castle.Courtyard, Misthalin.Lumbridge.Castle.Bank)
+//                new Traverse(ctx, Falador.Square, VarrockCastle.TrainingRoom)
         ));
     }
 
@@ -48,23 +47,23 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
             }
         }
 
-//        Scanner in = new Scanner(System.in);
-//        String input = in.next();
-//
-//        if(input.contains("object")) {
-//            String[] parts = input.split("-");
-//            if(parts.length == 2) {
-//                int id = Integer.parseInt(parts[1]);
-//                System.out.println(ctx.objects.select().id(id).nearest().poll());
-//            }
-//        }
+        Scanner in = new Scanner(System.in);
+        String input = in.next();
+
+        if(input.contains("object")) {
+            String[] parts = input.split("-");
+            if(parts.length == 2) {
+                int id = Integer.parseInt(parts[1]);
+                System.out.println(ctx.objects.select().id(id).nearest().poll());
+            }
+        }
     }
 
     @Override
     public void repaint(Graphics g) {
-//        for(Location loc : locations) {
-//            if(loc != null) { loc.paint(ctx, g); }
-//        }
+        for(Location loc : locations) {
+            if(loc != null) { loc.paint(ctx, g); }
+        }
     }
 
     private void getNearestGameObject(int id) {

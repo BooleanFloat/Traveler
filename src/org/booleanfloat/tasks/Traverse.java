@@ -39,7 +39,7 @@ public class Traverse extends Task<ClientContext> {
                     Tile pos = ctx.players.local().tile();
                     Tile dest = ctx.movement.destination();
 
-                    boolean isClose = (Math.abs(pos.x() - dest.x()) < 5 && Math.abs(pos.y() - dest.y()) < 5);
+                    boolean isClose = (Math.abs(pos.x() - dest.x()) < 6 && Math.abs(pos.y() - dest.y()) < 6);
                     boolean isDifferentFloor = pos.floor() != dest.floor();
                     boolean isObstructing = false;
 
@@ -49,7 +49,7 @@ public class Traverse extends Task<ClientContext> {
 
                     return isClose || isDifferentFloor || isObstructing;
                 }
-            }, 500, 10);
+            }, 250, 10);
         }
     }
 

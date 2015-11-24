@@ -1,8 +1,9 @@
 package org.booleanfloat.traveler;
 
+import org.booleanfloat.traveler.links.Link;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
-import org.booleanfloat.traveler.steps.Traversable;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.TileMatrix;
@@ -17,6 +18,8 @@ public class Path {
         for(Link link : links) {
             steps.addAll(link.getSteps());
         }
+
+        System.out.println("size:" + steps.size());
 
         return new Path(start, end, steps);
     }
@@ -39,7 +42,7 @@ public class Path {
         for(Traversable step : steps) {
             Tile tile = step.getTile();
 
-            if(Math.abs(pos.x() - tile.x()) > 40 || Math.abs(pos.y() - tile.y()) > 40) {
+            if(Math.abs(pos.x() - tile.x()) > 50 || Math.abs(pos.y() - tile.y()) > 50) {
                 continue;
             }
 

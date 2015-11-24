@@ -1,4 +1,4 @@
-package org.booleanfloat.traveler.steps;
+package org.booleanfloat.traveler.interfaces;
 
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;

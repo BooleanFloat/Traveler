@@ -1,7 +1,8 @@
-package org.booleanfloat.traveler;
+package org.booleanfloat.traveler.links;
 
+import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.steps.Step;
-import org.booleanfloat.traveler.steps.Traversable;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.TileMatrix;
@@ -19,12 +20,12 @@ public class Link {
     public Link(Location start, Location end, ArrayList<Traversable> steps) {
         this.start = start;
         this.end = end;
+        this.steps = steps;
 
         // add start and end to the steps array
         steps.add(0, new Step(this.start.area.getCentralTile()));
         steps.add(new Step(this.end.area.getCentralTile()));
 
-        // auto fill steps between every two Step objects
         this.steps = autofillSteps(steps);
 
         this.start.addLink(end, this);
@@ -57,8 +58,6 @@ public class Link {
             double distance = startTile.distanceTo(endTile);
             double amount = Math.round(distance / 6);
 
-            weight += distance;
-
             for(int j = 1; j < amount; j++) {
                 double x = startTile.x() + (j * dx / amount);
                 double y = startTile.y() + (j * dy / amount);
@@ -81,6 +80,15 @@ public class Link {
     }
 
     public double getWeight() {
+        double weight = 0;
+
+        for(int i = 0; i < steps.size() -1; i++) {
+            Traversable start = steps.get(i);
+            Traversable end = steps.get(i + 1);
+
+            weight += Math.abs(start.getTile().compareTo(end.getTile()));
+        }
+
         return weight;
     }
 
@@ -89,29 +97,37 @@ public class Link {
     }
 
     public void paint(ClientContext ctx, Graphics g) {
-        drawWorldTiles(ctx, g);
-        drawWorldPath(ctx, g);
+//        drawWorldTiles(ctx, g);
+//        drawWorldPath(ctx, g);
         drawMapPath(ctx, g);
     }
 
     private void drawMapPath(ClientContext ctx, Graphics g) {
+        Tile pos = ctx.players.local().tile();
         TileMatrix start = steps.get(0).getTile().matrix(ctx);
         int x1 = start.mapPoint().x;
         int y1 = start.mapPoint().y;
         int x2;
         int y2;
 
-        int playerFloor = ctx.players.local().tile().floor();
+        int posX = pos.x();
+        int posY = pos.y();
 
         g.setColor(Color.MAGENTA);
 
         for(Traversable step : steps) {
-            TileMatrix matrix = step.getTile().matrix(ctx);
+            Tile tile = step.getTile();
+
+            if(Math.abs(tile.x() - posX) > 30 || Math.abs(tile.y() - posY) > 30) {
+                continue;
+            }
+
+            TileMatrix matrix = tile.matrix(ctx);
 
             x2 = matrix.mapPoint().x;
             y2 = matrix.mapPoint().y;
 
-            if(matrix.onMap() && step.getTile().floor() == playerFloor) {
+            if(matrix.onMap() && step.getTile().floor() == pos.floor()) {
                 g.drawLine(x1, y1, x2, y2);
             }
 
@@ -121,23 +137,28 @@ public class Link {
     }
 
     private void drawWorldPath(ClientContext ctx, Graphics g) {
+        Tile pos = ctx.players.local().tile();
         TileMatrix start = steps.get(0).getTile().matrix(ctx);
         int x1 = start.centerPoint().x;
         int y1 = start.centerPoint().y;
         int x2;
         int y2;
 
-        int playerFloor = ctx.players.local().tile().floor();
-
         g.setColor(Color.MAGENTA);
 
         for(Traversable step : steps) {
-            TileMatrix matrix = step.getTile().matrix(ctx);
+            Tile tile = step.getTile();
+
+            if(Math.abs(tile.x() - pos.x()) > 30 || Math.abs(tile.y() - pos.y()) > 30) {
+                continue;
+            }
+
+            TileMatrix matrix = tile.matrix(ctx);
 
             x2 = matrix.centerPoint().x;
             y2 = matrix.centerPoint().y;
 
-            if(x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1 && step.getTile().floor() == playerFloor) {
+            if(x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1 && tile.floor() == pos.floor()) {
                 g.drawLine(x1, y1, x2, y2);
             }
 
@@ -147,17 +168,22 @@ public class Link {
     }
 
     private void drawWorldTiles(ClientContext ctx, Graphics g) {
-        int playerFloor = ctx.players.local().tile().floor();
+        Tile pos = ctx.players.local().tile();
 
         for(Traversable step : steps) {
-            TileMatrix matrix = step.getTile().matrix(ctx);
+            Tile tile = step.getTile();
+            TileMatrix matrix = tile.matrix(ctx);
+
+            if(Math.abs(tile.x() - pos.x()) > 30 || Math.abs(tile.y() - pos.y()) > 30) {
+                continue;
+            }
 
             g.setColor(Color.PINK);
             if(step.isObstructing(ctx)) {
                 g.setColor(Color.RED);
             }
 
-            if(matrix.inViewport() && step.getTile().floor() == playerFloor) {
+            if(matrix.inViewport() && step.getTile().floor() == pos.floor()) {
                 g.drawPolygon(matrix.getBounds());
             }
         }

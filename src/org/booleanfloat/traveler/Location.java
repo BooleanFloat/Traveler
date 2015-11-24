@@ -1,5 +1,6 @@
 package org.booleanfloat.traveler;
 
+import org.booleanfloat.traveler.links.Link;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
@@ -28,7 +29,7 @@ public class Location {
     public void paint(ClientContext ctx, Graphics g) {
         Tile pos = ctx.players.local().tile();
 
-        if(Math.abs(center.x() - pos.x()) < 100 && Math.abs(center.y() - pos.y()) < 100) {
+        if(Math.abs(center.x() - pos.x()) < 30 && Math.abs(center.y() - pos.y()) < 30) {
             g.setColor(Color.GREEN);
 
             if(this.area.getCentralTile().floor() == ctx.players.local().tile().floor()) {
@@ -44,11 +45,12 @@ public class Location {
                     g.drawString(this.name, matrix.mapPoint().x, matrix.mapPoint().y);
                 }
             }
+
         }
 
-//        for(Link link : links.values()) {
-//            link.paint(ctx, g);
-//        }
+        for(Link link : links.values()) {
+            link.paint(ctx, g);
+        }
     }
 
     public String toString() {
