@@ -16,6 +16,7 @@ public class Path {
         ArrayList<Traversable> steps = new ArrayList<>();
 
         for(Link link : links) {
+            System.out.println(link.toString());
             steps.addAll(link.getSteps());
         }
 
@@ -51,7 +52,7 @@ public class Path {
             if(tile.floor() == pos.floor()) {
 
                 if(step instanceof Step) {
-                    if(matrix.reachable() && (matrix.onMap() || matrix.inViewport())) {
+                    if((matrix.inViewport() && matrix.reachable()) || (matrix.onMap() && !matrix.inViewport())) {
                         furthestStep = step;
                     }
                 }

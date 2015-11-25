@@ -37,6 +37,10 @@ public class Step implements Traversable {
         Point worldPoint = matrix.centerPoint();
         Point mousePoint = ctx.input.getLocation();
 
+        if(ctx.movement.destination().distanceTo(this.tile) < 3) {
+            return false;
+        }
+
         if(worldPoint.x != -1 && worldPoint.y != -1) {
             if (worldPoint.distance(mousePoint) < mapPoint.distance(mousePoint)) {
                 return ctx.input.click(worldPoint, true);

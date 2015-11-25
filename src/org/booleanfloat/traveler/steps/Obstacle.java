@@ -1,6 +1,7 @@
 package org.booleanfloat.traveler.steps;
 
 import org.booleanfloat.traveler.interfaces.Traversable;
+import org.powerbot.script.Condition;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.GameObject;
@@ -38,7 +39,13 @@ public class Obstacle implements Traversable {
     public boolean traverse(ClientContext ctx) {
         System.out.println("obstacle object: " + object);
 
-        return object != null && object.interact(interaction);
+        boolean isInteracting = object != null && object.interact(interaction);
+
+        if(isInteracting) {
+            Condition.sleep(500);
+        }
+
+        return isInteracting;
     }
 
     public String toString() {

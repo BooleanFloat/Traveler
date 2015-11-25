@@ -119,9 +119,11 @@ public class Dijkstra {
 
     private static ArrayList<Vertex> getShortestPathTo(Vertex target) {
         ArrayList<Vertex> path = new ArrayList<>();
+        double weight = 0;
 
         for (Vertex vertex = target; vertex != null; vertex = vertex.previous) {
             path.add(vertex);
+            weight += vertex.minDistance;
         }
 
         Collections.reverse(path);

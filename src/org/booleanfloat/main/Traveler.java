@@ -34,7 +34,7 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
         }
 
         taskList.addAll(Arrays.asList(
-//                new Traverse(ctx, Falador.Square, VarrockCastle.TrainingRoom)
+                new Traverse(ctx, Falador.Square, VarrockCastle.TrainingRoom)
         ));
     }
 
@@ -47,16 +47,16 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
             }
         }
 
-        Scanner in = new Scanner(System.in);
-        String input = in.next();
-
-        if(input.contains("object")) {
-            String[] parts = input.split("-");
-            if(parts.length == 2) {
-                int id = Integer.parseInt(parts[1]);
-                System.out.println(ctx.objects.select().id(id).nearest().poll());
-            }
-        }
+//        Scanner in = new Scanner(System.in);
+//        String input = in.next();
+//
+//        if(input.contains("object")) {
+//            String[] parts = input.split("-");
+//            if(parts.length == 2) {
+//                int id = Integer.parseInt(parts[1]);
+//                System.out.println(ctx.objects.select().id(id).nearest().poll());
+//            }
+//        }
     }
 
     @Override
@@ -64,8 +64,5 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
         for(Location loc : locations) {
             if(loc != null) { loc.paint(ctx, g); }
         }
-    }
-
-    private void getNearestGameObject(int id) {
     }
 }

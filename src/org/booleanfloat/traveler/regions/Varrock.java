@@ -31,6 +31,7 @@ public class Varrock implements Region {
         locations.add(GrandExchange);
         locations.add(SouthGate);
         locations.add(WestBank);
+        locations.add(WestGate);
 
         return locations;
     }

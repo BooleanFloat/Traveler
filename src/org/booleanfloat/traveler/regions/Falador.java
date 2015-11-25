@@ -23,6 +23,7 @@ public class Falador implements Region {
 
         locations.add(EastBank);
         locations.add(NorthGate);
+        locations.add(NorthSquare);
         locations.add(SouthGate);
         locations.add(Square);
         locations.add(WestBank);
@@ -41,7 +42,7 @@ public class Falador implements Region {
                 new Tile(2963, 3391, 0)
         ));
 
-        NorthSquare = new Location("Falador, NorthSqaure", new Area(
+        NorthSquare = new Location("Falador, NorthSquare", new Area(
                 new Tile(2971, 3414, 0),
                 new Tile(2964, 3409, 0)
         ));
