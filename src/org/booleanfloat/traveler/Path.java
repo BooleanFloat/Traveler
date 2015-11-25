@@ -20,8 +20,6 @@ public class Path {
             steps.addAll(link.getSteps());
         }
 
-        System.out.println("size:" + steps.size());
-
         return new Path(start, end, steps);
     }
 
@@ -56,7 +54,7 @@ public class Path {
                         furthestStep = step;
                     }
                 }
-                else if(step instanceof Obstacle) {
+                else {
                     if(matrix.inViewport()) {
                         furthestStep = step;
                     }

@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,7 +64,7 @@ public class Falador implements Region {
         ));
     }
 
-    public static void initLinks() {
+    public static void initLinks(ClientContext ctx) {
         new TwoWayLink(EastBank, SouthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3013, 3359, 0)),
                 new Step(new Tile(3006, 3359, 0)),
@@ -83,6 +84,15 @@ public class Falador implements Region {
                 new Step(new Tile(3007, 3323, 0)),
                 new Step(new Tile(3006, 3362, 0)),
                 new Step(new Tile(2966, 3381, 0))
+        )));
+
+        new TwoWayLink(SouthGate, PortSarim.MusaPointBoat, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3007, 3322, 0)),
+                new Step(new Tile(3007, 3278, 0)),
+                new Step(new Tile(3018, 3262, 0)),
+                new Step(new Tile(3020, 3244, 0)),
+                new Step(new Tile(3028, 3240, 0)),
+                new Step(new Tile(3028, 3218, 0))
         )));
 
         new TwoWayLink(Square, WestBank, new ArrayList<>(Arrays.asList(

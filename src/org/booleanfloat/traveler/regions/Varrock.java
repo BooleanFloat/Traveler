@@ -7,6 +7,7 @@ import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,7 +79,7 @@ public class Varrock implements Region {
         ));
     }
 
-    public static void initLinks() {
+    public static void initLinks(ClientContext ctx) {
         new TwoWayLink(ClothesStore, Fountain, new ArrayList<>(Arrays.asList(
                 new Obstacle(11775, "Open", new Tile(3209, 3415, 0)),
                 new Step(new Tile(3210, 3415, 0))

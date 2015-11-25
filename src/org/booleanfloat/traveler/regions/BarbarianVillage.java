@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +29,7 @@ public class BarbarianVillage implements Region {
         ));
     }
 
-    public static void initLinks() {
+    public static void initLinks(ClientContext ctx) {
         new TwoWayLink(Mine, Falador.NorthSquare, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3077, 3418, 0)),
                 new Step(new Tile(3071, 3418, 0)),

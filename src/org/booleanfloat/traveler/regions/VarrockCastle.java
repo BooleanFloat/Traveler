@@ -8,6 +8,7 @@ import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public class VarrockCastle implements Region {
         ));
     }
 
-    public static void initLinks() {
+    public static void initLinks(ClientContext ctx) {
         new TwoWayLink(Courtyard, Entrance);
         new TwoWayLink(Courtyard, Varrock.Fountain);
 

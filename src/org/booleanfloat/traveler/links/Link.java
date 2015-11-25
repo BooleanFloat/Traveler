@@ -9,18 +9,25 @@ import org.powerbot.script.rt4.TileMatrix;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 public class Link {
     private Location start;
     private Location end;
     private ArrayList<Traversable> steps;
+    private Callable<Boolean> requirement;
 
     private double weight;
 
     public Link(Location start, Location end, ArrayList<Traversable> steps) {
+        this(start, end, steps, null);
+    }
+
+    public Link(Location start, Location end, ArrayList<Traversable> steps, Callable<Boolean> requirement) {
         this.start = start;
         this.end = end;
         this.steps = steps;
+        this.requirement = requirement;
 
         // add start and end to the steps array
         steps.add(0, new Step(this.start.area.getCentralTile()));
@@ -94,6 +101,19 @@ public class Link {
 
     public ArrayList<Traversable> getSteps() {
         return steps;
+    }
+
+    public boolean hasRequirements() {
+        if(requirement != null) {
+            try {
+                return requirement.call();
+            }
+            catch (Exception e) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void paint(ClientContext ctx, Graphics g) {

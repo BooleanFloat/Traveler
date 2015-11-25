@@ -23,24 +23,25 @@ public class Traveler extends PollingScript<ClientContext> implements PaintListe
     public void start() {
         System.out.println("start");
 
-        Init.init();
+        Init.init(ctx);
 
         locations.addAll(Init.getLocations());
 
         Dijkstra.init(locations.toArray(new Location[locations.size()]));
 
+        System.out.println("Locations: ");
         for(Location loc : locations) {
-            System.out.println(loc.toString());
+            System.out.println("\t" + loc.toString());
         }
+        System.out.println("\n");
 
         taskList.addAll(Arrays.asList(
-                new Traverse(ctx, Falador.Square, VarrockCastle.TrainingRoom)
+                new Traverse(ctx, MusaPoint.PortSarimBoat, Varrock.Fountain)
         ));
     }
 
     @Override
     public void poll() {
-        System.out.println("poll");
         for (Task t : taskList) {
             if (t.activate()) {
                 t.execute();

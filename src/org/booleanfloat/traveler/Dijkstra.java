@@ -24,11 +24,11 @@ class Vertex implements Comparable<Vertex> {
 
 class Edge {
     public final Vertex target;
-    public final double weight;
+    public final Link link;
 
-    public Edge(Vertex target, double weight) {
+    public Edge(Vertex target, Link link) {
         this.target = target;
-        this.weight = weight;
+        this.link = link;
     }
 }
 
@@ -47,7 +47,7 @@ public class Dijkstra {
         for(Vertex vertex : vertices.values()) {
             for (Link link : vertex.location.links.values()) {
                 Vertex target = vertices.get(link.getOtherLocation(vertex.location));
-                vertex.edges.add(new Edge(target, link.getWeight()));
+                vertex.edges.add(new Edge(target, link));
             }
         }
     }
@@ -101,13 +101,12 @@ public class Dijkstra {
 
                 if(target == null) {
                     continue;
-//                    System.out.println(source.location);
                 }
 
-                double weight = edge.weight;
+                double weight = edge.link.getWeight();
                 double distance = vertex.minDistance + weight;
 
-                if (distance < target.minDistance) {
+                if (edge.link.hasRequirements() && distance < target.minDistance) {
                     vertexQueue.remove(target);
                     target.minDistance = distance;
                     target.previous = vertex;

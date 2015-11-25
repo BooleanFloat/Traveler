@@ -7,6 +7,7 @@ import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +51,7 @@ public class Draynor implements Region {
         ));
     }
 
-    public static void initLinks() {
+    public static void initLinks(ClientContext ctx) {
         new TwoWayLink(Bank, Market, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3093, 3247, 0))
         )));
@@ -90,6 +91,17 @@ public class Draynor implements Region {
                 new Step(new Tile(3070, 3276, 0)),
                 new Step(new Tile(3009, 3276, 0)),
                 new Step(new Tile(3007, 3321, 0))
+        )));
+
+        new TwoWayLink(Market, PortSarim.MusaPointBoat, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3080, 3253, 0)),
+                new Step(new Tile(3082, 3263, 0)),
+                new Step(new Tile(3071, 3277, 0)),
+                new Step(new Tile(3062, 3271, 0)),
+                new Step(new Tile(3042, 3260, 0)),
+                new Step(new Tile(3042, 3236, 0)),
+                new Step(new Tile(3027, 3235, 0)),
+                new Step(new Tile(3027, 3217, 0))
         )));
     }
 }

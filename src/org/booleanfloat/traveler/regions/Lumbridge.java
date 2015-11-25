@@ -8,6 +8,7 @@ import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +45,7 @@ public class Lumbridge implements Region {
         ));
     }
 
-    public static void initLinks() {
+    public static void initLinks(ClientContext ctx) {
         new TwoWayLink(Center, Church, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3235, 3210, 0)),
                 new Obstacle(7129, "Open", new Tile(3238, 3210, 0)),

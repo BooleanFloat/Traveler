@@ -3,6 +3,7 @@ package org.booleanfloat.tasks;
 import org.booleanfloat.traveler.Path;
 import org.booleanfloat.traveler.Location;
 import org.powerbot.script.Condition;
+import org.powerbot.script.Random;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 
@@ -31,8 +32,6 @@ public class Traverse extends Task<ClientContext> {
     @Override
     public void execute() {
         if(path.traverse(ctx)) {
-            System.out.println("following path");
-
             Condition.wait(new Callable<Boolean>() {
                 @Override
                 public Boolean call() throws Exception {

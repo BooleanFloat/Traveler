@@ -48,9 +48,9 @@ public class Location {
 
         }
 
-        for(Link link : links.values()) {
-            link.paint(ctx, g);
-        }
+//        for(Link link : links.values()) {
+//            link.paint(ctx, g);
+//        }
     }
 
     public String toString() {
