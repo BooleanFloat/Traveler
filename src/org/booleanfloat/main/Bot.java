@@ -28,14 +28,8 @@ public class Bot extends PollingScript<ClientContext> implements PaintListener {
 
         Dijkstra.init(locations.toArray(new Location[locations.size()]));
 
-        System.out.println("Locations: ");
-        for(Location loc : locations) {
-            System.out.println("\t" + loc.toString());
-        }
-        System.out.println("\n");
-
         taskList.addAll(Arrays.asList(
-                new Traverse(ctx, MusaPoint.PortSarimBoat, Varrock.Fountain)
+                new Traverse(ctx, null, VarrockCastle.TrainingRoom)
         ));
     }
 

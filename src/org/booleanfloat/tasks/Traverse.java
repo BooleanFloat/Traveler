@@ -2,6 +2,7 @@ package org.booleanfloat.tasks;
 
 import org.booleanfloat.traveler.Path;
 import org.booleanfloat.traveler.Location;
+import org.booleanfloat.traveler.Traveler;
 import org.powerbot.script.Condition;
 import org.powerbot.script.Random;
 import org.powerbot.script.Tile;
@@ -20,7 +21,7 @@ public class Traverse extends Task<ClientContext> {
         this.start = start;
         this.end = end;
 
-        path = Path.calculate(start, end);
+        path = Traveler.getPath(ctx.players.local().tile(), end);
     }
 
     @Override

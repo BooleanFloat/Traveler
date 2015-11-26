@@ -11,18 +11,6 @@ import org.powerbot.script.rt4.TileMatrix;
 import java.util.ArrayList;
 
 public class Path {
-    public static Path calculate(Location start, Location end) {
-        ArrayList<Link> links = Dijkstra.getLinks(start, end);
-        ArrayList<Traversable> steps = new ArrayList<>();
-
-        for(Link link : links) {
-            System.out.println(link.toString());
-            steps.addAll(link.getSteps());
-        }
-
-        return new Path(start, end, steps);
-    }
-
     private Location start;
     private Location end;
     private ArrayList<Traversable> steps;

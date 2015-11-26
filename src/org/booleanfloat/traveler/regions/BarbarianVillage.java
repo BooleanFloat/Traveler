@@ -61,12 +61,29 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3072, 3276, 0))
         )));
 
+        new TwoWayLink(Bridge, Edgeville.SouthFenceOpening, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3104, 3420, 0)),
+                new Step(new Tile(3101, 3427, 0)),
+                new Step(new Tile(3098, 3436, 0)),
+                new Step(new Tile(3091, 3445, 0)),
+                new Step(new Tile(3087, 3463, 0))
+        )));
+
         new TwoWayLink(Bridge, Varrock.WestGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3116, 3420, 0)),
                 new Step(new Tile(3127, 3414, 0)),
                 new Step(new Tile(3155, 3416, 0)),
                 new Step(new Tile(3170, 3429, 0)),
                 new Step(new Tile(3176, 3428, 0))
+        )));
+
+        new TwoWayLink(Mine, Edgeville.SouthFenceOpening, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3079, 3422, 0)),
+                new Step(new Tile(3079, 3433, 0)),
+                new Step(new Tile(3084, 3435, 0)),
+                new Step(new Tile(3084, 3438, 0)),
+                new Step(new Tile(3087, 3440, 0)),
+                new Step(new Tile(3087, 3462, 0))
         )));
 
         new TwoWayLink(Mine, Falador.NorthSquare, new ArrayList<>(Arrays.asList(
