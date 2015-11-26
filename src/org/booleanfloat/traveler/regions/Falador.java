@@ -15,6 +15,7 @@ public class Falador implements Region {
     public static Location EastBank;
     public static Location NorthGate;
     public static Location NorthSquare;
+    public static Location SouthCrossRoads;
     public static Location SouthGate;
     public static Location Square;
     public static Location WestBank;
@@ -25,6 +26,7 @@ public class Falador implements Region {
         locations.add(EastBank);
         locations.add(NorthGate);
         locations.add(NorthSquare);
+        locations.add(SouthCrossRoads);
         locations.add(SouthGate);
         locations.add(Square);
         locations.add(WestBank);
@@ -46,6 +48,11 @@ public class Falador implements Region {
         NorthSquare = new Location("Falador, NorthSquare", new Area(
                 new Tile(2971, 3414, 0),
                 new Tile(2964, 3409, 0)
+        ));
+
+        SouthCrossRoads = new Location("Falador, SouthCrossRoads", new Area(
+                new Tile(3010, 3281, 0),
+                new Tile(3005, 3276, 0)
         ));
 
         SouthGate = new Location("Falador, SouthGate", new Area(
@@ -80,19 +87,20 @@ public class Falador implements Region {
         new TwoWayLink(NorthGate, NorthSquare);
         new TwoWayLink(NorthGate, Square);
 
+        new TwoWayLink(SouthCrossRoads, SouthGate);
+
+        new TwoWayLink(SouthCrossRoads, PortSarim.MusaPointBoat, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3007, 3278, 0)),
+                new Step(new Tile(3018, 3261, 0)),
+                new Step(new Tile(3019, 3245, 0)),
+                new Step(new Tile(3028, 3239, 0)),
+                new Step(new Tile(3028, 3216, 0))
+        )));
+
         new TwoWayLink(SouthGate, Square, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3007, 3323, 0)),
                 new Step(new Tile(3006, 3362, 0)),
                 new Step(new Tile(2966, 3381, 0))
-        )));
-
-        new TwoWayLink(SouthGate, PortSarim.MusaPointBoat, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(3007, 3322, 0)),
-                new Step(new Tile(3007, 3278, 0)),
-                new Step(new Tile(3018, 3262, 0)),
-                new Step(new Tile(3020, 3244, 0)),
-                new Step(new Tile(3028, 3240, 0)),
-                new Step(new Tile(3028, 3218, 0))
         )));
 
         new TwoWayLink(Square, WestBank, new ArrayList<>(Arrays.asList(

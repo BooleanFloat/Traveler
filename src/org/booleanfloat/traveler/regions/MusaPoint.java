@@ -37,7 +37,7 @@ public class MusaPoint implements Region {
     public static void initLinks(ClientContext ctx) {
         new OneWayLink(PortSarimBoat, PortSarim.MusaPointBoat, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2953, 3146, 0)),
-                new KaramjaCustomsOfficer(3648, "Pay-fare", PortSarimBoat.area),
+//                new KaramjaCustomsOfficer(3648, "Pay-fare", PortSarimBoat.area),
                 new Obstacle(2084, "Cross", new Tile(3031, 3217, 1))
         )), new Callable<Boolean>() {
             @Override

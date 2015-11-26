@@ -43,15 +43,12 @@ public class AlKharid implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(CrossRoads, Lumbridge.Center, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3276, 3226, 0)),
                 new Step(new Tile(3270, 3226, 0)),
                 new Obstacle(2882, "Pay-toll(10gp)", new Tile(3268, 3227, 0)),
                 new Obstacle(2883, "Pay-toll(10gp)", new Tile(3268, 3228, 0)),
-                new Step(new Tile(3266, 3227, 0)),
-                new Step(new Tile(3253, 3225, 0)),
-                new Step(new Tile(3236, 3225, 0)),
-                new Step(new Tile(3235, 3220, 0))
+                new Step(new Tile(3266, 3227, 0))
         )), new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -62,16 +59,12 @@ public class AlKharid implements Region {
 
         new TwoWayLink(CrossRoads, NorthFenceOpening);
 
-        new TwoWayLink(NorthFenceOpening, Lumbridge.Center, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(3283, 3330, 0)),
-                new Step(new Tile(3268, 3330, 0)),
-                new Step(new Tile(3256, 3323, 0)),
+        new TwoWayLink(NorthFenceOpening, Lumbridge.NorthBridge, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3282, 3330, 0)),
+                new Step(new Tile(3270, 3330, 0)),
+                new Step(new Tile(3257, 3324, 0)),
                 new Step(new Tile(3238, 3303, 0)),
-                new Step(new Tile(3239, 3277, 0)),
-                new Step(new Tile(3242, 3261, 0)),
-                new Step(new Tile(3218, 3261, 0)),
-                new Step(new Tile(3220, 3244, 0)),
-                new Step(new Tile(3235, 3219, 0))
+                new Step(new Tile(3242, 3263, 0))
         )));
 
         new TwoWayLink(NorthFenceOpening, Varrock.EastGate, new ArrayList<>(Arrays.asList(

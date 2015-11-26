@@ -1,7 +1,7 @@
 package org.booleanfloat.main;
 
 import org.booleanfloat.traveler.Dijkstra;
-import org.booleanfloat.traveler.Init;
+import org.booleanfloat.traveler.Traveler;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.tasks.*;
 import org.booleanfloat.traveler.regions.*;
@@ -12,20 +12,19 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 @Script.Manifest(name="Traveler", description="travels")
-public class Traveler extends PollingScript<ClientContext> implements PaintListener {
+public class Bot extends PollingScript<ClientContext> implements PaintListener {
     private List<Task> taskList = new ArrayList<Task>();
-    private ArrayList<Location> locations = new ArrayList<>();;
+    private ArrayList<Location> locations = new ArrayList<>();
 
     @Override
     public void start() {
         System.out.println("start");
 
-        Init.init(ctx);
+        Traveler.init(ctx);
 
-        locations.addAll(Init.getLocations());
+        locations.addAll(Traveler.getLocations());
 
         Dijkstra.init(locations.toArray(new Location[locations.size()]));
 

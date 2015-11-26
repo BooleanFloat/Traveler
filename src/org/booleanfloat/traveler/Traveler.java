@@ -5,7 +5,7 @@ import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
 
-public class Init {
+public class Traveler {
     public static void init(ClientContext ctx) {
         AlKharid.initLocations();
         BarbarianVillage.initLocations();
