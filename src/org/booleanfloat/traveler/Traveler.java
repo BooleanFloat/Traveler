@@ -7,6 +7,7 @@ import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 public class Traveler {
     public static Path getPath(Tile start, Location end) {
@@ -37,6 +38,26 @@ public class Traveler {
         }
 
         return new Path(start, end, steps);
+    }
+
+    public static Callable<Boolean> getConditionWaiter(ClientContext ctx, Path path) {
+        return new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                Tile pos = ctx.players.local().tile();
+                Tile dest = ctx.movement.destination();
+
+                boolean isClose = (Math.abs(pos.x() - dest.x()) < 6 && Math.abs(pos.y() - dest.y()) < 6);
+                boolean isDifferentFloor = pos.floor() != dest.floor();
+                boolean isObstructing = false;
+
+                if(path.lastTraversal != null) {
+                    isObstructing = path.lastTraversal.isObstructing(ctx);
+                }
+
+                return isClose || isDifferentFloor || isObstructing;
+            }
+        };
     }
 
     public static void init(ClientContext ctx) {
@@ -71,6 +92,9 @@ public class Traveler {
             locs.append("\t" + loc.toString() + "\n");
         }
         System.out.println(locs.toString());
+
+        ArrayList<Location> locations = Traveler.getLocations();
+        Dijkstra.init(locations.toArray(new Location[locations.size()]));
     }
 
     public static ArrayList<Location> getLocations() {

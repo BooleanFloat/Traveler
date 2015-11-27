@@ -69,6 +69,16 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3087, 3463, 0))
         )));
 
+        new TwoWayLink(Bridge, Varrock.GrandExchange, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3106, 3420, 0)),
+                new Step(new Tile(3122, 3423, 0)),
+                new Step(new Tile(3142, 3431, 0)),
+                new Step(new Tile(3150, 3444, 0)),
+                new Step(new Tile(3161, 3453, 0)),
+                new Step(new Tile(3164, 3461, 0)),
+                new Step(new Tile(3164, 3488, 0))
+        )));
+
         new TwoWayLink(Bridge, Varrock.WestGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3116, 3420, 0)),
                 new Step(new Tile(3127, 3414, 0)),

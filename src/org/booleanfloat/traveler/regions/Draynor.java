@@ -97,7 +97,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3072, 3277, 0))
         )));
 
-        new TwoWayLink(CrossRoads, Lumbridge.HamEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, Lumbridge.HamBuilding, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3110, 3295, 0)),
                 new Step(new Tile(3132, 3293, 0)),
                 new Step(new Tile(3138, 3265, 0)),
@@ -117,7 +117,7 @@ public class Draynor implements Region {
 
         new TwoWayLink(GloryTeleport, Market);
 
-        new TwoWayLink(GloryTeleport, Lumbridge.HamEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GloryTeleport, Lumbridge.HamBuilding, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3104, 3249, 0)),
                 new Step(new Tile(3112, 3261, 0)),
                 new Step(new Tile(3133, 3261, 0)),

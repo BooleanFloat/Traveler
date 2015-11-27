@@ -62,7 +62,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3205, 3210, 2))
         )));
 
-        new TwoWayLink(BackEntrance, Lumbridge.HamEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(BackEntrance, Lumbridge.HamBuilding, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3197, 3218, 0)),
                 new Step(new Tile(3167, 3247, 0))
         )));

@@ -34,11 +34,9 @@ class Edge {
 
 public class Dijkstra {
     private static HashMap<Location, Vertex> vertices;
-    private static HashMap<String, ArrayList<Link>> paths;
 
     public static void init(Location[] locations) {
         vertices = new HashMap<>();
-        paths = new HashMap<>();
 
         for(Location location : locations) {
             vertices.put(location, new Vertex(location));
@@ -53,31 +51,20 @@ public class Dijkstra {
     }
 
     public static ArrayList<Link> getLinks(Location start, Location end) {
-        String name = start.name + " - " + end.name;
+        ArrayList<Link> path = new ArrayList<>();
 
-        ArrayList<Link> path = paths.get(name);
+        reset();
+        computePaths(vertices.get(start));
+        ArrayList<Vertex> locations = getShortestPathTo(vertices.get(end));
 
-        if(path != null) {
-            return path;
+        for(int i = 0; i < locations.size() - 1; i++) {
+            Vertex vertex = locations.get(i);
+            Vertex next = locations.get(i + 1);
+
+            path.add(vertex.location.links.get(next.location));
         }
-        else {
-            path = new ArrayList<>();
 
-            reset();
-            computePaths(vertices.get(start));
-            ArrayList<Vertex> locations = getShortestPathTo(vertices.get(end));
-
-            for(int i = 0; i < locations.size() - 1; i++) {
-                Vertex vertex = locations.get(i);
-                Vertex next = locations.get(i + 1);
-
-                path.add(vertex.location.links.get(next.location));
-            }
-
-            paths.put(name, path);
-
-            return path;
-        }
+        return path;
     }
 
     private static void reset() {

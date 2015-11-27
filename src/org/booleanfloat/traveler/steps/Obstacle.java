@@ -10,12 +10,18 @@ public class Obstacle implements Traversable {
     protected int id;
     protected String interaction;
     protected Tile position;
+    protected int[] bounds;
     protected GameObject object;
 
     public Obstacle(int id, String interaction, Tile position) {
+        this(id, interaction, position, null);
+    }
+
+    public Obstacle(int id, String interaction, Tile position, int[] bounds) {
         this.id = id;
         this.interaction = interaction;
         this.position = position;
+        this.bounds = bounds;
     }
 
     @Override
@@ -26,6 +32,10 @@ public class Obstacle implements Traversable {
     @Override
     public boolean isObstructing(ClientContext ctx) {
         object = ctx.objects.select().id(id).at(position).poll();
+
+        if(bounds != null) {
+            object.bounds(bounds);
+        }
 
         return object.inViewport();
     }
