@@ -1,16 +1,16 @@
-package org.booleanfloat.traveler.regions;
+package org.booleanfloat.traveler.regions.kharidiandesert;
 
 import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.regions.misthalin.Lumbridge;
+import org.booleanfloat.traveler.regions.misthalin.Varrock;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
-import org.powerbot.Con;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
-import org.powerbot.script.rt4.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;

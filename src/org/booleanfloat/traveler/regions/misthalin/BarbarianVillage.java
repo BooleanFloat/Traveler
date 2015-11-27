@@ -1,8 +1,9 @@
-package org.booleanfloat.traveler.regions;
+package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.regions.asgarnia.Falador;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
@@ -94,6 +95,17 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3084, 3438, 0)),
                 new Step(new Tile(3087, 3440, 0)),
                 new Step(new Tile(3087, 3462, 0))
+        )));
+
+        new TwoWayLink(Mine, Falador.NorthFencedStones, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3079, 3419, 0)),
+                new Step(new Tile(3071, 3417, 0)),
+                new Step(new Tile(3068, 3407, 0)),
+                new Step(new Tile(3054, 3399, 0)),
+                new Step(new Tile(3042, 3404, 0)),
+                new Step(new Tile(3035, 3404, 0)),
+                new Step(new Tile(3034, 3400, 0)),
+                new Step(new Tile(3039, 3397, 0))
         )));
 
         new TwoWayLink(Mine, Falador.NorthSquare, new ArrayList<>(Arrays.asList(

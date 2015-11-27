@@ -11,6 +11,7 @@ public class Obstacle implements Traversable {
     protected String interaction;
     protected Tile position;
     protected int[] bounds;
+    protected int interactionDelay;
     protected GameObject object;
 
     public Obstacle(int id, String interaction, Tile position) {
@@ -18,8 +19,13 @@ public class Obstacle implements Traversable {
     }
 
     public Obstacle(int id, String interaction, Tile position, int[] bounds) {
+        this(id, interaction, 750, position, bounds);
+    }
+
+    public Obstacle(int id, String interaction, int interactionDelay, Tile position, int[] bounds) {
         this.id = id;
         this.interaction = interaction;
+        this.interactionDelay = interactionDelay;
         this.position = position;
         this.bounds = bounds;
     }
@@ -50,7 +56,7 @@ public class Obstacle implements Traversable {
         boolean isInteracting = object != null && object.interact(interaction);
 
         if(isInteracting) {
-            Condition.sleep(500);
+            Condition.sleep(this.interactionDelay);
         }
 
         return isInteracting;

@@ -1,4 +1,4 @@
-package org.booleanfloat.traveler.regions;
+package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
+import org.booleanfloat.traveler.steps.obstacles.HamJailDoor;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
@@ -23,6 +24,7 @@ public class Lumbridge implements Region {
     public static Location HamForceExit2;
     public static Location HamForceExit3;
     public static Location HamForceExit4;
+    public static Location HamForceExit5;
     public static Location HamJail;
     public static Location EastCrossRoads;
     public static Location NorthBridge;
@@ -39,6 +41,7 @@ public class Lumbridge implements Region {
         locations.add(HamForceExit2);
         locations.add(HamForceExit3);
         locations.add(HamForceExit4);
+        locations.add(HamForceExit5);
         locations.add(HamJail);
         locations.add(EastCrossRoads);
         locations.add(NorthBridge);
@@ -92,8 +95,13 @@ public class Lumbridge implements Region {
                 new Tile(3137, 3256, 0)
         ));
 
+        HamForceExit5 = new Location("Lumbridge, HamForceExit5", new Area(
+                new Tile(3149, 3217, 0),
+                new Tile(3146, 3215, 0)
+        ));
+
         HamJail = new Location("Lumbridge, HamJail", new Area(
-                new Tile(3187, 9612, 0),
+                new Tile(3187, 9613, 0),
                 new Tile(3183, 9607, 0)
         ));
 
@@ -154,7 +162,7 @@ public class Lumbridge implements Region {
         )));
 
         new OneWayLink(HamBuilding, HamEntrance, new ArrayList<>(Arrays.asList(
-                new Obstacle(5490, "Pick-Lock", new Tile(3166, 3252, 0), new int[]{0, 128, 10, 0, 0, 128}),
+                new Obstacle(5490, "Pick-Lock", 3000, new Tile(3166, 3252, 0), new int[]{0, 128, 10, 0, 0, 128}),
                 new Obstacle(5491, "Climb-down", new Tile(3166, 3252, 0), new int[]{0, 128, -64, 0, 0, 128})
         )));
 
@@ -166,9 +174,10 @@ public class Lumbridge implements Region {
         new OneWayLink(HamForceExit2, HamBuilding);
         new OneWayLink(HamForceExit3, HamBuilding);
         new OneWayLink(HamForceExit4, HamBuilding);
+        new OneWayLink(HamForceExit5, HamBuilding);
 
         new OneWayLink(HamJail, HamBarracks, new ArrayList<>(Arrays.asList(
-                new Obstacle(5501, "Pick-lock", new Tile(3183, 9611, 0), new int[]{0, 32, -256, 0, 0, 128}),
+                new HamJailDoor(),
                 new Step(new Tile(3182, 9611, 0)),
                 new Step(new Tile(3178, 9615, 0)),
                 new Step(new Tile(3173, 9619, 0)),
@@ -179,7 +188,7 @@ public class Lumbridge implements Region {
         )));
 
         new OneWayLink(HamJail, HamEntrance, new ArrayList<>(Arrays.asList(
-                new Obstacle(5501, "Pick-lock", new Tile(3183, 9611, 0), new int[]{0, 32, -256, 0, 0, 128}),
+                new HamJailDoor(),
                 new Step(new Tile(3182, 9611, 0)),
                 new Step(new Tile(3171, 9621, 0)),
                 new Obstacle(7122, "Open", new Tile(3171, 9621, 0), new int[]{148, 116, -220, 0, -14, 132}),

@@ -1,4 +1,4 @@
-package org.booleanfloat.traveler.regions;
+package org.booleanfloat.traveler.regions.asgarnia;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
@@ -13,6 +13,8 @@ import java.util.Arrays;
 
 public class Falador implements Region {
     public static Location EastBank;
+    public static Location DoricsHouse;
+    public static Location NorthFencedStones;
     public static Location NorthGate;
     public static Location NorthSquare;
     public static Location SouthCrossRoads;
@@ -24,6 +26,8 @@ public class Falador implements Region {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(EastBank);
+        locations.add(DoricsHouse);
+        locations.add(NorthFencedStones);
         locations.add(NorthGate);
         locations.add(NorthSquare);
         locations.add(SouthCrossRoads);
@@ -38,6 +42,16 @@ public class Falador implements Region {
         EastBank = new Location("Falador, EastBank", new Area(
                 new Tile(3015, 3357, 0),
                 new Tile(3009, 3354, 0)
+        ));
+
+        DoricsHouse = new Location("Falador, DoricsHouse", new Area(
+                new Tile(2949, 3452, 0),
+                new Tile(2945, 3448, 0)
+        ));
+
+        NorthFencedStones = new Location("Falador, NorthFencedStones", new Area(
+                new Tile(3046, 3400, 0),
+                new Tile(3033, 3394, 0)
         ));
 
         NorthGate = new Location("Falador, NorthGate", new Area(
@@ -72,6 +86,12 @@ public class Falador implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TwoWayLink(DoricsHouse, NorthSquare, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2947, 3450, 0)),
+                new Step(new Tile(2951, 3423, 0)),
+                new Step(new Tile(2966, 3413, 0))
+        )));
+
         new TwoWayLink(EastBank, SouthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3013, 3359, 0)),
                 new Step(new Tile(3006, 3359, 0)),
@@ -82,6 +102,13 @@ public class Falador implements Region {
                 new Step(new Tile(3013, 3361, 0)),
                 new Step(new Tile(2979, 3377, 0)),
                 new Step(new Tile(2966, 3379, 0))
+        )));
+
+        new TwoWayLink(NorthFencedStones, NorthGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3040, 3398, 0)),
+                new Step(new Tile(3034, 3401, 0)),
+                new Step(new Tile(3034, 3404, 0)),
+                new Step(new Tile(2966, 3394, 0))
         )));
 
         new TwoWayLink(NorthGate, NorthSquare);

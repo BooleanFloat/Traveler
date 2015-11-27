@@ -1,8 +1,10 @@
-package org.booleanfloat.traveler.regions;
+package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.regions.asgarnia.Falador;
+import org.booleanfloat.traveler.regions.asgarnia.PortSarim;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;

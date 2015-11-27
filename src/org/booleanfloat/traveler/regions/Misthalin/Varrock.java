@@ -1,4 +1,4 @@
-package org.booleanfloat.traveler.regions;
+package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
