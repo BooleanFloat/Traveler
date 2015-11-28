@@ -39,6 +39,8 @@ public class Obstacle implements Traversable {
     public boolean isObstructing(ClientContext ctx) {
         object = ctx.objects.select().id(id).at(position).poll();
 
+        System.out.println(object + " - " + ctx.objects.select().id(id).nearest().poll());
+
         if(bounds != null) {
             object.bounds(bounds);
         }

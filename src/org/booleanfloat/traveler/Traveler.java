@@ -3,10 +3,7 @@ package org.booleanfloat.traveler;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.Link;
-import org.booleanfloat.traveler.regions.asgarnia.Burthorpe;
-import org.booleanfloat.traveler.regions.asgarnia.Falador;
-import org.booleanfloat.traveler.regions.asgarnia.PortSarim;
-import org.booleanfloat.traveler.regions.asgarnia.Taverly;
+import org.booleanfloat.traveler.regions.asgarnia.*;
 import org.booleanfloat.traveler.regions.kandarin.*;
 import org.booleanfloat.traveler.regions.karamja.MusaPoint;
 import org.booleanfloat.traveler.regions.kharidiandesert.AlKharid;
@@ -56,7 +53,7 @@ public class Traveler {
                 Tile pos = ctx.players.local().tile();
                 Tile dest = ctx.movement.destination();
 
-                boolean isClose = (Math.abs(pos.x() - dest.x()) < 6 && Math.abs(pos.y() - dest.y()) < 6);
+                boolean isClose = (Math.abs(pos.x() - dest.x()) < 8 && Math.abs(pos.y() - dest.y()) < 8);
                 boolean isDifferentFloor = pos.floor() != dest.floor();
                 boolean isObstructing = false;
 
@@ -89,6 +86,7 @@ public class Traveler {
         Burthorpe.initLocations();
         Falador.initLocations();
         PortSarim.initLocations();
+        Rimmington.initLocations();
         Taverly.initLocations();
 
         // Kandarin
@@ -120,6 +118,7 @@ public class Traveler {
         Burthorpe.initLinks(ctx);
         Falador.initLinks(ctx);
         PortSarim.initLinks(ctx);
+        Rimmington.initLinks(ctx);
         Taverly.initLinks(ctx);
 
         // Kandarin
@@ -153,6 +152,7 @@ public class Traveler {
         locations.addAll(Burthorpe.getLocations());
         locations.addAll(Falador.getLocations());
         locations.addAll(PortSarim.getLocations());
+        locations.addAll(Rimmington.getLocations());
         locations.addAll(Taverly.getLocations());
 
         // Kandarin

@@ -3,11 +3,13 @@ package org.booleanfloat.traveler.regions.kharidiandesert;
 import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.misthalin.Lumbridge;
 import org.booleanfloat.traveler.regions.misthalin.Varrock;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
+import org.booleanfloat.traveler.steps.obstacles.LumbridgeTollGate;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
@@ -19,6 +21,8 @@ import java.util.concurrent.Callable;
 public class AlKharid implements Region {
 
     public static Location CrossRoads;
+    public static Location Mine;
+    public static Location MineDigSpot;
     public static Location NorthFenceOpening;
     public static Location NorthHouse;
     public static Location Tanner;
@@ -27,6 +31,8 @@ public class AlKharid implements Region {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(CrossRoads);
+        locations.add(Mine);
+        locations.add(MineDigSpot);
         locations.add(NorthFenceOpening);
         locations.add(NorthHouse);
         locations.add(Tanner);
@@ -38,6 +44,34 @@ public class AlKharid implements Region {
         CrossRoads = new Location("AlKharid, CrossRoads", new Area(
                 new Tile(3280, 3229, 0),
                 new Tile(3274, 3223, 0)
+        ));
+
+        Mine = new Location("Alkharid, Mine", new Area(
+                new Tile(3301, 3319, 0),
+                new Tile(3304, 3316, 0),
+                new Tile(3303, 3312, 0),
+                new Tile(3306, 3311, 0),
+                new Tile(3304, 3308, 0),
+                new Tile(3308, 3303, 0),
+                new Tile(3304, 3296, 0),
+                new Tile(3308, 3292, 0),
+                new Tile(3303, 3286, 0),
+                new Tile(3307, 3281, 0),
+                new Tile(3306, 3275, 0),
+                new Tile(3291, 3275, 0),
+                new Tile(3293, 3279, 0),
+                new Tile(3291, 3281, 0),
+                new Tile(3294, 3291, 0),
+                new Tile(3290, 3298, 0),
+                new Tile(3295, 3305, 0),
+                new Tile(3293, 3310, 0),
+                new Tile(3296, 3314, 0),
+                new Tile(3296, 3318, 0)
+        ));
+
+        MineDigSpot = new Location("AlKharid, MineDigSpot", new Area(
+                new Tile(3301, 3292, 0),
+                new Tile(3299, 3290, 0)
         ));
 
         NorthFenceOpening = new Location("AlKharid, NorthFenceOpening", new Area(
@@ -57,12 +91,13 @@ public class AlKharid implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(3276, 3226, 0)),
-                new Step(new Tile(3270, 3226, 0)),
-                new Obstacle(2882, "Pay-toll(10gp)", new Tile(3268, 3227, 0)),
-                new Obstacle(2883, "Pay-toll(10gp)", new Tile(3268, 3228, 0)),
-                new Step(new Tile(3266, 3227, 0))
+        new OneWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3277, 3226, 0)),
+                new Step(new Tile(3269, 3227, 0)),
+                new LumbridgeTollGate(2882),
+                new LumbridgeTollGate(2883),
+                new Step(new Tile(3267, 3227, 0)),
+                new Step(new Tile(3258, 3227, 0))
         )), new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -70,6 +105,12 @@ public class AlKharid implements Region {
                 return ctx.inventory.select().id(Config.COINS_ID).poll().stackSize() >= 10;
             }
         });
+
+        new TwoWayLink(CrossRoads, Mine, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3277, 3226, 0)),
+                new Step(new Tile(3292, 3269, 0)),
+                new Step(new Tile(3299, 3275, 0))
+        )));
 
         new TwoWayLink(CrossRoads, NorthFenceOpening);
 
@@ -84,6 +125,15 @@ public class AlKharid implements Region {
                 new Step(new Tile(3280, 3190, 0)),
                 new Step(new Tile(3276, 3190, 0)),
                 new Obstacle(7122, "Open", new Tile(3277, 3191, 0), new int[]{112, 128, -224, 0, 10, 130})
+        )));
+
+        new TwoWayLink(Mine, MineDigSpot);
+
+        new TwoWayLink(Mine, NorthFenceOpening, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3300, 3272, 0)),
+                new Step(new Tile(3287, 3273, 0)),
+                new Step(new Tile(3288, 3293, 0)),
+                new Step(new Tile(3283, 3327, 0))
         )));
 
         new TwoWayLink(NorthFenceOpening, Lumbridge.NorthBridge, new ArrayList<>(Arrays.asList(

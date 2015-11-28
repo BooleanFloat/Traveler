@@ -63,7 +63,7 @@ public class Link {
             int dx = endTile.x() - startTile.x();
             int dy = endTile.y() - startTile.y();
             double distance = startTile.distanceTo(endTile);
-            double amount = Math.round(distance / 6);
+            double amount = Math.round(distance / 4);
 
             for(int j = 1; j < amount; j++) {
                 double x = startTile.x() + (j * dx / amount);

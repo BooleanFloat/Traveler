@@ -12,12 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class WizardsTower implements Region {
-    public static Location Entrance;
+    public static Location Causeway;
     public static Location DigSpot;
+    public static Location Entrance;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(Causeway);
         locations.add(Entrance);
         locations.add(DigSpot);
 
@@ -25,23 +27,30 @@ public class WizardsTower implements Region {
     }
 
     public static void initLocations() {
-        Entrance = new Location("WizardsTower, Entrance", new Area(
-                new Tile(3115, 3171, 0),
-                new Tile(3110, 3167, 0)
+        Causeway = new Location("WizardsTower, Causeway", new Area(
+                new Tile(3115, 3206, 0),
+                new Tile(3112, 3203, 0)
         ));
 
         DigSpot = new Location("WizardsTower, DigSpot", new Area(
                 new Tile(3111, 3153, 0),
                 new Tile(3109, 3151, 0)
         ));
+
+        Entrance = new Location("WizardsTower, Entrance", new Area(
+                new Tile(3115, 3171, 0),
+                new Tile(3110, 3167, 0)
+        ));
     }
 
     public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Entrance, DigSpot, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(3112, 3169, 0)),
-                new Step(new Tile(3118, 3162, 0)),
+        new TwoWayLink(Causeway, Entrance);
+
+        new TwoWayLink(DigSpot, Entrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3110, 3150, 0)),
                 new Step(new Tile(3118, 3154, 0)),
-                new Step(new Tile(3110, 3150, 0))
+                new Step(new Tile(3118, 3162, 0)),
+                new Step(new Tile(3112, 3169, 0))
         )));
     }
 }

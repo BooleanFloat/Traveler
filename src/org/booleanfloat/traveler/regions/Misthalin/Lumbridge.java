@@ -1,11 +1,14 @@
 package org.booleanfloat.traveler.regions.misthalin;
 
+import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.regions.kharidiandesert.AlKharid;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
+import org.booleanfloat.traveler.steps.obstacles.AlKharidTollGate;
 import org.booleanfloat.traveler.steps.obstacles.HamJailDoor;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
@@ -13,6 +16,7 @@ import org.powerbot.script.rt4.ClientContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Callable;
 
 public class Lumbridge implements Region {
     public static Location Center;
@@ -142,6 +146,21 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3219, 3260, 0)),
                 new Step(new Tile(3235, 3261, 0))
         )));
+
+        new OneWayLink(EastCrossRoads, AlKharid.CrossRoads, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3258, 3227, 0)),
+                new Step(new Tile(3267, 3227, 0)),
+                new AlKharidTollGate(2882),
+                new AlKharidTollGate(2883),
+                new Step(new Tile(3269, 3227, 0)),
+                new Step(new Tile(3277, 3226, 0))
+        )), new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                // requires 10 coins
+                return ctx.inventory.select().id(Config.COINS_ID).poll().stackSize() >= 10;
+            }
+        });
 
         new TwoWayLink(HamBarracks, HamEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3174, 9641, 0)),

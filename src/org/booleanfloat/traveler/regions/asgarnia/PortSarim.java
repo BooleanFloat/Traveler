@@ -4,6 +4,7 @@ import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
+import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.karamja.MusaPoint;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
@@ -48,5 +49,12 @@ public class PortSarim implements Region {
                 return ctx.inventory.select().id(Config.COINS_ID).poll().stackSize() >= 30;
             }
         });
+
+        new TwoWayLink(MusaPointBoat, Rimmington.Mine, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3027, 3216, 0)),
+                new Step(new Tile(3007, 3217, 0)),
+                new Step(new Tile(2990, 3231, 0)),
+                new Step(new Tile(2983, 3233, 0))
+        )));
     }
 }

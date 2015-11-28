@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
@@ -9,6 +10,7 @@ import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,6 +25,8 @@ public class Varrock implements Region {
     public static Location SouthMine;
     public static Location SouthMineDigSpot;
     public static Location WestBank;
+    public static Location WestBankBasement;
+    public static Location WestBankBasementClueSpot;
     public static Location WestGate;
 
     public static ArrayList<Location> getLocations() {
@@ -38,6 +42,8 @@ public class Varrock implements Region {
         locations.add(SouthMine);
         locations.add(SouthMineDigSpot);
         locations.add(WestBank);
+        locations.add(WestBankBasement);
+        locations.add(WestBankBasementClueSpot);
         locations.add(WestGate);
 
         return locations;
@@ -101,6 +107,16 @@ public class Varrock implements Region {
         WestBank = new Location("Varrock, WestBank", new Area(
                 new Tile(3185, 3439, 0),
                 new Tile(3181, 3434, 0)
+        ));
+
+        WestBankBasement = new Location("Varrock, WestBankBasement", new Area(
+                new Tile(3196, 9834, 0),
+                new Tile(3187, 9825, 0)
+        ));
+
+        WestBankBasementClueSpot = new Location("Varrock, WestBankBasementClueSpot", new Area(
+                new Tile(3189, 9826, 0),
+                new Tile(3186, 9824, 0)
         ));
 
         WestGate = new Location("Varrock, WestGate", new Area(
@@ -169,6 +185,26 @@ public class Varrock implements Region {
                 new Step(new Tile(3232, 3456, 0)),
                 new Step(new Tile(3213, 3448, 0))
         )));
+
+        new OneWayLink(WestBank, WestBankBasement, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3184, 3434, 0)),
+                new Obstacle(11775, "Open", new Tile(3186, 3434, 0), new int[]{-16, 32, -196, 0, 16, 128}),
+                new Step(new Tile(3186, 3434, 0)),
+                new Obstacle(11800, "Climb-down", new Tile(3188, 3434, 0), new int[]{-128, 128, -64, 0, -64, 64}),
+                new Step(new Tile(3190, 9834, 0)),
+                new Step(new Tile(3191, 9829, 0))
+        )));
+
+        new OneWayLink(WestBankBasement, WestBank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3191, 9829, 0)),
+                new Step(new Tile(3190, 9834, 0)),
+                new Obstacle(11805, "Climb-up", new Tile(3188, 9834, 0), new int[]{-128, 128, -64, 0, -64, 64}),
+                new Step(new Tile(3186, 3434, 0)),
+                new Obstacle(11775, "Open", new Tile(3186, 3434, 0), new int[]{-16, 32, -196, 0, 16, 128}),
+                new Step(new Tile(3184, 3434, 0))
+        )));
+
+        new TwoWayLink(WestBankBasement, WestBankBasementClueSpot);
 
         new TwoWayLink(WestBank, WestGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3175, 3428, 0)),

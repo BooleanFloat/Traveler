@@ -90,21 +90,14 @@ public class Burthorpe implements Region {
                 new Obstacle(4627, "Climb-up", new Tile(2206, 4936, 1), new int[]{-96, 96, -64, 0, -128, 196})
         )));
 
-        new TwoWayLink(Pub, Taverly.MembersGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Pub, Taverly.DruidsCircle, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2908, 3541, 0)),
                 new Obstacle(7129, "Open", new Tile(2907, 3544, 0), new int[]{0, 128, -196, 0, -32, 32}),
-                new Step(new Tile(2907, 3544, 0)),
-                new Step(new Tile(2916, 3544, 0)),
-                new Step(new Tile(2923, 3539, 0)),
-                new Step(new Tile(2927, 3534, 0)),
-                new Step(new Tile(2923, 3529, 0)),
-                new Step(new Tile(2923, 3517, 0)),
-                new Step(new Tile(2925, 3507, 0)),
-                new Step(new Tile(2934, 3488, 0)),
-                new Step(new Tile(2935, 3472, 0)),
-                new Step(new Tile(2938, 3469, 0)),
-                new Step(new Tile(2939, 3457, 0)),
-                new Step(new Tile(2932, 3452, 0))
+                new Step(new Tile(2908, 3545, 0)),
+                new Step(new Tile(2904, 3545, 0)),
+                new Step(new Tile(2904, 3527, 0)),
+                new Step(new Tile(2916, 3513, 0)),
+                new Step(new Tile(2923, 3486, 0))
         )));
 
         new TwoWayLink(Pub, Taverly.POHPortal, new ArrayList<>(Arrays.asList(

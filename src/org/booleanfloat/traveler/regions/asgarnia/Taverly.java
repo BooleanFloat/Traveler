@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Taverly implements Region {
+    public static Location DruidsCircle;
     public static Location POHPortal;
     public static Location MembersGate;
     public static Location WhiteWolfMountainEntrance;
@@ -20,6 +21,7 @@ public class Taverly implements Region {
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(DruidsCircle);
         locations.add(POHPortal);
         locations.add(MembersGate);
         locations.add(WhiteWolfMountainEntrance);
@@ -28,6 +30,17 @@ public class Taverly implements Region {
     }
 
     public static void initLocations() {
+        DruidsCircle = new Location("Taverly, DruidsCircle", new Area(
+                new Tile(2926, 3487, 0),
+                new Tile(2929, 3486, 0),
+                new Tile(2931, 3481, 0),
+                new Tile(2929, 3478, 0),
+                new Tile(2926, 3477, 0),
+                new Tile(2922, 3478, 0),
+                new Tile(2921, 3482, 0),
+                new Tile(2922, 3486, 0)
+        ));
+
         POHPortal = new Location("Taverly, POHPortal", new Area(
                 new Tile(2897, 3466, 0),
                 new Tile(2892, 3461, 0)
@@ -45,6 +58,19 @@ public class Taverly implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TwoWayLink(DruidsCircle, POHPortal, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2923, 3484, 0)),
+                new Step(new Tile(2899, 3477, 0)),
+                new Step(new Tile(2897, 3464, 0))
+        )));
+
+        new TwoWayLink(DruidsCircle, MembersGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2926, 3483, 0)),
+                new Step(new Tile(2938, 3469, 0)),
+                new Step(new Tile(2938, 3458, 0)),
+                new Step(new Tile(2931, 3450, 0))
+        )));
+
         new TwoWayLink(POHPortal, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2896, 3464, 0)),
                 new Step(new Tile(2896, 3454, 0)),
