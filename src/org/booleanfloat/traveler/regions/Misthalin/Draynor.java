@@ -127,6 +127,16 @@ public class Draynor implements Region {
                 new Step(new Tile(3166, 3248, 0))
         )));
 
+        new TwoWayLink(GloryTeleport, WizardsTower.Entrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3104, 3249, 0)),
+                new Step(new Tile(3106, 3241, 0)),
+                new Step(new Tile(3106, 3235, 0)),
+                new Step(new Tile(3110, 3228, 0)),
+                new Step(new Tile(3115, 3219, 0)),
+                new Step(new Tile(3114, 3206, 0)),
+                new Step(new Tile(3113, 3170, 0))
+        )));
+
         new TwoWayLink(GloryTeleport, NorthHouse, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3105, 3249, 0)),
                 new Step(new Tile(3106, 3272, 0)),

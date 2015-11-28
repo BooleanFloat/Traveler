@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.asgarnia;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
@@ -12,8 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Falador implements Region {
-    public static Location EastBank;
+    public static Location ChainMailStore;
     public static Location DoricsHouse;
+    public static Location EastBank;
     public static Location NorthFencedStones;
     public static Location NorthGate;
     public static Location NorthSquare;
@@ -25,8 +27,9 @@ public class Falador implements Region {
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
-        locations.add(EastBank);
+        locations.add(ChainMailStore);
         locations.add(DoricsHouse);
+        locations.add(EastBank);
         locations.add(NorthFencedStones);
         locations.add(NorthGate);
         locations.add(NorthSquare);
@@ -39,14 +42,19 @@ public class Falador implements Region {
     }
 
     public static void initLocations() {
-        EastBank = new Location("Falador, EastBank", new Area(
-                new Tile(3015, 3357, 0),
-                new Tile(3009, 3354, 0)
+        ChainMailStore = new Location("Falador, ChainMailStore", new Area(
+                new Tile(2975, 3314, 0),
+                new Tile(2969, 3309, 0)
         ));
 
         DoricsHouse = new Location("Falador, DoricsHouse", new Area(
                 new Tile(2949, 3452, 0),
                 new Tile(2945, 3448, 0)
+        ));
+
+        EastBank = new Location("Falador, EastBank", new Area(
+                new Tile(3015, 3357, 0),
+                new Tile(3009, 3354, 0)
         ));
 
         NorthFencedStones = new Location("Falador, NorthFencedStones", new Area(
@@ -60,7 +68,7 @@ public class Falador implements Region {
         ));
 
         NorthSquare = new Location("Falador, NorthSquare", new Area(
-                new Tile(2971, 3414, 0),
+                new Tile(2973, 3417, 0),
                 new Tile(2964, 3409, 0)
         ));
 
@@ -86,10 +94,46 @@ public class Falador implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TwoWayLink(ChainMailStore, SouthGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2972, 3312, 0)),
+                new Obstacle(23972, "Open", new Tile(2972, 3315, 0), new int[]{0, 128, -192, 0, -16, 32}),
+                new Step(new Tile(2972, 3315, 0)),
+                new Step(new Tile(2978, 3317, 0)),
+                new Step(new Tile(2990, 3318, 0)),
+                new Step(new Tile(3000, 3325, 0)),
+                new Step(new Tile(3006, 3324, 0))
+        )));
+
+        new TwoWayLink(ChainMailStore, WestBank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2971, 3312, 0)),
+                new Obstacle(23972, "Open", new Tile(2972, 3315, 0), new int[]{0, 128, -192, 0, -16, 32}),
+                new Step(new Tile(2971, 3316, 0)),
+                new Step(new Tile(2964, 3316, 0)),
+                new Step(new Tile(2956, 3319, 0)),
+                new Step(new Tile(2949, 3329, 0)),
+                new Step(new Tile(2948, 3335, 0)),
+                new Step(new Tile(2946, 3343, 0)),
+                new Step(new Tile(2949, 3353, 0)),
+                new Step(new Tile(2951, 3366, 0)),
+                new Step(new Tile(2950, 3374, 0)),
+                new Step(new Tile(2945, 3375, 0)),
+                new Step(new Tile(2946, 3371, 0))
+        )));
+
         new TwoWayLink(DoricsHouse, NorthSquare, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2947, 3450, 0)),
                 new Step(new Tile(2951, 3423, 0)),
                 new Step(new Tile(2966, 3413, 0))
+        )));
+
+        new TwoWayLink(DoricsHouse, Taverly.MembersGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2945, 3451, 0)),
+                new Step(new Tile(2936, 3450, 0)),
+                new Obstacle(7168, "Open", new Tile(2935, 3451, 0), new int[]{112, 128, -196, 0, 0, 100}),
+                new Obstacle(7169, "Open", new Tile(2935, 3451, 0), new int[]{112, 128, -196, 0, 0, 100}),
+                new Obstacle(7407, "Open", new Tile(2935, 3451, 0), new int[]{112, 128, -196, 0, 0, 100}),
+                new Obstacle(7408, "Open", new Tile(2935, 3451, 0), new int[]{112, 128, -196, 0, 0, 100}),
+                new Step(new Tile(2934, 3450, 0))
         )));
 
         new TwoWayLink(EastBank, SouthGate, new ArrayList<>(Arrays.asList(

@@ -19,7 +19,7 @@ public class Obstacle implements Traversable {
     }
 
     public Obstacle(int id, String interaction, Tile position, int[] bounds) {
-        this(id, interaction, 750, position, bounds);
+        this(id, interaction, 500, position, bounds);
     }
 
     public Obstacle(int id, String interaction, int interactionDelay, Tile position, int[] bounds) {

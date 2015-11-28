@@ -67,6 +67,13 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3167, 3247, 0))
         )));
 
+        new TwoWayLink(BackEntrance, WizardsTower.Entrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3200, 3218, 0)),
+                new Step(new Tile(3129, 3218, 0)),
+                new Step(new Tile(3115, 3208, 0)),
+                new Step(new Tile(3114, 3169, 0))
+        )));
+
         new OneWayLink(Bank, BackEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3205, 3210, 2)),
                 new Obstacle(16673, "Climb-down", new Tile(3205, 3208, 2), new int[]{-160, 64, -64, 0, -160, 32}),

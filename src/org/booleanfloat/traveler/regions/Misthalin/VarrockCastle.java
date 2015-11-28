@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class VarrockCastle implements Region {
     public static Location Courtyard;
     public static Location Entrance;
+    public static Location Kitchen;
     public static Location TrainingRoom;
 
     public static ArrayList<Location> getLocations() {
@@ -23,6 +24,7 @@ public class VarrockCastle implements Region {
 
         locations.add(Courtyard);
         locations.add(Entrance);
+        locations.add(Kitchen);
         locations.add(TrainingRoom);
 
         return locations;
@@ -39,6 +41,11 @@ public class VarrockCastle implements Region {
                 new Tile(3212, 3469, 0)
         ));
 
+        Kitchen = new Location("VarrockCastle, Kitchen", new Area(
+                new Tile(3224, 3496, 0),
+                new Tile(3218, 3491, 0)
+        ));
+
         TrainingRoom = new Location("VarrockCastle, TraningRoom", new Area(
                 new Tile(3205, 3473, 1),
                 new Tile(3202, 3470, 1)
@@ -53,6 +60,16 @@ public class VarrockCastle implements Region {
                 new Step(new Tile(3202, 3454, 0)),
                 new Step(new Tile(3197, 3462, 0)),
                 new Step(new Tile(3195, 3489, 0))
+        )));
+
+        new TwoWayLink(Entrance, Kitchen, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3212, 3470, 0)),
+                new Step(new Tile(3207, 3476, 0)),
+                new Step(new Tile(3207, 3487, 0)),
+                new Step(new Tile(3216, 3487, 0)),
+                new Step(new Tile(3216, 3491, 0)),
+                new Obstacle(11773, "Open", new Tile(3217, 3492, 0), new int[]{96, 128, -224, 0, 16, 96}),
+                new Step(new Tile(3219, 3491, 0))
         )));
 
         new OneWayLink(Entrance, TrainingRoom, new ArrayList<>(Arrays.asList(

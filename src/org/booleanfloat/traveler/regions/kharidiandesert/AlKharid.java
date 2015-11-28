@@ -20,12 +20,16 @@ public class AlKharid implements Region {
 
     public static Location CrossRoads;
     public static Location NorthFenceOpening;
+    public static Location NorthHouse;
+    public static Location Tanner;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(CrossRoads);
         locations.add(NorthFenceOpening);
+        locations.add(NorthHouse);
+        locations.add(Tanner);
 
         return locations;
     }
@@ -39,6 +43,16 @@ public class AlKharid implements Region {
         NorthFenceOpening = new Location("AlKharid, NorthFenceOpening", new Area(
                 new Tile(3286, 3332, 0),
                 new Tile(3279, 3326, 0)
+        ));
+
+        NorthHouse = new Location("AlKharid, NorthHouse", new Area(
+                new Tile(3297, 3205, 0),
+                new Tile(3289, 3201, 0)
+        ));
+
+        Tanner = new Location("AlKharid, Tanner", new Area(
+                new Tile(3277, 3193, 0),
+                new Tile(3271, 3189, 0)
         ));
     }
 
@@ -58,6 +72,19 @@ public class AlKharid implements Region {
         });
 
         new TwoWayLink(CrossRoads, NorthFenceOpening);
+
+        new TwoWayLink(CrossRoads, NorthHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3278, 3224, 0)),
+                new Step(new Tile(3292, 3206, 0)),
+                new Obstacle(7120, "Open", new Tile(3292, 3206, 0), new int[]{0, 100, -224, 0, 112, 128})
+        )));
+
+        new TwoWayLink(CrossRoads, Tanner, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3277, 3226, 0)),
+                new Step(new Tile(3280, 3190, 0)),
+                new Step(new Tile(3276, 3190, 0)),
+                new Obstacle(7122, "Open", new Tile(3277, 3191, 0), new int[]{112, 128, -224, 0, 10, 130})
+        )));
 
         new TwoWayLink(NorthFenceOpening, Lumbridge.NorthBridge, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3282, 3330, 0)),
@@ -80,6 +107,13 @@ public class AlKharid implements Region {
                 new Step(new Tile(3229, 3337, 0)),
                 new Step(new Tile(3224, 3354, 0)),
                 new Step(new Tile(3210, 3381, 0))
+        )));
+
+        new TwoWayLink(NorthFenceOpening, Varrock.SouthMine, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3283, 3329, 0)),
+                new Step(new Tile(3276, 3358, 0)),
+                new Step(new Tile(3277, 3371, 0)),
+                new Step(new Tile(3287, 3371, 0))
         )));
     }
 }

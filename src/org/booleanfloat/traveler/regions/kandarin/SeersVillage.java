@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.kandarin;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.ClientContext;
@@ -50,6 +51,15 @@ public class SeersVillage implements Region {
                 new Step(new Tile(2732, 3484, 0)),
                 new Step(new Tile(2740, 3479, 0)),
                 new Step(new Tile(2758, 3477, 0))
+        )));
+
+        new TwoWayLink(Bank, SouthHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2726, 3491, 0)),
+                new Step(new Tile(2726, 3483, 0)),
+                new Step(new Tile(2706, 3483, 0)),
+                new Step(new Tile(2701, 3477, 0)),
+                new Obstacle(25819, "Open", new Tile(2701, 3477, 0), new int[]{0, 128, -224, 0, -32, 32}),
+                new Step(new Tile(2702, 3473, 0))
         )));
     }
 }

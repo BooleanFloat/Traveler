@@ -1,7 +1,9 @@
 package org.booleanfloat.traveler;
 
+import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.Link;
+import org.booleanfloat.traveler.regions.asgarnia.Burthorpe;
 import org.booleanfloat.traveler.regions.asgarnia.Falador;
 import org.booleanfloat.traveler.regions.asgarnia.PortSarim;
 import org.booleanfloat.traveler.regions.asgarnia.Taverly;
@@ -29,7 +31,6 @@ public class Traveler {
             }
         }
 
-        System.out.println("ClosestLocation:" + closestLocation);
 
         return getPath(closestLocation, end);
     }
@@ -38,10 +39,12 @@ public class Traveler {
         ArrayList<Link> links = Dijkstra.getLinks(start, end);
         ArrayList<Traversable> steps = new ArrayList<>();
 
+        System.out.println(start.name + " -> " + end.name);
         for(Link link : links) {
-            System.out.println(link.toString());
+            System.out.println("\t" + link.toString());
             steps.addAll(link.getSteps());
         }
+        System.out.println("");
 
         return new Path(start, end, steps);
     }
@@ -83,6 +86,7 @@ public class Traveler {
 
     private static void initLocations() {
         // Asgarnia
+        Burthorpe.initLocations();
         Falador.initLocations();
         PortSarim.initLocations();
         Taverly.initLocations();
@@ -108,10 +112,12 @@ public class Traveler {
         LumbridgeCastle.initLocations();
         Varrock.initLocations();
         VarrockCastle.initLocations();
+        WizardsTower.initLocations();
     }
 
     private static void initLinks(ClientContext ctx) {
         // Asgarnia
+        Burthorpe.initLinks(ctx);
         Falador.initLinks(ctx);
         PortSarim.initLinks(ctx);
         Taverly.initLinks(ctx);
@@ -137,12 +143,14 @@ public class Traveler {
         LumbridgeCastle.initLinks(ctx);
         Varrock.initLinks(ctx);
         VarrockCastle.initLinks(ctx);
+        WizardsTower.initLinks(ctx);
     }
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
         // Asgarnia
+        locations.addAll(Burthorpe.getLocations());
         locations.addAll(Falador.getLocations());
         locations.addAll(PortSarim.getLocations());
         locations.addAll(Taverly.getLocations());
@@ -168,6 +176,7 @@ public class Traveler {
         locations.addAll(LumbridgeCastle.getLocations());
         locations.addAll(Varrock.getLocations());
         locations.addAll(VarrockCastle.getLocations());
+        locations.addAll(WizardsTower.getLocations());
 
         return locations;
     }
