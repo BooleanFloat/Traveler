@@ -58,7 +58,7 @@ public class Catherby implements Region {
                 new Tile(2803, 3429, 0)
         ));
 
-        NorthWestHouseUpstairs = new Location("location", new Area(
+        NorthWestHouseUpstairs = new Location("Catherby, NorthWestHouseUpstairs", new Area(
                 new Tile(2809, 3453, 1),
                 new Tile(2807, 3449, 1)
         ));

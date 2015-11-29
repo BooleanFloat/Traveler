@@ -30,6 +30,11 @@ public class Npc implements Traversable {
     }
 
     @Override
+    public Tile getTile(ClientContext ctx) {
+        return getTile();
+    }
+
+    @Override
     public boolean isObstructing(ClientContext ctx) {
         npc = ctx.npcs.select().id(id).within(area).nearest().poll();
 

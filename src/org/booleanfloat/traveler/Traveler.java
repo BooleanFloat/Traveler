@@ -5,6 +5,7 @@ import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.Link;
 import org.booleanfloat.traveler.regions.asgarnia.*;
 import org.booleanfloat.traveler.regions.kandarin.*;
+import org.booleanfloat.traveler.regions.karamja.Brimhaven;
 import org.booleanfloat.traveler.regions.karamja.MusaPoint;
 import org.booleanfloat.traveler.regions.kharidiandesert.AlKharid;
 import org.booleanfloat.traveler.regions.misthalin.*;
@@ -97,6 +98,7 @@ public class Traveler {
         Yanille.initLocations();
 
         // Karamja
+        Brimhaven.initLocations();
         MusaPoint.initLocations();
 
         // Kharidian Desert
@@ -129,6 +131,7 @@ public class Traveler {
         Yanille.initLinks(ctx);
 
         // Karamja
+        Brimhaven.initLinks(ctx);
         MusaPoint.initLinks(ctx);
 
         // Kharidian Desert
@@ -163,6 +166,7 @@ public class Traveler {
         locations.addAll(Yanille.getLocations());
 
         // Karamja
+        locations.addAll(Brimhaven.getLocations());
         locations.addAll(MusaPoint.getLocations());
 
         // Kharidian Desert

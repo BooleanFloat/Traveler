@@ -2,6 +2,7 @@ package org.booleanfloat.traveler;
 
 import org.booleanfloat.traveler.links.Link;
 import org.booleanfloat.traveler.steps.Obstacle;
+import org.booleanfloat.traveler.steps.Spell;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.interfaces.Traversable;
 import org.powerbot.script.Tile;
@@ -25,9 +26,10 @@ public class Path {
     public boolean traverse(ClientContext ctx) {
         Tile pos = ctx.players.local().tile();
         Traversable furthestStep = null;
+        boolean obstruction = false;
 
         for(Traversable step : steps) {
-            Tile tile = step.getTile();
+            Tile tile = step.getTile(ctx);
 
             if(Math.abs(pos.x() - tile.x()) > 50 || Math.abs(pos.y() - tile.y()) > 50) {
                 continue;
@@ -38,18 +40,22 @@ public class Path {
             if(tile.floor() == pos.floor()) {
 
                 if(step instanceof Step) {
-                    if((matrix.inViewport() && matrix.reachable()) || (matrix.onMap() && !matrix.inViewport())) {
+                    if((matrix.inViewport() && matrix.reachable())
+                            || (matrix.onMap() && !matrix.inViewport() && !obstruction)) {
                         furthestStep = step;
                     }
                 }
+                else if(step instanceof Spell) {
+                    furthestStep = step;
+                }
                 else {
-                    if(matrix.inViewport()) {
+                    if(matrix.inViewport() && step.isObstructing(ctx)) {
                         furthestStep = step;
                     }
                 }
 
                 if(furthestStep != null && furthestStep.isObstructing(ctx)) {
-                    break;
+                    obstruction = true;
                 }
             }
         }

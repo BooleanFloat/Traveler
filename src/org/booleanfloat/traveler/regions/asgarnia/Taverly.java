@@ -4,6 +4,7 @@ import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.kandarin.Catherby;
+import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.ClientContext;
@@ -16,6 +17,8 @@ public class Taverly implements Region {
     public static Location DruidsCircle;
     public static Location POHPortal;
     public static Location MembersGate;
+    public static Location SouthHouse;
+    public static Location TwoHandedSwordStore;
     public static Location WhiteWolfMountainEntrance;
 
     public static ArrayList<Location> getLocations() {
@@ -24,6 +27,8 @@ public class Taverly implements Region {
         locations.add(DruidsCircle);
         locations.add(POHPortal);
         locations.add(MembersGate);
+        locations.add(SouthHouse);
+        locations.add(TwoHandedSwordStore);
         locations.add(WhiteWolfMountainEntrance);
 
         return locations;
@@ -49,6 +54,28 @@ public class Taverly implements Region {
         MembersGate = new Location("Taverly, MembersGate", new Area(
                 new Tile(2933, 3453, 0),
                 new Tile(2929, 3447, 0)
+        ));
+
+        SouthHouse = new Location("Taverly, SouthHouse", new Area(
+                new Tile(2894, 3420, 0),
+                new Tile(2895, 3419, 0),
+                new Tile(2895, 3417, 0),
+                new Tile(2894, 3416, 0),
+                new Tile(2892, 3416, 0),
+                new Tile(2891, 3417, 0),
+                new Tile(2891, 3419, 0),
+                new Tile(2892, 3420, 0)
+        ));
+
+        TwoHandedSwordStore = new Location("Taverly, TwoHandedSwordStore", new Area(
+                new Tile(2885, 3452, 0),
+                new Tile(2888, 3450, 0),
+                new Tile(2888, 3448, 0),
+                new Tile(2886, 3446, 0),
+                new Tile(2884, 3446, 0),
+                new Tile(2882, 3448, 0),
+                new Tile(2882, 3450, 0),
+                new Tile(2884, 3452, 0)
         ));
 
         WhiteWolfMountainEntrance = new Location("Taverly, WhiteWolfMountainEntrance", new Area(
@@ -86,6 +113,25 @@ public class Taverly implements Region {
                 new Step(new Tile(2931, 3449, 0))
         )));
 
+        new TwoWayLink(POHPortal, TwoHandedSwordStore, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2897, 3463, 0)),
+                new Step(new Tile(2897, 3455, 0)),
+                new Step(new Tile(2890, 3454, 0)),
+                new Step(new Tile(2887, 3452, 0)),
+                new Obstacle(7122, "Open", new Tile(2885, 3453, 0), new int[]{0, 128, -192, 0, 0, 32}),
+                new Step(new Tile(2886, 3450, 0))
+        )));
+
+        new TwoWayLink(MembersGate, SouthHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2931, 3450, 0)),
+                new Step(new Tile(2920, 3432, 0)),
+                new Step(new Tile(2909, 3429, 0)),
+                new Step(new Tile(2900, 3421, 0)),
+                new Step(new Tile(2893, 3421, 0)),
+                new Obstacle(7122, "Open", new Tile(2893, 3421, 0), new int[]{0, 128, -192, 0, -32, 32}),
+                new Step(new Tile(2893, 3419, 0))
+        )));
+
         new TwoWayLink(MembersGate, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2930, 3449, 0)),
                 new Step(new Tile(2919, 3432, 0)),
@@ -94,6 +140,14 @@ public class Taverly implements Region {
                 new Step(new Tile(2892, 3421, 0)),
                 new Step(new Tile(2881, 3428, 0)),
                 new Step(new Tile(2876, 3428, 0))
+        )));
+
+        new TwoWayLink(SouthHouse, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2893, 3419, 0)),
+                new Obstacle(7122, "Open", new Tile(2893, 3421, 0), new int[]{0, 128, -192, 0, -32, 32}),
+                new Step(new Tile(2893, 3421, 0)),
+                new Step(new Tile(2881, 3428, 0)),
+                new Step(new Tile(2874, 3428, 0))
         )));
 
         new TwoWayLink(WhiteWolfMountainEntrance, Catherby.FishingSpot, new ArrayList<>(Arrays.asList(

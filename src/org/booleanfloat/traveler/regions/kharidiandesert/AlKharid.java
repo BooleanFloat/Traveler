@@ -144,6 +144,22 @@ public class AlKharid implements Region {
                 new Step(new Tile(3242, 3263, 0))
         )));
 
+        new TwoWayLink(NorthFenceOpening, Varrock.DigSiteBush, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3283, 3331, 0)),
+                new Step(new Tile(3297, 3334, 0)),
+                new Step(new Tile(3310, 3331, 0)),
+                new Obstacle(11766, "Open", new Tile(3311, 3331, 0), new int[]{0, 32, -128, 0, 0, 128}),
+                new Obstacle(11767, "Open", new Tile(3311, 3332, 0), new int[]{0, 32, -128, 0, 0, 128}),
+                new Step(new Tile(3313, 3331, 0)),
+                new Step(new Tile(3334, 3355, 0)),
+                new Step(new Tile(3343, 3366, 0)),
+                new Step(new Tile(3343, 3374, 0)),
+                new Step(new Tile(3340, 3375, 0)),
+                new Step(new Tile(3341, 3380, 0)),
+                new Step(new Tile(3345, 3381, 0)),
+                new Step(new Tile(3345, 3379, 0))
+        )));
+
         new TwoWayLink(NorthFenceOpening, Varrock.EastGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3283, 3332, 0)),
                 new Step(new Tile(3298, 3358, 0)),

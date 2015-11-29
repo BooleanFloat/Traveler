@@ -1,17 +1,21 @@
 package org.booleanfloat.traveler.regions.asgarnia;
 
 import org.booleanfloat.traveler.Location;
+import org.booleanfloat.traveler.Resources;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
+import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
+import org.powerbot.script.rt4.Magic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Callable;
 
 public class Falador implements Region {
     public static Location ChainMailStore;
@@ -102,6 +106,15 @@ public class Falador implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TeleportLink(Square, Magic.Spell.FALADOR_TELEPORT, new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return ctx.inventory.select().id(Resources.WATER_RUNE_ID).poll().stackSize() > 1
+                        && ctx.inventory.select().id(Resources.AIR_RUNE_ID).poll().stackSize() > 3
+                        && ctx.inventory.select().id(Resources.LAW_RUNE_ID).poll().stackSize() > 1;
+            }
+        });
+
         new TwoWayLink(ChainMailStore, SouthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2972, 3312, 0)),
                 new Obstacle(23972, "Open", new Tile(2972, 3315, 0), new int[]{0, 128, -192, 0, -16, 32}),

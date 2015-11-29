@@ -12,12 +12,16 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 public class Link {
-    private Location start;
-    private Location end;
-    private ArrayList<Traversable> steps;
-    private Callable<Boolean> requirement;
+    protected Location start;
+    protected Location end;
+    protected ArrayList<Traversable> steps;
+    protected Callable<Boolean> requirement;
 
     private double weight;
+
+    public Link() {
+
+    }
 
     public Link(Location start, Location end, ArrayList<Traversable> steps) {
         this(start, end, steps, null);
@@ -114,99 +118,6 @@ public class Link {
         }
 
         return true;
-    }
-
-    public void paint(ClientContext ctx, Graphics g) {
-//        drawWorldTiles(ctx, g);
-//        drawWorldPath(ctx, g);
-        drawMapPath(ctx, g);
-    }
-
-    private void drawMapPath(ClientContext ctx, Graphics g) {
-        Tile pos = ctx.players.local().tile();
-        TileMatrix start = steps.get(0).getTile().matrix(ctx);
-        int x1 = start.mapPoint().x;
-        int y1 = start.mapPoint().y;
-        int x2;
-        int y2;
-
-        int posX = pos.x();
-        int posY = pos.y();
-
-        g.setColor(Color.MAGENTA);
-
-        for(Traversable step : steps) {
-            Tile tile = step.getTile();
-
-            if(Math.abs(tile.x() - posX) > 30 || Math.abs(tile.y() - posY) > 30) {
-                continue;
-            }
-
-            TileMatrix matrix = tile.matrix(ctx);
-
-            x2 = matrix.mapPoint().x;
-            y2 = matrix.mapPoint().y;
-
-            if(matrix.onMap() && step.getTile().floor() == pos.floor()) {
-                g.drawLine(x1, y1, x2, y2);
-            }
-
-            x1 = x2;
-            y1 = y2;
-        }
-    }
-
-    private void drawWorldPath(ClientContext ctx, Graphics g) {
-        Tile pos = ctx.players.local().tile();
-        TileMatrix start = steps.get(0).getTile().matrix(ctx);
-        int x1 = start.centerPoint().x;
-        int y1 = start.centerPoint().y;
-        int x2;
-        int y2;
-
-        g.setColor(Color.MAGENTA);
-
-        for(Traversable step : steps) {
-            Tile tile = step.getTile();
-
-            if(Math.abs(tile.x() - pos.x()) > 30 || Math.abs(tile.y() - pos.y()) > 30) {
-                continue;
-            }
-
-            TileMatrix matrix = tile.matrix(ctx);
-
-            x2 = matrix.centerPoint().x;
-            y2 = matrix.centerPoint().y;
-
-            if(x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1 && tile.floor() == pos.floor()) {
-                g.drawLine(x1, y1, x2, y2);
-            }
-
-            x1 = x2;
-            y1 = y2;
-        }
-    }
-
-    private void drawWorldTiles(ClientContext ctx, Graphics g) {
-        Tile pos = ctx.players.local().tile();
-
-        for(Traversable step : steps) {
-            Tile tile = step.getTile();
-            TileMatrix matrix = tile.matrix(ctx);
-
-            if(Math.abs(tile.x() - pos.x()) > 30 || Math.abs(tile.y() - pos.y()) > 30) {
-                continue;
-            }
-
-            g.setColor(Color.PINK);
-            if(step.isObstructing(ctx)) {
-                g.setColor(Color.RED);
-            }
-
-            if(matrix.inViewport() && step.getTile().floor() == pos.floor()) {
-                g.drawPolygon(matrix.getBounds());
-            }
-        }
     }
 
     public String toString() {

@@ -1,6 +1,7 @@
 package org.booleanfloat.traveler;
 
 import org.booleanfloat.traveler.links.Link;
+import org.booleanfloat.traveler.links.OneWayLink;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
@@ -20,6 +21,8 @@ public class Location {
         this.area = area;
         this.links = new HashMap<>();
         this.center = area.getCentralTile();
+
+        new OneWayLink(this, this);
     }
 
     public void addLink(Location other, Link link) {

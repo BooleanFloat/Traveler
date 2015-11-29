@@ -4,6 +4,7 @@ import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.asgarnia.Falador;
+import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
@@ -14,12 +15,14 @@ import java.util.Arrays;
 
 public class BarbarianVillage implements Region {
     public static Location Bridge;
+    public static Location HelmetStore;
     public static Location Mine;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(Bridge);
+        locations.add(HelmetStore);
         locations.add(Mine);
 
         return locations;
@@ -29,6 +32,11 @@ public class BarbarianVillage implements Region {
         Bridge = new Location("BarbarianVillage, Bridge", new Area(
                 new Tile(3108, 3421, 0),
                 new Tile(3102, 3419, 0)
+        ));
+
+        HelmetStore = new Location("BarbarianVillage, HelmetStore", new Area(
+                new Tile(3077, 3430, 0),
+                new Tile(3073, 3426, 0)
         ));
 
         Mine = new Location("BarbarianVillage, Mine", new Area(
@@ -86,6 +94,13 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3155, 3416, 0)),
                 new Step(new Tile(3170, 3429, 0)),
                 new Step(new Tile(3176, 3428, 0))
+        )));
+
+        new TwoWayLink(HelmetStore, Mine, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3076, 3427, 0)),
+                new Obstacle(11616, "Open", new Tile(3076, 3426, 0), new int[]{0, 128, -192, 0, 96, 144}),
+                new Step(new Tile(3076, 3425, 0)),
+                new Step(new Tile(3080, 3419, 0))
         )));
 
         new TwoWayLink(Mine, Edgeville.SouthFenceOpening, new ArrayList<>(Arrays.asList(

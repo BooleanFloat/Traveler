@@ -1,20 +1,31 @@
 package org.booleanfloat.traveler.regions.kandarin;
 
+import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
+import org.booleanfloat.traveler.Resources;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.links.OneWayLink;
+import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.regions.karamja.Brimhaven;
+import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
+import org.booleanfloat.traveler.steps.npcs.EastArdougneKaramjaCaptain;
 import org.powerbot.script.Area;
-import org.powerbot.script.ClientContext;
+import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt4.Magic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.Callable;
 
 public class EastArdougne implements Region {
+    public static Location BrimhavenBoat;
     public static Location EastGate;
     public static Location GeneralStore;
     public static Location Market;
+    public static Location MarketNorthHouseUpstairs;
     public static Location NorthBank;
     public static Location NorthGate;
     public static Location PicnicArea;
@@ -25,9 +36,11 @@ public class EastArdougne implements Region {
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(BrimhavenBoat);
         locations.add(EastGate);
         locations.add(GeneralStore);
         locations.add(Market);
+        locations.add(MarketNorthHouseUpstairs);
         locations.add(NorthBank);
         locations.add(NorthGate);
         locations.add(PicnicArea);
@@ -39,6 +52,11 @@ public class EastArdougne implements Region {
     }
 
     public static void initLocations() {
+        BrimhavenBoat = new Location("EastArdougne, BrimhavenBoat", new Area(
+                new Tile(2686, 3278, 0),
+                new Tile(2676, 3270, 0)
+        ));
+
         EastGate = new Location("EastArdougne, EastGate", new Area(
                 new Tile(2689, 3306, 0),
                 new Tile(2686, 3302, 0)
@@ -59,6 +77,11 @@ public class EastArdougne implements Region {
                 new Tile(2653, 3311, 0),
                 new Tile(2653, 3315, 0),
                 new Tile(2656, 3317, 0)
+        ));
+
+        MarketNorthHouseUpstairs = new Location("EastArdougne, MarketNorthHouseUpstairs", new Area(
+                new Tile(2656, 3321, 1),
+                new Tile(2653, 3317, 1)
         ));
 
         NorthBank = new Location("EastArdougne, NorthBank", new Area(
@@ -93,6 +116,45 @@ public class EastArdougne implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TeleportLink(Market, Magic.Spell.ARDOUGNE_TELEPORT, new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return ctx.inventory.select().id(Resources.WATER_RUNE_ID).poll().stackSize() > 2
+                        && ctx.inventory.select().id(Resources.LAW_RUNE_ID).poll().stackSize() > 2;
+            }
+        });
+
+        new TwoWayLink(BrimhavenBoat, SouthBank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2680, 3274, 0)),
+                new Step(new Tile(2673, 3275, 0)),
+                new Step(new Tile(2666, 3280, 0)),
+                new Step(new Tile(2661, 3280, 0)),
+                new Step(new Tile(2661, 3277, 0)),
+                new Step(new Tile(2643, 3277, 0)),
+                new Step(new Tile(2643, 3283, 0)),
+                new Step(new Tile(2654, 3283, 0))
+        )));
+
+        new TwoWayLink(BrimhavenBoat, Market, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2679, 3275, 0)),
+                new Step(new Tile(2673, 3275, 0)),
+                new Step(new Tile(2664, 3282, 0)),
+                new Step(new Tile(2663, 3297, 0))
+        )));
+
+        new OneWayLink(BrimhavenBoat, Brimhaven.EastArdougneBoat, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2679, 3276, 0)),
+                new EastArdougneKaramjaCaptain(3649, "Pay-fare", BrimhavenBoat.area),
+                new Step(new Tile(2775, 3234, 1)),
+                new Obstacle(2088, "Cross", new Tile(2774, 3234, 1))
+        )), new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                // requires 30 coins
+                return ctx.inventory.select().id(Config.COINS_ID).poll().stackSize() >= 30;
+            }
+        });
+
         new TwoWayLink(EastGate, Market);
 
         new TwoWayLink(EastGate, PicnicArea, new ArrayList<>(Arrays.asList(
@@ -146,6 +208,13 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2601, 3261, 0))
         )));
 
+        new OneWayLink(Market, MarketNorthHouseUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2659, 3320, 0)),
+                new Obstacle(7122, "Open", new Tile(2659, 3320, 0), new int[]{0, 128, -196, 0, 96, 128}),
+                new Step(new Tile(2657, 3321, 0)),
+                new Obstacle(17026, "Climb-up", new Tile(2655, 3322, 0))
+        )));
+
         new TwoWayLink(Market, NorthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2661, 3306, 0)),
                 new Step(new Tile(2652, 3317, 0)),
@@ -161,27 +230,31 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2655, 3283, 0))
         )));
 
+        new OneWayLink(MarketNorthHouseUpstairs, Market, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2655, 3321, 1)),
+                new Obstacle(16685, "Climb-down", new Tile(2655, 3322, 1)),
+                new Step(new Tile(2657, 3321, 0)),
+                new Obstacle(7122, "Open", new Tile(2659, 3320, 0), new int[]{0, 128, -196, 0, 96, 128}),
+                new Step(new Tile(2659, 3320, 0))
+        )));
+
+
         new TwoWayLink(NorthBank, NorthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2617, 3332, 0)),
                 new Step(new Tile(2617, 3337, 0)),
                 new Step(new Tile(2632, 3337, 0))
         )));
 
-        new TwoWayLink(NorthGate, SeersVillage.Bank, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(2636, 3340, 0)),
+        new TwoWayLink(NorthGate, SeersVillage.RangeGuildEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2636, 3339, 0)),
                 new Step(new Tile(2636, 3373, 0)),
                 new Step(new Tile(2645, 3374, 0)),
                 new Step(new Tile(2646, 3391, 0)),
-                new Step(new Tile(2643, 3400, 0)),
+                new Step(new Tile(2643, 3401, 0)),
                 new Step(new Tile(2647, 3407, 0)),
-                new Step(new Tile(2645, 3425, 0)),
-                new Step(new Tile(2647, 3433, 0)),
-                new Step(new Tile(2656, 3442, 0)),
-                new Step(new Tile(2673, 3459, 0)),
-                new Step(new Tile(2673, 3465, 0)),
-                new Step(new Tile(2682, 3472, 0)),
-                new Step(new Tile(2706, 3483, 0)),
-                new Step(new Tile(2725, 3484, 0))
+                new Step(new Tile(2645, 3419, 0)),
+                new Step(new Tile(2646, 3431, 0)),
+                new Step(new Tile(2655, 3441, 0))
         )));
 
         new TwoWayLink(PicnicArea, Catherby.GeneralStore, new ArrayList<>(Arrays.asList(

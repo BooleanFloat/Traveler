@@ -32,6 +32,7 @@ public class Lumbridge implements Region {
     public static Location HamJail;
     public static Location EastCrossRoads;
     public static Location NorthBridge;
+    public static Location SwampShack;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
@@ -49,6 +50,7 @@ public class Lumbridge implements Region {
         locations.add(HamJail);
         locations.add(EastCrossRoads);
         locations.add(NorthBridge);
+        locations.add(SwampShack);
 
         return locations;
     }
@@ -118,6 +120,11 @@ public class Lumbridge implements Region {
                 new Tile(3243, 3264, 0),
                 new Tile(3228, 3260, 0)
         ));
+
+        SwampShack = new Location("Lumbridge, SwampShack", new Area(
+                new Tile(3206, 3170, 0),
+                new Tile(3202, 3167, 0)
+        ));
     }
 
     public static void initLinks(ClientContext ctx) {
@@ -134,10 +141,11 @@ public class Lumbridge implements Region {
         )));
 
         new TwoWayLink(Center, HamBuilding, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(3235, 3219, 0)),
-                new Step(new Tile(3222, 3236, 0)),
-                new Step(new Tile(3168, 3245, 0)),
-                new Step(new Tile(3166, 3249, 0))
+                new Step(new Tile(3235, 3218, 0)),
+                new Step(new Tile(3236, 3226, 0)),
+                new Step(new Tile(3223, 3237, 0)),
+                new Step(new Tile(3168, 3244, 0)),
+                new Step(new Tile(3166, 3250, 0))
         )));
 
         new TwoWayLink(Center, NorthBridge, new ArrayList<>(Arrays.asList(
@@ -145,6 +153,21 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3219, 3243, 0)),
                 new Step(new Tile(3219, 3260, 0)),
                 new Step(new Tile(3235, 3261, 0))
+        )));
+
+        new TwoWayLink(Center, SwampShack, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3235, 3218, 0)),
+                new Step(new Tile(3235, 3201, 0)),
+                new Step(new Tile(3244, 3199, 0)),
+                new Step(new Tile(3244, 3188, 0)),
+                new Step(new Tile(3230, 3188, 0)),
+                new Step(new Tile(3219, 3178, 0)),
+                new Step(new Tile(3211, 3167, 0)),
+                new Step(new Tile(3205, 3163, 0)),
+                new Step(new Tile(3200, 3165, 0)),
+                new Step(new Tile(3200, 3168, 0)),
+                new Obstacle(2406, "Open", new Tile(3202, 3169, 0), new int[]{-32, 32, -192, 0, 0, 128}),
+                new Step(new Tile(3203, 3168, 0))
         )));
 
         new OneWayLink(EastCrossRoads, AlKharid.CrossRoads, new ArrayList<>(Arrays.asList(
@@ -183,6 +206,14 @@ public class Lumbridge implements Region {
         new OneWayLink(HamBuilding, HamEntrance, new ArrayList<>(Arrays.asList(
                 new Obstacle(5490, "Pick-Lock", 3000, new Tile(3166, 3252, 0), new int[]{0, 128, 10, 0, 0, 128}),
                 new Obstacle(5491, "Climb-down", new Tile(3166, 3252, 0), new int[]{0, 128, -64, 0, 0, 128})
+        )));
+
+        new TwoWayLink(HamBuilding, WizardsTower.Causeway, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3165, 3250, 0)),
+                new Step(new Tile(3165, 3247, 0)),
+                new Step(new Tile(3146, 3231, 0)),
+                new Step(new Tile(3123, 3218, 0)),
+                new Step(new Tile(3114, 3206, 0))
         )));
 
         new OneWayLink(HamEntrance, HamBuilding, new ArrayList<>(Arrays.asList(
@@ -232,6 +263,19 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3211, 3335, 0)),
                 new Step(new Tile(3204, 3344, 0)),
                 new Step(new Tile(3211, 3382, 0))
+        )));
+
+        new TwoWayLink(SwampShack, WizardsTower.Causeway, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3203, 3169, 0)),
+                new Obstacle(2406, "Open", new Tile(3202, 3169, 0), new int[]{-32, 32, -192, 0, 0, 128}),
+                new Step(new Tile(3200, 3168, 0)),
+                new Step(new Tile(3192, 3179, 0)),
+                new Step(new Tile(3185, 3181, 0)),
+                new Step(new Tile(3175, 3198, 0)),
+                new Step(new Tile(3157, 3198, 0)),
+                new Step(new Tile(3137, 3208, 0)),
+                new Step(new Tile(3114, 3208, 0)),
+                new Step(new Tile(3114, 3205, 0))
         )));
     }
 }

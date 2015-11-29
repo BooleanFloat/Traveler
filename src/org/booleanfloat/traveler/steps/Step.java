@@ -21,6 +21,11 @@ public class Step implements Traversable {
     }
 
     @Override
+    public Tile getTile(ClientContext ctx) {
+        return getTile();
+    }
+
+    @Override
     public boolean isObstructing(ClientContext ctx) {
         return false;
     }

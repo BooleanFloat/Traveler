@@ -36,10 +36,15 @@ public class Obstacle implements Traversable {
     }
 
     @Override
+    public Tile getTile(ClientContext ctx) {
+        return getTile();
+    }
+
+    @Override
     public boolean isObstructing(ClientContext ctx) {
         object = ctx.objects.select().id(id).at(position).poll();
 
-        System.out.println(object + " - " + ctx.objects.select().id(id).nearest().poll());
+//        System.out.println(id + "-" + position + " / " + ctx.objects.select().id(id).nearest().poll());
 
         if(bounds != null) {
             object.bounds(bounds);

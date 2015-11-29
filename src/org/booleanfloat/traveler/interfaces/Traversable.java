@@ -5,6 +5,7 @@ import org.powerbot.script.rt4.ClientContext;
 
 public interface Traversable {
     Tile getTile();
+    Tile getTile(ClientContext ctx);
     boolean isObstructing(ClientContext ctx);
     boolean isTraversable(ClientContext ctx);
     boolean traverse(ClientContext ctx);
