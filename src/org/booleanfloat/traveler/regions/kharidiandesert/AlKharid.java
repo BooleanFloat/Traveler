@@ -5,10 +5,12 @@ import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.regions.asgarnia.PortSarim;
 import org.booleanfloat.traveler.regions.misthalin.Lumbridge;
 import org.booleanfloat.traveler.regions.misthalin.Varrock;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
+import org.booleanfloat.traveler.steps.npcs.Shantay;
 import org.booleanfloat.traveler.steps.obstacles.LumbridgeTollGate;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
@@ -20,27 +22,36 @@ import java.util.concurrent.Callable;
 
 public class AlKharid implements Region {
 
+    public static Location Bank;
     public static Location CrossRoads;
     public static Location Mine;
     public static Location MineDigSpot;
     public static Location NorthFenceOpening;
     public static Location NorthHouse;
+    public static Location ShantyPass;
     public static Location Tanner;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(Bank);
         locations.add(CrossRoads);
         locations.add(Mine);
         locations.add(MineDigSpot);
         locations.add(NorthFenceOpening);
         locations.add(NorthHouse);
+        locations.add(ShantyPass);
         locations.add(Tanner);
 
         return locations;
     }
 
     public static void initLocations() {
+        Bank = new Location("AlKharid, Bank", new Area(
+                new Tile(3272, 3172, 0),
+                new Tile(3268, 3160, 0)
+        ));
+
         CrossRoads = new Location("AlKharid, CrossRoads", new Area(
                 new Tile(3280, 3229, 0),
                 new Tile(3274, 3223, 0)
@@ -84,6 +95,17 @@ public class AlKharid implements Region {
                 new Tile(3289, 3201, 0)
         ));
 
+        ShantyPass = new Location("AlKharid, ShantyPass", new Area(
+                new Tile(3306, 3132, 0),
+                new Tile(3311, 3126, 0),
+                new Tile(3311, 3117, 0),
+                new Tile(3307, 3115, 0),
+                new Tile(3301, 3115, 0),
+                new Tile(3294, 3120, 0),
+                new Tile(3294, 3126, 0),
+                new Tile(3301, 3131, 0)
+        ));
+
         Tanner = new Location("AlKharid, Tanner", new Area(
                 new Tile(3277, 3193, 0),
                 new Tile(3271, 3189, 0)
@@ -91,6 +113,21 @@ public class AlKharid implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TwoWayLink(Bank, CrossRoads, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3270, 3166, 0)),
+                new Step(new Tile(3276, 3166, 0)),
+                new Step(new Tile(3283, 3187, 0)),
+                new Step(new Tile(3276, 3226, 0))
+        )));
+
+        new TwoWayLink(Bank, ShantyPass, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3270, 3165, 0)),
+                new Step(new Tile(3276, 3165, 0)),
+                new Step(new Tile(3279, 3154, 0)),
+                new Step(new Tile(3303, 3138, 0)),
+                new Step(new Tile(3303, 3127, 0))
+        )));
+
         new OneWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3277, 3226, 0)),
                 new Step(new Tile(3269, 3227, 0)),
@@ -180,6 +217,10 @@ public class AlKharid implements Region {
                 new Step(new Tile(3276, 3358, 0)),
                 new Step(new Tile(3277, 3371, 0)),
                 new Step(new Tile(3287, 3371, 0))
+        )));
+
+        new OneWayLink(ShantyPass, PortSarim.ShantyPassCell, new ArrayList<>(Arrays.asList(
+                new Shantay()
         )));
     }
 }

@@ -11,6 +11,7 @@ import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
+import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Magic;
 
 import java.util.ArrayList;
@@ -60,7 +61,8 @@ public class LumbridgeCastle implements Region {
         new TeleportLink(Courtyard, Magic.Spell.LUMBRIDGE_TELEPORT, new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return ctx.inventory.select().id(Resources.EARTH_RUNE_ID).poll().stackSize() > 1
+                return ctx.skills.realLevel(Constants.SKILLS_MAGIC) >= 31
+                        && ctx.inventory.select().id(Resources.EARTH_RUNE_ID).poll().stackSize() > 1
                         && ctx.inventory.select().id(Resources.AIR_RUNE_ID).poll().stackSize() > 3
                         && ctx.inventory.select().id(Resources.LAW_RUNE_ID).poll().stackSize() > 1;
             }

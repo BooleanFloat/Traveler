@@ -23,6 +23,10 @@ public class Traveler {
         for(Location location : getLocations()) {
             double distance = start.distanceTo(location.area.getCentralTile());
 
+            if(location == end) {
+                continue;
+            }
+
             if(distance < minDistance) {
                 minDistance = distance;
                 closestLocation = location;
@@ -86,6 +90,7 @@ public class Traveler {
         // Asgarnia
         Burthorpe.initLocations();
         Falador.initLocations();
+        DwarvenMine.initLocations();
         PortSarim.initLocations();
         Rimmington.initLocations();
         Taverly.initLocations();
@@ -119,6 +124,7 @@ public class Traveler {
         // Asgarnia
         Burthorpe.initLinks(ctx);
         Falador.initLinks(ctx);
+        DwarvenMine.initLinks(ctx);
         PortSarim.initLinks(ctx);
         Rimmington.initLinks(ctx);
         Taverly.initLinks(ctx);
@@ -153,6 +159,7 @@ public class Traveler {
 
         // Asgarnia
         locations.addAll(Burthorpe.getLocations());
+        locations.addAll(DwarvenMine.getLocations());
         locations.addAll(Falador.getLocations());
         locations.addAll(PortSarim.getLocations());
         locations.addAll(Rimmington.getLocations());

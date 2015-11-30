@@ -11,6 +11,7 @@ import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
+import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Magic;
 
 import java.lang.reflect.Array;
@@ -20,11 +21,12 @@ import java.util.concurrent.Callable;
 
 public class Varrock implements Region {
     public static Location ClothesStore;
+    public static Location DigSiteBush;
     public static Location EastBank;
     public static Location EastGate;
-    public static Location DigSiteBush;
     public static Location Fountain;
     public static Location GrandExchange;
+    public static Location HorviksArmoury;
     public static Location LimeStoneMine;
     public static Location MembersGate;
     public static Location NorthGate;
@@ -41,11 +43,12 @@ public class Varrock implements Region {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(ClothesStore);
+        locations.add(DigSiteBush);
         locations.add(EastBank);
         locations.add(EastGate);
-        locations.add(DigSiteBush);
         locations.add(Fountain);
         locations.add(GrandExchange);
+        locations.add(HorviksArmoury);
         locations.add(MembersGate);
         locations.add(LimeStoneMine);
         locations.add(NorthGate);
@@ -90,6 +93,11 @@ public class Varrock implements Region {
         GrandExchange = new Location("Varrock, GrandExchange", new Area(
                 new Tile(3168, 3493, 0),
                 new Tile(3161, 3486, 0)
+        ));
+
+        HorviksArmoury = new Location("Varrock, HorviksArmoury", new Area(
+                new Tile(3233, 3441, 0),
+                new Tile(3227, 3432, 0)
         ));
 
         LimeStoneMine = new Location("Varrock, LimeStoneMine", new Area(
@@ -169,7 +177,8 @@ public class Varrock implements Region {
         new TeleportLink(Fountain, Magic.Spell.VARROCK_TELEPORT, new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return ctx.inventory.select().id(Resources.FIRE_RUNE_ID).poll().stackSize() > 1
+                return ctx.skills.realLevel(Constants.SKILLS_MAGIC) >= 25
+                        && ctx.inventory.select().id(Resources.FIRE_RUNE_ID).poll().stackSize() > 1
                         && ctx.inventory.select().id(Resources.AIR_RUNE_ID).poll().stackSize() > 3
                         && ctx.inventory.select().id(Resources.LAW_RUNE_ID).poll().stackSize() > 1;
             }
@@ -216,6 +225,12 @@ public class Varrock implements Region {
 
         new TwoWayLink(Fountain, EastBank, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3253, 3428, 0))
+        )));
+
+        new TwoWayLink(Fountain, HorviksArmoury, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3213, 3428, 0)),
+                new Step(new Tile(3230, 3429, 0)),
+                new Step(new Tile(3230, 3435, 0))
         )));
 
         new TwoWayLink(Fountain, SouthGate);

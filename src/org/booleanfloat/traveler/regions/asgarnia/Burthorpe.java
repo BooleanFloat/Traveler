@@ -19,6 +19,7 @@ public class Burthorpe implements Region {
     public static Location Castle;
     public static Location GamesRoom;
     public static Location GamesRoomEntrance;
+    public static Location NorthEastHouse;
     public static Location Pub;
     public static Location Tent;
 
@@ -28,6 +29,7 @@ public class Burthorpe implements Region {
         locations.add(Castle);
         locations.add(GamesRoom);
         locations.add(GamesRoomEntrance);
+        locations.add(NorthEastHouse);
         locations.add(Pub);
         locations.add(Tent);
 
@@ -48,6 +50,11 @@ public class Burthorpe implements Region {
         GamesRoomEntrance = new Location("Burthorpe, GamesRoomEntrance", new Area(
                 new Tile(2209, 4940, 0),
                 new Tile(2206, 4938, 0)
+        ));
+
+        NorthEastHouse = new Location("Burthorpe, NorthEastHouse", new Area(
+                new Tile(2934, 3569, 0),
+                new Tile(2929, 3564, 0)
         ));
 
         Pub = new Location("Burthorpe, Pub", new Area(
@@ -105,6 +112,17 @@ public class Burthorpe implements Region {
                 new Step(new Tile(2907, 3545, 0)),
                 new Step(new Tile(2888, 3537, 0)),
                 new Step(new Tile(2887, 3540, 0))
+        )));
+
+        new TwoWayLink(Pub, NorthEastHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2907, 3542, 0)),
+                new Obstacle(7129, "Open", new Tile(2907, 3544, 0), new int[]{0, 128, -196, 0, -32, 32}),
+                new Step(new Tile(2907, 3545, 0)),
+                new Step(new Tile(2916, 3545, 0)),
+                new Step(new Tile(2933, 3563, 0)),
+                new Obstacle(7122, "Open", new Tile(2932, 3564, 0), new int[]{0, 128, -192, 0, 96, 144}),
+                // door
+                new Step(new Tile(2932, 3566, 0))
         )));
 
         new TwoWayLink(Pub, Taverly.DruidsCircle, new ArrayList<>(Arrays.asList(

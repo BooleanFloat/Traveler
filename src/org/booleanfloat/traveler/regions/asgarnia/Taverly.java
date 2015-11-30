@@ -15,8 +15,9 @@ import java.util.Arrays;
 
 public class Taverly implements Region {
     public static Location DruidsCircle;
-    public static Location POHPortal;
+    public static Location HerbloreStore;
     public static Location MembersGate;
+    public static Location POHPortal;
     public static Location SouthHouse;
     public static Location TwoHandedSwordStore;
     public static Location WhiteWolfMountainEntrance;
@@ -25,8 +26,9 @@ public class Taverly implements Region {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(DruidsCircle);
-        locations.add(POHPortal);
+        locations.add(HerbloreStore);
         locations.add(MembersGate);
+        locations.add(POHPortal);
         locations.add(SouthHouse);
         locations.add(TwoHandedSwordStore);
         locations.add(WhiteWolfMountainEntrance);
@@ -46,14 +48,25 @@ public class Taverly implements Region {
                 new Tile(2922, 3486, 0)
         ));
 
-        POHPortal = new Location("Taverly, POHPortal", new Area(
-                new Tile(2897, 3466, 0),
-                new Tile(2892, 3461, 0)
+        HerbloreStore = new Location("Taverly, HerbloreStore", new Area(
+                new Tile(2900, 3431, 0),
+                new Tile(2902, 3429, 0),
+                new Tile(2902, 3426, 0),
+                new Tile(2899, 3423, 0),
+                new Tile(2897, 3423, 0),
+                new Tile(2895, 3425, 0),
+                new Tile(2895, 3428, 0),
+                new Tile(2897, 3431, 0)
         ));
 
         MembersGate = new Location("Taverly, MembersGate", new Area(
                 new Tile(2933, 3453, 0),
                 new Tile(2929, 3447, 0)
+        ));
+
+        POHPortal = new Location("Taverly, POHPortal", new Area(
+                new Tile(2897, 3466, 0),
+                new Tile(2892, 3461, 0)
         ));
 
         SouthHouse = new Location("Taverly, SouthHouse", new Area(
@@ -95,6 +108,21 @@ public class Taverly implements Region {
                 new Step(new Tile(2926, 3483, 0)),
                 new Step(new Tile(2938, 3469, 0)),
                 new Step(new Tile(2938, 3458, 0)),
+                new Step(new Tile(2931, 3450, 0))
+        )));
+
+        new TwoWayLink(HerbloreStore, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2898, 3427, 0)),
+                new Obstacle(7122, "Open", new Tile(2894, 3428, 0), new int[]{112, 144, -192, 0, 0, 128}),
+                new Step(new Tile(2894, 3427, 0)),
+                new Step(new Tile(2875, 3428, 0))
+        )));
+
+        new TwoWayLink(HerbloreStore, MembersGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2899, 3427, 0)),
+                new Obstacle(7122, "Open", new Tile(2902, 3428, 0), new int[]{0, 32, -192, 0, 0, 128}),
+                new Step(new Tile(2907, 3427, 0)),
+                new Step(new Tile(2920, 3432, 0)),
                 new Step(new Tile(2931, 3450, 0))
         )));
 

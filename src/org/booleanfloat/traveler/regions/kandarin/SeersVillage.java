@@ -13,6 +13,7 @@ import org.booleanfloat.traveler.steps.obstacles.CamelotCastleGateOut;
 import org.powerbot.script.Area;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Magic;
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class SeersVillage implements Region {
     public static Location CastleGate;
     public static Location GalahadsHouseEntrance;
     public static Location RangeGuildEntrance;
+    public static Location SinclairMansion;
+    public static Location SinclairMansionGate;
+    public static Location SinclairMansionKitchen;
     public static Location SpinningHouse;
     public static Location SouthHouse;
 
@@ -36,6 +40,9 @@ public class SeersVillage implements Region {
         locations.add(CastleGate);
         locations.add(GalahadsHouseEntrance);
         locations.add(RangeGuildEntrance);
+        locations.add(SinclairMansion);
+        locations.add(SinclairMansionGate);
+        locations.add(SinclairMansionKitchen);
         locations.add(SpinningHouse);
         locations.add(SouthHouse);
 
@@ -68,6 +75,21 @@ public class SeersVillage implements Region {
                 new Tile(2651, 3437, 0)
         ));
 
+        SinclairMansion = new Location("SeersVillage, SinclairMansion", new Area(
+                new Tile(2745, 3582, 0),
+                new Tile(2736, 3573, 0)
+        ));
+
+        SinclairMansionGate = new Location("SeersVillage, SinclairMansionGate", new Area(
+                new Tile(2743, 3554, 0),
+                new Tile(2740, 3551, 0)
+        ));
+
+        SinclairMansionKitchen = new Location("SeersVillage, SinclairMansionKitchen", new Area(
+                new Tile(2735, 3582, 0),
+                new Tile(2733, 3580, 0)
+        ));
+
         SpinningHouse = new Location("SeersVillage, SpinningHouse", new Area(
                 new Tile(2716, 3473, 1),
                 new Tile(2709, 3469, 1)
@@ -83,7 +105,8 @@ public class SeersVillage implements Region {
         new TeleportLink(CastleGate, Magic.Spell.CAMELOT_TELEPORT, new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                return ctx.inventory.select().id(Resources.AIR_RUNE_ID).poll().stackSize() > 5
+                return ctx.skills.realLevel(Constants.SKILLS_MAGIC) >= 45
+                        && ctx.inventory.select().id(Resources.AIR_RUNE_ID).poll().stackSize() > 5
                         && ctx.inventory.select().id(Resources.LAW_RUNE_ID).poll().stackSize() > 1;
             }
         });
@@ -104,6 +127,15 @@ public class SeersVillage implements Region {
                 new Step(new Tile(2673, 3465, 0)),
                 new Step(new Tile(2672, 3459, 0)),
                 new Step(new Tile(2655, 3441, 0))
+        )));
+
+        new TwoWayLink(Bank, SinclairMansionGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2725, 3490, 0)),
+                new Step(new Tile(2725, 3483, 0)),
+                new Step(new Tile(2733, 3484, 0)),
+                new Step(new Tile(2741, 3496, 0)),
+                new Step(new Tile(2742, 3515, 0)),
+                new Step(new Tile(2742, 3553, 0))
         )));
 
         new OneWayLink(Bank, SpinningHouse, new ArrayList<>(Arrays.asList(
@@ -138,6 +170,15 @@ public class SeersVillage implements Region {
                 new Step(new Tile(2758, 3483, 0))
         )));
 
+        new TwoWayLink(CastleGate, SinclairMansionGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2758, 3478, 0)),
+                new Step(new Tile(2750, 3477, 0)),
+                new Step(new Tile(2741, 3479, 0)),
+                new Step(new Tile(2739, 3494, 0)),
+                new Step(new Tile(2741, 3498, 0)),
+                new Step(new Tile(2742, 3553, 0))
+        )));
+
         new TwoWayLink(GalahadsHouseEntrance, RangeGuildEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2612, 3481, 0)),
                 new Step(new Tile(2617, 3480, 0)),
@@ -146,6 +187,23 @@ public class SeersVillage implements Region {
                 new Step(new Tile(2643, 3455, 0)),
                 new Step(new Tile(2644, 3447, 0)),
                 new Step(new Tile(2653, 3441, 0))
+        )));
+
+        new TwoWayLink(SinclairMansion, SinclairMansionGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2740, 3574, 0)),
+                new Obstacle(25748, "Open", new Tile(2740, 3572, 0), new int[]{0, 128, -160, 0, 112, 144}),
+                new Obstacle(25750, "Open", new Tile(2741, 3572, 0), new int[]{0, 128, -160, 0, 112, 144}),
+                new Step(new Tile(2742, 3570, 0)),
+                new Step(new Tile(2742, 3556, 0)),
+                new Obstacle(26130, "Open", new Tile(2741, 3555, 0), new int[]{0, 128, -160, 0, 112, 144}),
+                new Obstacle(26131, "Open", new Tile(2742, 3555, 0), new int[]{0, 128, -160, 0, 112, 144}),
+                new Step(new Tile(2742, 3553, 0))
+        )));
+
+        new TwoWayLink(SinclairMansion, SinclairMansionKitchen, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2737, 3579, 0)),
+                new Obstacle(25718, "Open", new Tile(2735, 3580, 0), new int[]{112, 128, -196, 0, 0, 128}),
+                new Step(new Tile(2735, 3580, 0))
         )));
 
         new OneWayLink(SpinningHouse, Bank, new ArrayList<>(Arrays.asList(
