@@ -46,7 +46,7 @@ public class Path {
             double distance;
 
             if(Math.abs(pos.x() - tile.x()) > 50 || Math.abs(pos.y() - tile.y()) > 50
-                    || tile.floor() != pos.floor() || lastTraversal == step) {
+                    || tile.floor() != pos.floor()) {
                 continue;
             }
 
