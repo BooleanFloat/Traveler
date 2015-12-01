@@ -19,6 +19,7 @@ public class Draynor implements Region {
     public static Location CrossRoads;
     public static Location GloryTeleport;
     public static Location Market;
+    public static Location NedsHouse;
     public static Location NorthHouse;
     public static Location WestFenceOpening;
 
@@ -29,6 +30,7 @@ public class Draynor implements Region {
         locations.add(CrossRoads);
         locations.add(GloryTeleport);
         locations.add(Market);
+        locations.add(NedsHouse);
         locations.add(NorthHouse);
         locations.add(WestFenceOpening);
 
@@ -54,6 +56,11 @@ public class Draynor implements Region {
         Market = new Location("Draynor, Market", new Area(
                 new Tile(3084, 3253, 0),
                 new Tile(3075, 3245, 0)
+        ));
+
+        NedsHouse = new Location("Draynor, NedsHouse", new Area(
+                new Tile(3101, 3260, 0),
+                new Tile(3096, 3255, 0)
         ));
 
         NorthHouse = new Location("Draynor, NorthHouse", new Area(
@@ -118,6 +125,13 @@ public class Draynor implements Region {
         )));
 
         new TwoWayLink(GloryTeleport, Market);
+
+        new TwoWayLink(GloryTeleport, NedsHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3104, 3250, 0)),
+                new Step(new Tile(3104, 3258, 0)),
+                new Obstacle(7122, "Open", new Tile(3101, 3258, 0), new int[]{96, 128, -192, 0, 0, 128}),
+                new Step(new Tile(3100, 3258, 0))
+        )));
 
         new TwoWayLink(GloryTeleport, Lumbridge.HamBuilding, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3104, 3249, 0)),

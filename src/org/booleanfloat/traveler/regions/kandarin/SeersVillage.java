@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.steps.ImportantStep;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.obstacles.CamelotCastleGateIn;
@@ -16,6 +17,7 @@ import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Magic;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
@@ -24,6 +26,7 @@ public class SeersVillage implements Region {
     public static Location Bank;
     public static Location CastleCourtyard;
     public static Location CastleGate;
+    public static Location CastleSouthWestTower;
     public static Location GalahadsHouseEntrance;
     public static Location RangeGuildEntrance;
     public static Location SinclairMansion;
@@ -38,6 +41,7 @@ public class SeersVillage implements Region {
         locations.add(Bank);
         locations.add(CastleCourtyard);
         locations.add(CastleGate);
+        locations.add(CastleSouthWestTower);
         locations.add(GalahadsHouseEntrance);
         locations.add(RangeGuildEntrance);
         locations.add(SinclairMansion);
@@ -63,6 +67,11 @@ public class SeersVillage implements Region {
         CastleGate = new Location("SeersVillage, CastleGate", new Area(
                 new Tile(2761, 3480, 0),
                 new Tile(2756, 3476, 0)
+        ));
+
+        CastleSouthWestTower = new Location("SeersVillage, CastleSouthWestTower", new Area(
+                new Tile(2752, 3495, 2),
+                new Tile(2746, 3489, 2)
         ));
 
         GalahadsHouseEntrance = new Location("SeersVillage, GalahadsHouseEntrance", new Area(
@@ -163,11 +172,44 @@ public class SeersVillage implements Region {
                 new Step(new Tile(2758, 3481, 0))
         )));
 
+        new OneWayLink(CastleCourtyard, CastleSouthWestTower, new ArrayList<>(Arrays.asList(
+                new ImportantStep(new Tile(2758, 3503, 0)),
+                new Obstacle(25638, "Open", new Tile(2757, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new Obstacle(25640, "Open", new Tile(2758, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new ImportantStep(new Tile(2757, 3505, 0)),
+                new ImportantStep(new Tile(2750, 3505, 0)),
+                new Obstacle(25642, "Open", new Tile(2750, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new ImportantStep(new Tile(2750, 3496, 0)),
+                new Obstacle(25642, "Open", new Tile(2750, 3496, 0), new int[]{0, 128, -192, 0, -16, 32}),
+                new ImportantStep(new Tile(2748, 3493, 0)),
+                new Obstacle(26107, "Climb-up", new Tile(2747, 3493, 0)),
+                new Step(new Tile(2749, 3492, 1)),
+                new Obstacle(26107, "Climb-up", new Tile(2749, 3491, 1)),
+                new Step(new Tile(2748, 3493, 2))
+        )));
+
+        new OneWayLink(CastleSouthWestTower, CastleCourtyard, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2748, 3493, 2)),
+                new Obstacle(25606, "Climb-down", new Tile(2749, 3491, 2)),
+                new Step(new Tile(2749, 3492, 1)),
+                new Obstacle(25606, "Climb-down", new Tile(2747, 3493, 1)),
+                new ImportantStep(new Tile(2748, 3493, 0)),
+                new Obstacle(25642, "Open", new Tile(2750, 3496, 0), new int[]{0, 128, -192, 0, -16, 32}),
+                new ImportantStep(new Tile(2750, 3496, 0)),
+                new Obstacle(25642, "Open", new Tile(2750, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new ImportantStep(new Tile(2750, 3505, 0)),
+                new ImportantStep(new Tile(2757, 3505, 0)),
+                new Obstacle(25640, "Open", new Tile(2758, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new Obstacle(25638, "Open", new Tile(2757, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new ImportantStep(new Tile(2758, 3503, 0))
+        )));
+
         new OneWayLink(CastleGate, CastleCourtyard, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2758, 3481, 0)),
                 new CamelotCastleGateIn(26082, new Tile(2758, 3482, 0)),
                 new CamelotCastleGateIn(26081, new Tile(2757, 3482, 0)),
-                new Step(new Tile(2758, 3483, 0))
+                new Step(new Tile(2758, 3483, 0)),
+                new ImportantStep(new Tile(2758, 3490, 0))
         )));
 
         new TwoWayLink(CastleGate, SinclairMansionGate, new ArrayList<>(Arrays.asList(

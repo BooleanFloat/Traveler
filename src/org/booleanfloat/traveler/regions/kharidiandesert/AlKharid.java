@@ -24,6 +24,8 @@ public class AlKharid implements Region {
 
     public static Location Bank;
     public static Location CrossRoads;
+    public static Location DuelArenaEntrance;
+    public static Location DuelAreanTicketOffice;
     public static Location Mine;
     public static Location MineDigSpot;
     public static Location NorthFenceOpening;
@@ -36,6 +38,8 @@ public class AlKharid implements Region {
 
         locations.add(Bank);
         locations.add(CrossRoads);
+        locations.add(DuelArenaEntrance);
+        locations.add(DuelAreanTicketOffice);
         locations.add(Mine);
         locations.add(MineDigSpot);
         locations.add(NorthFenceOpening);
@@ -55,6 +59,16 @@ public class AlKharid implements Region {
         CrossRoads = new Location("AlKharid, CrossRoads", new Area(
                 new Tile(3280, 3229, 0),
                 new Tile(3274, 3223, 0)
+        ));
+
+        DuelArenaEntrance = new Location("AlKharid, DuelArenaEntrance", new Area(
+                new Tile(3310, 3236, 0),
+                new Tile(3315, 3232, 0)
+        ));
+
+        DuelAreanTicketOffice = new Location("AlKharid, DuelAreanTicketOffice", new Area(
+                new Tile(3316, 3243, 0),
+                new Tile(3312, 3239, 0)
         ));
 
         Mine = new Location("Alkharid, Mine", new Area(
@@ -128,20 +142,11 @@ public class AlKharid implements Region {
                 new Step(new Tile(3303, 3127, 0))
         )));
 
-        new OneWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(3277, 3226, 0)),
-                new Step(new Tile(3269, 3227, 0)),
-                new LumbridgeTollGate(2882),
-                new LumbridgeTollGate(2883),
-                new Step(new Tile(3267, 3227, 0)),
-                new Step(new Tile(3258, 3227, 0))
-        )), new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                // requires 10 coins
-                return ctx.inventory.select().id(Config.COINS_ID).poll().stackSize() >= 10;
-            }
-        });
+        new TwoWayLink(CrossRoads, DuelArenaEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3278, 3226, 0)),
+                new Step(new Tile(3294, 3237, 0)),
+                new Step(new Tile(3313, 3234, 0))
+        )));
 
         new TwoWayLink(CrossRoads, Mine, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3277, 3226, 0)),
@@ -162,6 +167,29 @@ public class AlKharid implements Region {
                 new Step(new Tile(3280, 3190, 0)),
                 new Step(new Tile(3276, 3190, 0)),
                 new Obstacle(7122, "Open", new Tile(3277, 3191, 0), new int[]{112, 128, -224, 0, 10, 130})
+        )));
+
+        new OneWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3277, 3226, 0)),
+                new Step(new Tile(3269, 3227, 0)),
+                new LumbridgeTollGate(2882),
+                new LumbridgeTollGate(2883),
+                new Step(new Tile(3267, 3227, 0)),
+                new Step(new Tile(3258, 3227, 0))
+        )), new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                // requires 10 coins
+                return ctx.inventory.select().id(Config.COINS_ID).poll().stackSize() >= 10;
+            }
+        });
+
+        new TwoWayLink(DuelArenaEntrance, DuelAreanTicketOffice, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3313, 3233, 0)),
+                new Step(new Tile(3319, 3235, 0)),
+                new Step(new Tile(3318, 3240, 0)),
+                // door
+                new Step(new Tile(3314, 3241, 0))
         )));
 
         new TwoWayLink(Mine, MineDigSpot);

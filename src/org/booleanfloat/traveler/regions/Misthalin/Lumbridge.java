@@ -21,6 +21,7 @@ import java.util.concurrent.Callable;
 public class Lumbridge implements Region {
     public static Location Center;
     public static Location Church;
+    public static Location GoblinHouse;
     public static Location HamBarracks;
     public static Location HamBuilding;
     public static Location HamEntrance;
@@ -39,6 +40,7 @@ public class Lumbridge implements Region {
 
         locations.add(Center);
         locations.add(Church);
+        locations.add(GoblinHouse);
         locations.add(HamBarracks);
         locations.add(HamBuilding);
         locations.add(HamEntrance);
@@ -64,6 +66,11 @@ public class Lumbridge implements Region {
         Church = new Location("Lumbridge, Church", new Area(
                 new Tile(3245, 3210, 0),
                 new Tile(3242, 3206, 0)
+        ));
+
+        GoblinHouse = new Location("Lumbridge, GoblinHouse", new Area(
+                new Tile(3248, 3247, 0),
+                new Tile(3243, 3243, 0)
         ));
 
         HamBarracks = new Location("Lumbridge, HamBarracks", new Area(
@@ -170,6 +177,14 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3203, 3168, 0))
         )));
 
+        new TwoWayLink(EastCrossRoads, GoblinHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3260, 3228, 0)),
+                new Step(new Tile(3260, 3232, 0)),
+                new Step(new Tile(3246, 3241, 0)),
+                new Obstacle(7122, "Open", new Tile(3246, 3244, 0), new int[]{0, 128, -192, 0, -16, 32}),
+                new Step(new Tile(3247, 3244, 0))
+        )));
+
         new OneWayLink(EastCrossRoads, AlKharid.CrossRoads, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3258, 3227, 0)),
                 new Step(new Tile(3267, 3227, 0)),
@@ -184,6 +199,17 @@ public class Lumbridge implements Region {
                 return ctx.inventory.select().id(Config.COINS_ID).poll().stackSize() >= 10;
             }
         });
+
+        new TwoWayLink(GoblinHouse, NorthBridge, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3247, 3246, 0)),
+                new Obstacle(7122, "Open", new Tile(3246, 3244, 0), new int[]{0, 128, -192, 0, -16, 32}),
+                new Step(new Tile(3246, 3241, 0)),
+                new Step(new Tile(3255, 3241, 0)),
+                new Step(new Tile(3255, 3251, 0)),
+                new Step(new Tile(3252, 3253, 0)),
+                new Step(new Tile(3250, 3261, 0)),
+                new Step(new Tile(3239, 3261, 0))
+        )));
 
         new TwoWayLink(HamBarracks, HamEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3174, 9641, 0)),

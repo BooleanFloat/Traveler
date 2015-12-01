@@ -28,6 +28,7 @@ public class Varrock implements Region {
     public static Location GrandExchange;
     public static Location HorviksArmoury;
     public static Location LimeStoneMine;
+    public static Location LumberYard;
     public static Location MembersGate;
     public static Location NorthGate;
     public static Location RiverDigSpot;
@@ -51,6 +52,7 @@ public class Varrock implements Region {
         locations.add(HorviksArmoury);
         locations.add(MembersGate);
         locations.add(LimeStoneMine);
+        locations.add(LumberYard);
         locations.add(NorthGate);
         locations.add(RiverDigSpot);
         locations.add(SouthGate);
@@ -111,6 +113,11 @@ public class Varrock implements Region {
                 new Tile(3365, 3497, 0),
                 new Tile(3368, 3501, 0),
                 new Tile(3371, 3504, 0)
+        ));
+
+        LumberYard = new Location("Varrock, LumberYard", new Area(
+                new Tile(3311, 3492, 0),
+                new Tile(3301, 3488, 0)
         ));
 
         MembersGate = new Location("Varrock, MembersGate", new Area(
@@ -202,6 +209,15 @@ public class Varrock implements Region {
                 new Step(new Tile(3254, 3428, 0)),
                 new Step(new Tile(3246, 3429, 0)),
                 new Step(new Tile(3245, 3499, 0))
+        )));
+
+        new TwoWayLink(EastGate, LumberYard, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3274, 3427, 0)),
+                new Step(new Tile(3283, 3428, 0)),
+                new Step(new Tile(3288, 3437, 0)),
+                new Step(new Tile(3287, 3457, 0)),
+                new Step(new Tile(3296, 3473, 0)),
+                new Step(new Tile(3306, 3490, 0))
         )));
 
         new TwoWayLink(EastGate, MembersGate, new ArrayList<>(Arrays.asList(

@@ -11,11 +11,13 @@ import org.powerbot.script.Area;
 import org.powerbot.script.ClientContext;
 import org.powerbot.script.Tile;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DwarvenMine implements Region {
     public static Location CampEntrance;
+    public static Location CrossbowStore;
     public static Location OreStore;
     public static Location ScorpionPit;
 
@@ -23,6 +25,7 @@ public class DwarvenMine implements Region {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(CampEntrance);
+        locations.add(CrossbowStore);
         locations.add(OreStore);
         locations.add(ScorpionPit);
 
@@ -33,6 +36,11 @@ public class DwarvenMine implements Region {
         CampEntrance = new Location("DwarvenMine, CampEntrance", new Area(
                 new Tile(3021, 3451, 0),
                 new Tile(3012, 3445, 0)
+        ));
+
+        CrossbowStore = new Location("DwarvenMine, CrossbowStore", new Area(
+                new Tile(3007, 9802, 0),
+                new Tile(2999, 9795, 0)
         ));
 
         OreStore = new Location("DwarvenMine, OreStore", new Area(
@@ -70,6 +78,13 @@ public class DwarvenMine implements Region {
                 new Step(new Tile(3080, 3421, 0))
         )));
 
+        new TwoWayLink(CrossbowStore, OreStore, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3000, 9804, 0)),
+                new Step(new Tile(3001, 9811, 0)),
+                new Step(new Tile(3018, 9814, 0)),
+                new Step(new Tile(3021, 9845, 0))
+        )));
+
         new OneWayLink(OreStore, CampEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3024, 9847, 0)),
                 new Step(new Tile(3018, 9850, 0)),
@@ -77,7 +92,7 @@ public class DwarvenMine implements Region {
                 new Step(new Tile(3018, 3450, 0))
         )));
 
-        new OneWayLink(OreStore, ScorpionPit, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(OreStore, ScorpionPit, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3022, 9847, 0)),
                 new Step(new Tile(3022, 9837, 0)),
                 new Step(new Tile(3041, 9831, 0)),

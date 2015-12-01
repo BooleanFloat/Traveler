@@ -14,6 +14,7 @@ import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Magic;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
@@ -29,6 +30,10 @@ public class Falador implements Region {
     public static Location NorthFencedStones;
     public static Location NorthGate;
     public static Location NorthSquare;
+    public static Location PartyRoom;
+    public static Location PartyRoomUpstairs;
+    public static Location ShieldStore;
+    public static Location ShieldStoreUpstairs;
     public static Location SouthCrossRoads;
     public static Location SouthGate;
     public static Location Square;
@@ -47,6 +52,10 @@ public class Falador implements Region {
         locations.add(NorthFencedStones);
         locations.add(NorthGate);
         locations.add(NorthSquare);
+        locations.add(PartyRoom);
+        locations.add(PartyRoomUpstairs);
+        locations.add(ShieldStore);
+        locations.add(ShieldStoreUpstairs);
         locations.add(SouthCrossRoads);
         locations.add(SouthGate);
         locations.add(Square);
@@ -104,6 +113,34 @@ public class Falador implements Region {
         NorthSquare = new Location("Falador, NorthSquare", new Area(
                 new Tile(2973, 3417, 0),
                 new Tile(2964, 3409, 0)
+        ));
+
+        PartyRoom = new Location("Falador, PartyRoom", new Area(
+                new Tile(3055, 3384, 0),
+                new Tile(3037, 3371, 0)
+        ));
+
+        PartyRoomUpstairs = new Location("Falador, PartyRoomUpstairs", new Area(
+                new Tile(3055, 3384, 1),
+                new Tile(3037, 3371, 1)
+        ));
+
+        ShieldStore = new Location("Falador, ShieldStore", new Area(
+                new Tile(2975, 3386, 0),
+                new Tile(2975, 3384, 0),
+                new Tile(2980, 3384, 0),
+                new Tile(2980, 3380, 0),
+                new Tile(2972, 3380, 0),
+                new Tile(2972, 3386, 0)
+        ));
+
+        ShieldStoreUpstairs = new Location("Falador, ShieldStoreUpstairs", new Area(
+                new Tile(2975, 3386, 1),
+                new Tile(2975, 3384, 1),
+                new Tile(2980, 3384, 1),
+                new Tile(2980, 3380, 1),
+                new Tile(2972, 3380, 1),
+                new Tile(2972, 3386, 1)
         ));
 
         SouthCrossRoads = new Location("Falador, SouthCrossRoads", new Area(
@@ -256,6 +293,16 @@ public class Falador implements Region {
                 new Step(new Tile(3012, 3357, 0))
         )));
 
+        new TwoWayLink(EastBank, PartyRoom, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3013, 3356, 0)),
+                new Step(new Tile(3013, 3360, 0)),
+                new Step(new Tile(3033, 3368, 0)),
+                new Step(new Tile(3046, 3368, 0)),
+                new Obstacle(24059, "Open", new Tile(3045, 3371, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new Obstacle(24064, "Open", new Tile(3046, 3371, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new Step(new Tile(3046, 3374, 0))
+        )));
+
         new TwoWayLink(EastBank, SouthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3013, 3359, 0)),
                 new Step(new Tile(3006, 3359, 0)),
@@ -277,6 +324,43 @@ public class Falador implements Region {
 
         new TwoWayLink(NorthGate, NorthSquare);
         new TwoWayLink(NorthGate, Square);
+
+        new OneWayLink(PartyRoom, PartyRoomUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3053, 3382, 0)),
+                new Obstacle(24249, "Climb-up", new Tile(3054, 3384, 0)),
+                new Step(new Tile(3053, 3382, 1))
+        )));
+
+        new OneWayLink(PartyRoomUpstairs, PartyRoom, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3053, 3382, 1)),
+                new Obstacle(24254, "Climb-down", new Tile(3054, 3384, 1)),
+                new Step(new Tile(3053, 3382, 0))
+        )));
+
+        new TwoWayLink(ShieldStore, Square, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2973, 3382, 0)),
+                new Obstacle(24050, "Open", new Tile(2971, 3383, 0), new int[]{96, 128, -192, 0, 0, 128}),
+                new Step(new Tile(2971, 3382, 0)),
+                new Step(new Tile(2967, 3381, 0))
+        )));
+
+        new OneWayLink(Square, ShieldStoreUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2967, 3381, 0)),
+                new Step(new Tile(2971, 3382, 0)),
+                new Obstacle(24050, "Open", new Tile(2971, 3383, 0), new int[]{96, 128, -192, 0, 0, 128}),
+                new Step(new Tile(2972, 3385, 0)),
+                new Obstacle(24075, "Climb-up", new Tile(2974, 3385, 0)),
+                new Step(new Tile(2972, 3385, 1))
+        )));
+
+        new OneWayLink(ShieldStore, Square, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2972, 3385, 1)),
+                new Obstacle(24076, "Climb-down", new Tile(2974, 3385, 1)),
+                new Step(new Tile(2972, 3385, 0)),
+                new Obstacle(24050, "Open", new Tile(2971, 3383, 0), new int[]{96, 128, -192, 0, 0, 128}),
+                new Step(new Tile(2971, 3382, 0)),
+                new Step(new Tile(2967, 3381, 0))
+        )));
 
         new TwoWayLink(SouthCrossRoads, SouthGate);
 

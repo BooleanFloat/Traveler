@@ -9,6 +9,7 @@ import org.booleanfloat.traveler.regions.karamja.Brimhaven;
 import org.booleanfloat.traveler.regions.karamja.MusaPoint;
 import org.booleanfloat.traveler.regions.kharidiandesert.AlKharid;
 import org.booleanfloat.traveler.regions.misthalin.*;
+import org.booleanfloat.traveler.steps.ImportantStep;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 
@@ -64,6 +65,10 @@ public class Traveler {
 
                 if(path.lastTraversal != null) {
                     isObstructing = path.lastTraversal.isObstructing(ctx);
+                }
+
+                if(path.lastTraversal instanceof ImportantStep) {
+                    isClose = (Math.abs(pos.x() - dest.x()) < 3 && Math.abs(pos.y() - dest.y()) < 3);
                 }
 
                 return isClose || isDifferentFloor || isObstructing;
