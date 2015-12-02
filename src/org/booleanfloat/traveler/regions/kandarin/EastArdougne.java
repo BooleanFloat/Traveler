@@ -8,6 +8,7 @@ import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.karamja.Brimhaven;
+import org.booleanfloat.traveler.steps.ImportantStep;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.npcs.EastArdougneKaramjaCaptain;
@@ -27,10 +28,14 @@ public class EastArdougne implements Region {
     public static Location FishingGuildEntrance;
     public static Location GeneralStore;
     public static Location Market;
+    public static Location MarketArmourStoreOutside;
     public static Location MarketNorthHouseUpstairs;
     public static Location NorthBank;
     public static Location NorthGate;
+    public static Location NorthShed;
     public static Location PicnicArea;
+    public static Location Pub;
+    public static Location PubUpstairs;
     public static Location SouthBank;
     public static Location SouthGap;
     public static Location SouthZooEntrance;
@@ -44,10 +49,14 @@ public class EastArdougne implements Region {
         locations.add(FishingGuildEntrance);
         locations.add(GeneralStore);
         locations.add(Market);
+        locations.add(MarketArmourStoreOutside);
         locations.add(MarketNorthHouseUpstairs);
         locations.add(NorthBank);
         locations.add(NorthGate);
+        locations.add(NorthShed);
         locations.add(PicnicArea);
+        locations.add(Pub);
+        locations.add(PubUpstairs);
         locations.add(SouthBank);
         locations.add(SouthGap);
         locations.add(SouthZooEntrance);
@@ -89,6 +98,11 @@ public class EastArdougne implements Region {
                 new Tile(2656, 3317, 0)
         ));
 
+        MarketArmourStoreOutside = new Location("EastArdougne, MarketArmourStoreOutside", new Area(
+                new Tile(2656, 3299, 0),
+                new Tile(2653, 3297, 0)
+        ));
+
         MarketNorthHouseUpstairs = new Location("EastArdougne, MarketNorthHouseUpstairs", new Area(
                 new Tile(2656, 3321, 1),
                 new Tile(2653, 3317, 1)
@@ -104,9 +118,28 @@ public class EastArdougne implements Region {
                 new Tile(2634, 3337, 0)
         ));
 
+        NorthShed = new Location("EastArdougne, NorthShed", new Area(
+                new Tile(2621, 3347, 0),
+                new Tile(2621, 3345, 0),
+                new Tile(2623, 3345, 0),
+                new Tile(2623, 3341, 0),
+                new Tile(2617, 3341, 0),
+                new Tile(2617, 3347, 0)
+        ));
+
         PicnicArea = new Location("EastArdougne, PicnicArea", new Area(
                 new Tile(2725, 3341, 0),
                 new Tile(2718, 3335, 0)
+        ));
+
+        Pub = new Location("EastArdougne, Pub", new Area(
+                new Tile(2578, 3326, 0),
+                new Tile(2572, 3317, 0)
+        ));
+
+        PubUpstairs = new Location("EastArdougne, PubUpstairs", new Area(
+                new Tile(2578, 3326, 1),
+                new Tile(2572, 3317, 1)
         ));
 
         SouthBank = new Location("EastArdougne, SouthBank", new Area(
@@ -227,6 +260,17 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2617, 3333, 0))
         )));
 
+        new TwoWayLink(GeneralStore, Pub, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2614, 3293, 0)),
+                new Step(new Tile(2613, 3297, 0)),
+                new Step(new Tile(2593, 3296, 0)),
+                new Step(new Tile(2592, 3305, 0)),
+                new Step(new Tile(2582, 3319, 0)),
+                new Step(new Tile(2578, 3319, 0)),
+                new Obstacle(7129, "Open", new Tile(2576, 3320, 0), new int[]{-16, 32, -192, 0, 0, 128}),
+                new Step(new Tile(2576, 3320, 0))
+        )));
+
         new TwoWayLink(GeneralStore, SouthBank, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2614, 3293, 0)),
                 new Step(new Tile(2614, 3296, 0)),
@@ -260,6 +304,8 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2600, 3283, 0)),
                 new Step(new Tile(2598, 3280, 0))
         )));
+
+        new TwoWayLink(Market, MarketArmourStoreOutside);
 
         new OneWayLink(Market, MarketNorthHouseUpstairs, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2659, 3320, 0)),
@@ -298,6 +344,15 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2632, 3337, 0))
         )));
 
+        new TwoWayLink(NorthBank, NorthShed, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2617, 3333, 0)),
+                new Step(new Tile(2617, 3337, 0)),
+                new Step(new Tile(2613, 3339, 0)),
+                new Step(new Tile(2613, 3345, 0)),
+                new Obstacle(7122, "Open", new Tile(2616, 3345, 0), new int[]{96, 128, -192, 0, 0, 128}),
+                new Step(new Tile(2618, 3344, 0))
+        )));
+
         new TwoWayLink(NorthGate, SeersVillage.RangeGuildEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2636, 3339, 0)),
                 new Step(new Tile(2636, 3373, 0)),
@@ -320,6 +375,18 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2763, 3428, 0)),
                 new Step(new Tile(2777, 3434, 0)),
                 new Step(new Tile(2803, 3431, 0))
+        )));
+
+        new OneWayLink(Pub, PubUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2574, 3324, 0)),
+                new Obstacle(16671, "Climb-up", new Tile(2573, 3326, 0)),
+                new Step(new Tile(2574, 3324, 1))
+        )));
+
+        new OneWayLink(PubUpstairs, Pub, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2574, 3324, 1)),
+                new Obstacle(16673, "Climb-down", new Tile(2573, 3325, 1)),
+                new Step(new Tile(2574, 3324, 0))
         )));
 
         new TwoWayLink(SouthBank, SouthGap, new ArrayList<>(Arrays.asList(

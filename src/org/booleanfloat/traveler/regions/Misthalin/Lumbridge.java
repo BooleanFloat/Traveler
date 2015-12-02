@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.kharidiandesert.AlKharid;
+import org.booleanfloat.traveler.steps.ImportantStep;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.obstacles.AlKharidTollGate;
@@ -264,6 +265,7 @@ public class Lumbridge implements Region {
         )));
 
         new OneWayLink(HamJail, HamEntrance, new ArrayList<>(Arrays.asList(
+                new ImportantStep(new Tile(3183, 9611, 0)),
                 new HamJailDoor(),
                 new Step(new Tile(3182, 9611, 0)),
                 new Step(new Tile(3171, 9621, 0)),

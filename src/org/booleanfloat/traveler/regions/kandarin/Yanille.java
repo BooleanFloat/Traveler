@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.kandarin;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.steps.ImportantStep;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
@@ -68,6 +69,7 @@ public class Yanille implements Region {
                 new Step(new Tile(2573, 3087, 0)),
                 new Step(new Tile(2562, 3086, 0)),
                 new Step(new Tile(2563, 3081, 0)),
+                new ImportantStep(new Tile(2563, 3082, 0)),
                 new Obstacle(7129, "Open", new Tile(2563, 3082, 0), new int[]{96, 144, -196, 0, 0, 128}),
                 new Step(new Tile(2567, 3081, 0))
         )));

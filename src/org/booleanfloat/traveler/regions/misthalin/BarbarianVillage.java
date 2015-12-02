@@ -113,14 +113,15 @@ public class BarbarianVillage implements Region {
         )));
 
         new TwoWayLink(Mine, Falador.NorthFencedStones, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(3079, 3419, 0)),
-                new Step(new Tile(3071, 3417, 0)),
-                new Step(new Tile(3068, 3407, 0)),
-                new Step(new Tile(3054, 3399, 0)),
-                new Step(new Tile(3042, 3404, 0)),
-                new Step(new Tile(3035, 3404, 0)),
-                new Step(new Tile(3034, 3400, 0)),
-                new Step(new Tile(3039, 3397, 0))
+                new Step(new Tile(3039, 3399, 0)),
+                new Step(new Tile(3034, 3401, 0)),
+                new Step(new Tile(3034, 3405, 0)),
+                new Step(new Tile(3044, 3405, 0)),
+                new Step(new Tile(3053, 3402, 0)),
+                new Step(new Tile(3062, 3404, 0)),
+                new Step(new Tile(3069, 3410, 0)),
+                new Step(new Tile(3071, 3418, 0)),
+                new Step(new Tile(3080, 3419, 0))
         )));
 
         new TwoWayLink(Mine, Falador.NorthSquare, new ArrayList<>(Arrays.asList(

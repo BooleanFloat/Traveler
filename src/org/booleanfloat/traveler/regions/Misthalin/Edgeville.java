@@ -3,6 +3,8 @@ package org.booleanfloat.traveler.regions.misthalin;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.steps.ImportantStep;
+import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.ClientContext;
@@ -14,6 +16,7 @@ import java.util.Arrays;
 public class Edgeville implements Region {
     public static Location Bank;
     public static Location EastBridge;
+    public static Location EvilDavesHouse;
     public static Location CoffinHouse;
     public static Location SouthFenceOpening;
     public static Location Yews;
@@ -23,6 +26,7 @@ public class Edgeville implements Region {
 
         locations.add(Bank);
         locations.add(EastBridge);
+        locations.add(EvilDavesHouse);
         locations.add(CoffinHouse);
         locations.add(SouthFenceOpening);
         locations.add(Yews);
@@ -36,14 +40,19 @@ public class Edgeville implements Region {
                 new Tile(3092, 3489, 0)
         ));
 
-        EastBridge = new Location("EdgeVille, EastBridge", new Area(
+        EastBridge = new Location("Edgeville, EastBridge", new Area(
                 new Tile(3134, 3518, 0),
                 new Tile(3129, 3515, 0)
         ));
 
+        EvilDavesHouse = new Location("Edgeville, EvilDavesHouse", new Area(
+                new Tile(3082, 3496, 0),
+                new Tile(3077, 3488, 0)
+        ));
+
         CoffinHouse = new Location("Edgeville, CoffinHouse", new Area(
-                new Tile(3097, 3482, 0),
-                new Tile(3091, 3474, 0)
+                new Tile(3098, 3482, 0),
+                new Tile(3090, 3473, 0)
         ));
 
         SouthFenceOpening = new Location("Edgeville, SouthFenceOpening", new Area(
@@ -76,6 +85,17 @@ public class Edgeville implements Region {
                 new Step(new Tile(3080, 3483, 0)),
                 new Step(new Tile(3080, 3466, 0)),
                 new Step(new Tile(3087, 3463, 0))
+        )));
+
+        new TwoWayLink(Bank, EvilDavesHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3093, 3495, 0)),
+                new Step(new Tile(3093, 3501, 0)),
+                new Step(new Tile(3079, 3501, 0)),
+                new Obstacle(7158, "Open", new Tile(3080, 3501, 0), new int[]{0, 128, -128, 0, 0, 32}),
+                new Obstacle(7160, "Open", new Tile(3079, 3501, 0), new int[]{0, 128, -128, 0, 0, 32}),
+                new Step(new Tile(3080, 3499, 0)),
+                new Obstacle(7122, "Open", new Tile(3079, 3497, 0), new int[]{0, 128, -192, 0, 0, 32}),
+                new Step(new Tile(3080, 3495, 0))
         )));
 
         new TwoWayLink(CoffinHouse, EastBridge, new ArrayList<>(Arrays.asList(

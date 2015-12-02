@@ -80,6 +80,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3203, 3214, 0)),
                 new Step(new Tile(3206, 3209, 0)),
                 new Obstacle(16671, "Climb-up", new Tile(3205, 3208, 0), new int[]{-64, 64, -128, 0, -64, 64}),
+                new Step(new Tile(3206, 3208, 1)),
                 new Obstacle(16672, "Climb-up", new Tile(3205, 3208, 1), new int[]{-64, 64, -128, 0, -64, 64}),
                 new Step(new Tile(3205, 3210, 2))
         )));
@@ -109,6 +110,7 @@ public class LumbridgeCastle implements Region {
         new OneWayLink(Bank, BackEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3205, 3210, 2)),
                 new Obstacle(16673, "Climb-down", new Tile(3205, 3208, 2), new int[]{-160, 64, -64, 0, -160, 32}),
+                new Step(new Tile(3206, 3208, 1)),
                 new Obstacle(16672, "Climb-down", new Tile(3205, 3208, 1), new int[]{-64, 64, -128, 0, -64, 64}),
                 new Step(new Tile(3208, 3210, 0)),
                 new Step(new Tile(3203, 3214, 0)),

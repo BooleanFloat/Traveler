@@ -23,69 +23,62 @@ public class Path {
     public boolean traverse(ClientContext ctx) {
         Tile pos = ctx.players.local().tile();
         Traversable furthestStep = null;
-        boolean further = false;
-        double prevDistance = 1000000000;
+        int start = 0;
         double minDistance = Double.MAX_VALUE;
 
-        for(Traversable step : steps) {
-            Tile tile = step.getTile(ctx);
+        for(int i = 0; i < steps.size(); i++) {
+            Tile tile = steps.get(i).getTile(ctx);
             if(Math.abs(pos.x() - tile.x()) > 50 || Math.abs(pos.y() - tile.y()) > 50
-                    || tile.floor() != pos.floor() || pos.equals(tile)) {
+                    || tile.floor() != pos.floor() || steps.get(i) instanceof Spell) {
                 continue;
             }
 
             double distance = pos.distanceTo(tile);
             if(distance < minDistance) {
+                start = i;
                 minDistance = distance;
             }
         }
 
-        for(Traversable step : steps) {
+//        System.out.println(start);
+
+        for(int i = Math.max(0, start - 2); i < Math.min(start + 10, steps.size()); i++) {
+            Traversable step = steps.get(i);
             Tile tile = step.getTile(ctx);
-            TileMatrix matrix;
-            double distance;
+
+//            System.out.println(i + " - " + step);
+            TileMatrix matrix = tile.matrix(ctx);
 
             if(Math.abs(pos.x() - tile.x()) > 50 || Math.abs(pos.y() - tile.y()) > 50
-                    || tile.floor() != pos.floor()) {
+                    || tile.floor() != pos.floor() || (step instanceof ImportantStep && pos.equals(tile))) {
                 continue;
             }
-
-            matrix = tile.matrix(ctx);
-            distance = Math.abs(pos.distanceTo(tile));
-
-            if(distance >= prevDistance && prevDistance - 1.5 < minDistance) {
-                further = true;
-            }
-
-            prevDistance = distance;
 
             if(step instanceof Spell && furthestStep == null) {
                 furthestStep = step;
             }
 
-            if(further) {
-                if(step instanceof Obstacle || step instanceof Npc) {
-                    if(matrix.inViewport() && step.isObstructing(ctx)) {
-                        furthestStep = step;
-                        break;
-                    }
+            if(step instanceof Obstacle || step instanceof Npc) {
+                if(matrix.inViewport() && step.isObstructing(ctx)) {
+                    furthestStep = step;
+                    break;
                 }
-                else if(step instanceof ImportantStep) {
-                    if(matrix.inViewport() || matrix.onMap()) {
-                        furthestStep = step;
-                        break;
-                    }
+            }
+            else if(step instanceof ImportantStep) {
+                if(matrix.inViewport() || matrix.onMap()) {
+                    furthestStep = step;
+                    break;
                 }
-                else {
-                    if(matrix.onMap() && !matrix.inViewport() || matrix.inViewport() && matrix.reachable()) {
-                        furthestStep = step;
-                    }
+            }
+            else {
+                if(matrix.onMap() && !matrix.inViewport() || matrix.inViewport() && matrix.reachable()) {
+                    furthestStep = step;
                 }
             }
         }
 
         if(furthestStep == null) {
-            return false;
+            furthestStep = steps.get(start);
         }
 
         lastTraversal = furthestStep;
