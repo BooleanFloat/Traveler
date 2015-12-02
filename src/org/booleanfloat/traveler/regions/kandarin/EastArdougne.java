@@ -241,6 +241,19 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2722, 3338, 0))
         )));
 
+        new TwoWayLink(EastGate, SeersVillage.Bank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2687, 3304, 0)),
+                new Step(new Tile(2691, 3306, 0)),
+                new Step(new Tile(2699, 3323, 0)),
+                new Step(new Tile(2704, 3349, 0)),
+                new Step(new Tile(2708, 3387, 0)),
+                new Step(new Tile(2716, 3398, 0)),
+                new Step(new Tile(2717, 3427, 0)),
+                new Step(new Tile(2729, 3437, 0)),
+                new Step(new Tile(2727, 3463, 0)),
+                new Step(new Tile(2725, 3490, 0))
+        )));
+
         new TwoWayLink(GeneralStore, Market, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2614, 3292, 0)),
                 new Step(new Tile(2614, 3297, 0)),
@@ -375,6 +388,18 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2763, 3428, 0)),
                 new Step(new Tile(2777, 3434, 0)),
                 new Step(new Tile(2803, 3431, 0))
+        )));
+
+        new TwoWayLink(PicnicArea, SeersVillage.CastleGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2724, 3340, 0)),
+                new Step(new Tile(2727, 3344, 0)),
+                new Step(new Tile(2736, 3348, 0)),
+                new Step(new Tile(2740, 3364, 0)),
+                new Step(new Tile(2739, 3387, 0)),
+                new Step(new Tile(2736, 3414, 0)),
+                new Step(new Tile(2734, 3453, 0)),
+                new Step(new Tile(2749, 3462, 0)),
+                new Step(new Tile(2757, 3478, 0))
         )));
 
         new OneWayLink(Pub, PubUpstairs, new ArrayList<>(Arrays.asList(

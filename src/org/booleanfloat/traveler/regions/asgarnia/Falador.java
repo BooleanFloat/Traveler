@@ -32,6 +32,7 @@ public class Falador implements Region {
     public static Location NorthSquare;
     public static Location PartyRoom;
     public static Location PartyRoomUpstairs;
+    public static Location Rusty;
     public static Location ShieldStore;
     public static Location ShieldStoreUpstairs;
     public static Location SouthCrossRoads;
@@ -54,6 +55,7 @@ public class Falador implements Region {
         locations.add(NorthSquare);
         locations.add(PartyRoom);
         locations.add(PartyRoomUpstairs);
+        locations.add(Rusty);
         locations.add(ShieldStore);
         locations.add(ShieldStoreUpstairs);
         locations.add(SouthCrossRoads);
@@ -123,6 +125,17 @@ public class Falador implements Region {
         PartyRoomUpstairs = new Location("Falador, PartyRoomUpstairs", new Area(
                 new Tile(3055, 3384, 1),
                 new Tile(3037, 3371, 1)
+        ));
+
+        Rusty = new Location("Falador, Rusty", new Area(
+                new Tile(2987, 3444, 0),
+                new Tile(2989, 3440, 0),
+                new Tile(2994, 3436, 0),
+                new Tile(2990, 3431, 0),
+                new Tile(2985, 3426, 0),
+                new Tile(2980, 3430, 0),
+                new Tile(2975, 3434, 0),
+                new Tile(2978, 3441, 0)
         ));
 
         ShieldStore = new Location("Falador, ShieldStore", new Area(
@@ -324,6 +337,13 @@ public class Falador implements Region {
 
         new TwoWayLink(NorthGate, NorthSquare);
         new TwoWayLink(NorthGate, Square);
+
+        new TwoWayLink(NorthSquare, Rusty, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2971, 3414, 0)),
+                new Step(new Tile(2987, 3419, 0)),
+                new Step(new Tile(2988, 3427, 0)),
+                new Step(new Tile(2983, 3436, 0))
+        )));
 
         new OneWayLink(PartyRoom, PartyRoomUpstairs, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3053, 3382, 0)),

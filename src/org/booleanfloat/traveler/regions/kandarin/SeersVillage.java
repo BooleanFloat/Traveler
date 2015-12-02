@@ -193,23 +193,23 @@ public class SeersVillage implements Region {
                 new Obstacle(25606, "Climb-down", new Tile(2749, 3491, 2)),
                 new Step(new Tile(2749, 3492, 1)),
                 new Obstacle(25606, "Climb-down", new Tile(2747, 3493, 1)),
-                new ImportantStep(new Tile(2748, 3493, 0)),
+                new Step(new Tile(2748, 3493, 0)),
                 new Obstacle(25642, "Open", new Tile(2750, 3496, 0), new int[]{0, 128, -192, 0, -16, 32}),
-                new ImportantStep(new Tile(2750, 3496, 0)),
+                new Step(new Tile(2750, 3496, 0)),
                 new Obstacle(25642, "Open", new Tile(2750, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
-                new ImportantStep(new Tile(2750, 3505, 0)),
-                new ImportantStep(new Tile(2757, 3505, 0)),
+                new Step(new Tile(2750, 3505, 0)),
+                new Step(new Tile(2757, 3505, 0)),
                 new Obstacle(25640, "Open", new Tile(2758, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
                 new Obstacle(25638, "Open", new Tile(2757, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
-                new ImportantStep(new Tile(2758, 3503, 0))
+                new Step(new Tile(2758, 3503, 0))
         )));
 
         new OneWayLink(CastleGate, CastleCourtyard, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2758, 3481, 0)),
                 new CamelotCastleGateIn(26082, new Tile(2758, 3482, 0)),
                 new CamelotCastleGateIn(26081, new Tile(2757, 3482, 0)),
-                new ImportantStep(new Tile(2758, 3483, 0)),
-                new ImportantStep(new Tile(2758, 3490, 0)),
+                new Step(new Tile(2758, 3483, 0)),
+                new Step(new Tile(2758, 3490, 0)),
                 new Step(new Tile(2758, 3496, 0))
         )));
 
@@ -233,14 +233,14 @@ public class SeersVillage implements Region {
         )));
 
         new TwoWayLink(SinclairMansion, SinclairMansionGate, new ArrayList<>(Arrays.asList(
-                new ImportantStep(new Tile(2740, 3574, 0)),
+                new Step(new Tile(2740, 3574, 0)),
                 new Obstacle(25748, "Open", new Tile(2740, 3572, 0), new int[]{0, 128, -160, 0, 112, 144}),
                 new Obstacle(25750, "Open", new Tile(2741, 3572, 0), new int[]{0, 128, -160, 0, 112, 144}),
-                new ImportantStep(new Tile(2742, 3570, 0)),
-                new ImportantStep(new Tile(2742, 3556, 0)),
+                new Step(new Tile(2742, 3570, 0)),
+                new Step(new Tile(2742, 3556, 0)),
                 new Obstacle(26130, "Open", new Tile(2741, 3555, 0), new int[]{0, 128, -160, 0, 112, 144}),
                 new Obstacle(26131, "Open", new Tile(2742, 3555, 0), new int[]{0, 128, -160, 0, 112, 144}),
-                new ImportantStep(new Tile(2742, 3553, 0))
+                new Step(new Tile(2742, 3553, 0))
         )));
 
         new TwoWayLink(SinclairMansion, SinclairMansionKitchen, new ArrayList<>(Arrays.asList(

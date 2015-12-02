@@ -22,6 +22,7 @@ public class Draynor implements Region {
     public static Location NedsHouse;
     public static Location NorthHouse;
     public static Location WestFenceOpening;
+    public static Location WitchAgiesHouse;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
@@ -33,6 +34,7 @@ public class Draynor implements Region {
         locations.add(NedsHouse);
         locations.add(NorthHouse);
         locations.add(WestFenceOpening);
+        locations.add(WitchAgiesHouse);
 
         return locations;
     }
@@ -71,6 +73,11 @@ public class Draynor implements Region {
         WestFenceOpening = new Location("Draynor, WestFenceOpening", new Area(
                 new Tile(3071, 3278, 0),
                 new Tile(3069, 3275, 0)
+        ));
+
+        WitchAgiesHouse = new Location("Draynor, WitchAgiesHouse", new Area(
+                new Tile(3088, 3262, 0),
+                new Tile(3083, 3256, 0)
         ));
     }
 
@@ -131,6 +138,15 @@ public class Draynor implements Region {
                 new Step(new Tile(3104, 3258, 0)),
                 new Obstacle(7122, "Open", new Tile(3101, 3258, 0), new int[]{96, 128, -192, 0, 0, 128}),
                 new Step(new Tile(3100, 3258, 0))
+        )));
+
+        new TwoWayLink(GloryTeleport, WitchAgiesHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3105, 3250, 0)),
+                new Step(new Tile(3104, 3263, 0)),
+                new Step(new Tile(3095, 3262, 0)),
+                new Step(new Tile(3090, 3258, 0)),
+                new Obstacle(7122, "Open", new Tile(3088, 3258, 0), new int[]{96, 128, -192, 0, 0, 128}),
+                new Step(new Tile(3087, 3258, 0))
         )));
 
         new TwoWayLink(GloryTeleport, Lumbridge.HamBuilding, new ArrayList<>(Arrays.asList(

@@ -17,6 +17,7 @@ public class Yanille implements Region {
     public static Location Bank;
     public static Location EastGate;
     public static Location HunterStore;
+    public static Location NorthHouse;
     public static Location POHPortal;
 
     public static ArrayList<Location> getLocations() {
@@ -25,6 +26,7 @@ public class Yanille implements Region {
         locations.add(Bank);
         locations.add(EastGate);
         locations.add(HunterStore);
+        locations.add(NorthHouse);
         locations.add(POHPortal);
 
         return locations;
@@ -46,6 +48,11 @@ public class Yanille implements Region {
         HunterStore = new Location("Yanille, HunterStore", new Area(
                 new Tile(2571, 3085, 0),
                 new Tile(2564, 3078, 0)
+        ));
+
+        NorthHouse = new Location("Yanille, NorthHouse", new Area(
+                new Tile(2598, 3107, 0),
+                new Tile(2590, 3102, 0)
         ));
 
         POHPortal = new Location("Yanille, POHPortal", new Area(
@@ -72,6 +79,15 @@ public class Yanille implements Region {
                 new ImportantStep(new Tile(2563, 3082, 0)),
                 new Obstacle(7129, "Open", new Tile(2563, 3082, 0), new int[]{96, 144, -196, 0, 0, 128}),
                 new Step(new Tile(2567, 3081, 0))
+        )));
+
+        new TwoWayLink(Bank, NorthHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2611, 3090, 0)),
+                new Step(new Tile(2606, 3091, 0)),
+                new Step(new Tile(2595, 3097, 0)),
+                new Step(new Tile(2595, 3100, 0)),
+                new Obstacle(17089, "Open", new Tile(2594, 3102, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new Step(new Tile(2594, 3102, 0))
         )));
 
         new TwoWayLink(Bank, POHPortal, new ArrayList<>(Arrays.asList(
