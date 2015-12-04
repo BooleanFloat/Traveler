@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.concurrent.Callable;
 
 public class Falador implements Region {
+    public static Location Barber;
     public static Location CastleCourtyard;
     public static Location CastleThroneRoom;
     public static Location ChainMailStore;
@@ -43,6 +44,7 @@ public class Falador implements Region {
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(Barber);
         locations.add(CastleCourtyard);
         locations.add(CastleThroneRoom);
         locations.add(ChainMailStore);
@@ -67,6 +69,17 @@ public class Falador implements Region {
     }
 
     public static void initLocations() {
+        Barber = new Location("Falador, Barber", new Area(
+                new Tile(2946, 3385, 0),
+                new Tile(2946, 3381, 0),
+                new Tile(2949, 3381, 0),
+                new Tile(2949, 3377, 0),
+                new Tile(2947, 3376, 0),
+                new Tile(2943, 3376, 0),
+                new Tile(2942, 3377, 0),
+                new Tile(2942, 3385, 0)
+        ));
+
         CastleCourtyard = new Location("Falador, CastleCourtyard", new Area(
                 new Tile(2980, 3347, 0),
                 new Tile(2966, 3336, 0)
@@ -187,6 +200,22 @@ public class Falador implements Region {
                         && ctx.inventory.select().id(Resources.LAW_RUNE_ID).poll().stackSize() > 1;
             }
         });
+
+        new TwoWayLink(Barber, WestBank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2946, 3379, 0)),
+                new Obstacle(24050, "Open", new Tile(2949, 3379, 0)),
+                new Step(new Tile(2950, 3379, 0)),
+                new Step(new Tile(2951, 3375, 0)),
+                new Step(new Tile(2946, 3375, 0)),
+                new Step(new Tile(2945, 3370, 0))
+        )));
+
+        new TwoWayLink(Barber, Square, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2945, 3379, 0)),
+                new Obstacle(24050, "Open", new Tile(2949, 3379, 0)),
+                new Step(new Tile(2951, 3379, 0)),
+                new Step(new Tile(2965, 3380, 0))
+        )));
 
         new TwoWayLink(CastleCourtyard, Square, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2971, 3341, 0)),

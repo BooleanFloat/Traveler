@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Catherby implements Region {
+    public static Location ArcheryStore;
     public static Location Bank;
     public static Location FarmingPatch;
     public static Location FishingSpot;
@@ -23,6 +24,7 @@ public class Catherby implements Region {
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(ArcheryStore);
         locations.add(Bank);
         locations.add(FarmingPatch);
         locations.add(FishingSpot);
@@ -33,6 +35,11 @@ public class Catherby implements Region {
     }
 
     public static void initLocations() {
+        ArcheryStore = new Location("Catherby, ArcheryStore", new Area(
+                new Tile(2826, 3445, 0),
+                new Tile(2821, 3439, 0)
+        ));
+
         Bank = new Location("Catherby, Bank", new Area(
                 new Tile(2812, 3441, 0),
                 new Tile(2806, 3437, 0)
@@ -65,6 +72,23 @@ public class Catherby implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TwoWayLink(ArcheryStore, Bank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2823, 3442, 0)),
+                new Obstacle(7122, "Open", new Tile(2822, 3441, 0)),
+                new Step(new Tile(2823, 3438, 0)),
+                new Step(new Tile(2817, 3436, 0)),
+                new Step(new Tile(2808, 3436, 0)),
+                new Step(new Tile(2808, 3439, 0))
+        )));
+
+        new TwoWayLink(ArcheryStore, FishingSpot, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2824, 3441, 0)),
+                new Obstacle(7122, "Open", new Tile(2822, 3441, 0)),
+                new Step(new Tile(2823, 3436, 0)),
+                new Step(new Tile(2833, 3437, 0)),
+                new Step(new Tile(2841, 3433, 0))
+        )));
+
         new TwoWayLink(Bank, GeneralStore);
 
         new TwoWayLink(Bank, FishingSpot, new ArrayList<>(Arrays.asList(
@@ -104,6 +128,15 @@ public class Catherby implements Region {
                 new Step(new Tile(2774, 3451, 0)),
                 new Step(new Tile(2764, 3466, 0)),
                 new Step(new Tile(2758, 3476, 0))
+        )));
+
+        new TwoWayLink(GeneralStore, SeersVillage.KeepLeFayeEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2804, 3431, 0)),
+                new Step(new Tile(2796, 3432, 0)),
+                new Step(new Tile(2776, 3435, 0)),
+                new Step(new Tile(2762, 3427, 0)),
+                new Step(new Tile(2750, 3402, 0)),
+                new Step(new Tile(2760, 3401, 0))
         )));
 
         new OneWayLink(NorthWestHouseUpstairs, Bank, new ArrayList<>(Arrays.asList(

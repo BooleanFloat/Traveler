@@ -9,6 +9,7 @@ import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
+import sun.security.provider.ConfigFile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ public class BarbarianVillage implements Region {
     public static Location Bridge;
     public static Location HelmetStore;
     public static Location Mine;
+    public static Location SpinningHut;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
@@ -24,6 +26,7 @@ public class BarbarianVillage implements Region {
         locations.add(Bridge);
         locations.add(HelmetStore);
         locations.add(Mine);
+        locations.add(SpinningHut);
 
         return locations;
     }
@@ -42,6 +45,17 @@ public class BarbarianVillage implements Region {
         Mine = new Location("BarbarianVillage, Mine", new Area(
                 new Tile(3085, 3422, 0),
                 new Tile(3077, 3415, 0)
+        ));
+
+        SpinningHut = new Location("BarbarianVillage, SpinningHut", new Area(
+                new Tile(3084, 3432, 0),
+                new Tile(3086, 3430, 0),
+                new Tile(3086, 3428, 0),
+                new Tile(3084, 3426, 0),
+                new Tile(3082, 3426, 0),
+                new Tile(3080, 3427, 0),
+                new Tile(3080, 3430, 0),
+                new Tile(3082, 3432, 0)
         ));
     }
 
@@ -101,6 +115,13 @@ public class BarbarianVillage implements Region {
                 new Obstacle(11616, "Open", new Tile(3076, 3426, 0), new int[]{0, 128, -192, 0, 96, 144}),
                 new Step(new Tile(3076, 3425, 0)),
                 new Step(new Tile(3080, 3419, 0))
+        )));
+
+        new TwoWayLink(Mine, SpinningHut, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3081, 3420, 0)),
+                new Step(new Tile(3083, 3424, 0)),
+                new Obstacle(11616, "Open", new Tile(3082, 3426, 0), new int[]{0, 128, -192, 0, 96, 144}),
+                new Step(new Tile(3083, 3428, 0))
         )));
 
         new TwoWayLink(Mine, Edgeville.SouthFenceOpening, new ArrayList<>(Arrays.asList(

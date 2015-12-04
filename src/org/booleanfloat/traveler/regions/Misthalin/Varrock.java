@@ -20,11 +20,16 @@ import java.util.Arrays;
 import java.util.concurrent.Callable;
 
 public class Varrock implements Region {
+    public static Location BlueMoonInn;
     public static Location ClothesStore;
+    public static Location ClothesStoreUpstairs;
     public static Location DigSiteBush;
     public static Location EastBank;
     public static Location EastGate;
+    public static Location ExamCenter;
     public static Location Fountain;
+    public static Location GertrudesBedroom;
+    public static Location GertrudesHouse;
     public static Location GrandExchange;
     public static Location HorviksArmoury;
     public static Location LimeStoneMine;
@@ -43,11 +48,16 @@ public class Varrock implements Region {
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(BlueMoonInn);
         locations.add(ClothesStore);
+        locations.add(ClothesStoreUpstairs);
         locations.add(DigSiteBush);
         locations.add(EastBank);
         locations.add(EastGate);
+        locations.add(ExamCenter);
         locations.add(Fountain);
+        locations.add(GertrudesBedroom);
+        locations.add(GertrudesHouse);
         locations.add(GrandExchange);
         locations.add(HorviksArmoury);
         locations.add(MembersGate);
@@ -67,9 +77,33 @@ public class Varrock implements Region {
     }
 
     public static void initLocations() {
+        BlueMoonInn = new Location("Varrock, BlueMoonInn", new Area(
+                new Tile(3229, 3402, 0),
+                new Tile(3217, 3392, 0)
+        ));
+
         ClothesStore = new Location("Varrock, ClothesStore", new Area(
-                new Tile(3207, 3418, 0),
-                new Tile(3204, 3414, 0)
+                new Tile(3207, 3419, 0),
+                new Tile(3210, 3417, 0),
+                new Tile(3209, 3416, 0),
+                new Tile(3209, 3411, 0),
+                new Tile(3208, 3410, 0),
+                new Tile(3207, 3409, 0),
+                new Tile(3202, 3414, 0),
+                new Tile(3202, 3417, 0),
+                new Tile(3204, 3419, 0)
+        ));
+
+        ClothesStoreUpstairs = new Location("Varrock, ClothesStoreUpstairs", new Area(
+                new Tile(3207, 3419, 1),
+                new Tile(3210, 3417, 1),
+                new Tile(3209, 3416, 1),
+                new Tile(3209, 3411, 1),
+                new Tile(3208, 3410, 1),
+                new Tile(3207, 3409, 1),
+                new Tile(3202, 3414, 1),
+                new Tile(3202, 3417, 1),
+                new Tile(3204, 3419, 1)
         ));
 
         EastBank = new Location("Varrock, EastBank", new Area(
@@ -82,6 +116,11 @@ public class Varrock implements Region {
                 new Tile(3271, 3426, 0)
         ));
 
+        ExamCenter = new Location("Varrock, ExamCenter", new Area(
+                new Tile(3367, 3347, 0),
+                new Tile(3357, 3340, 0)
+        ));
+
         DigSiteBush = new Location("Varrock, DigSiteBush", new Area(
                 new Tile(3347, 3380, 0),
                 new Tile(3344, 3377, 0)
@@ -90,6 +129,18 @@ public class Varrock implements Region {
         Fountain = new Location("Varrock, Fountain", new Area(
                 new Tile(3216, 3432, 0),
                 new Tile(3209, 3425, 0)
+        ));
+
+        GertrudesBedroom = new Location("Varrock, GertrudesBedroom", new Area(
+                new Tile(3156, 3407, 0),
+                new Tile(3154, 3404, 0)
+        ));
+
+        GertrudesHouse = new Location("Varrock, GertrudesHouse", new Area(
+                new Tile(3157, 3410, 0),
+                new Tile(3157, 3403, 0),
+                new Tile(3148, 3403, 0),
+                new Tile(3148, 3411, 0)
         ));
 
         GrandExchange = new Location("Varrock, GrandExchange", new Area(
@@ -191,6 +242,32 @@ public class Varrock implements Region {
             }
         });
 
+        new TwoWayLink(BlueMoonInn, SouthGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3221, 3394, 0)),
+                new Obstacle(11775, "Open", new Tile(3215, 3395, 0)),
+                new Step(new Tile(3212, 3394, 0)),
+                new Step(new Tile(3212, 3381, 0))
+        )));
+
+        new TwoWayLink(BlueMoonInn, Fountain, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3221, 3395, 0)),
+                new Obstacle(11775, "Open", new Tile(3215, 3395, 0)),
+                new Step(new Tile(3212, 3394, 0)),
+                new Step(new Tile(3212, 3427, 0))
+        )));
+
+        new OneWayLink(ClothesStore, ClothesStoreUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3202, 3417, 0)),
+                new Obstacle(11794, "Climb-up", new Tile(3202, 3416, 0)),
+                new Step(new Tile(3202, 3417, 1))
+        )));
+
+        new OneWayLink(ClothesStoreUpstairs, ClothesStore, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3202, 3417, 1)),
+                new Obstacle(11795, "Climb-down", new Tile(3202, 3416, 1)),
+                new Step(new Tile(3202, 3417, 0))
+        )));
+
         new TwoWayLink(ClothesStore, Fountain, new ArrayList<>(Arrays.asList(
                 new Obstacle(11775, "Open", new Tile(3209, 3415, 0)),
                 new Step(new Tile(3210, 3415, 0))
@@ -253,6 +330,21 @@ public class Varrock implements Region {
 
         new TwoWayLink(Fountain, WestBank, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3183, 3429, 0))
+        )));
+
+        new TwoWayLink(GertrudesBedroom, GertrudesHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3154, 3405, 0)),
+                new Obstacle(11780, "Open", new Tile(3154, 3405, 0)),
+                new Step(new Tile(3153, 3405, 0))
+        )));
+
+        new TwoWayLink(GertrudesHouse, WestGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3152, 3411, 0)),
+                new Obstacle(11775, "Open", new Tile(3151, 3412, 0)),
+                new Step(new Tile(3151, 3416, 0)),
+                new Step(new Tile(3159, 3418, 0)),
+                new Step(new Tile(3168, 3427, 0)),
+                new Step(new Tile(3173, 3427, 0))
         )));
 
         new TwoWayLink(GrandExchange, WestBank, new ArrayList<>(Arrays.asList(

@@ -6,18 +6,15 @@ import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
-import org.booleanfloat.traveler.steps.ImportantStep;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
-import org.booleanfloat.traveler.steps.obstacles.CamelotCastleGateIn;
-import org.booleanfloat.traveler.steps.obstacles.CamelotCastleGateOut;
+import org.booleanfloat.traveler.steps.obstacles.CamelotCastleGate;
 import org.powerbot.script.Area;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Magic;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
@@ -28,6 +25,8 @@ public class SeersVillage implements Region {
     public static Location CastleGate;
     public static Location CastleSouthWestTower;
     public static Location GalahadsHouseEntrance;
+    public static Location HemensterNorthHouse;
+    public static Location KeepLeFayeEntrance;
     public static Location RangeGuildEntrance;
     public static Location SinclairMansion;
     public static Location SinclairMansionGate;
@@ -43,6 +42,8 @@ public class SeersVillage implements Region {
         locations.add(CastleGate);
         locations.add(CastleSouthWestTower);
         locations.add(GalahadsHouseEntrance);
+        locations.add(HemensterNorthHouse);
+        locations.add(KeepLeFayeEntrance);
         locations.add(RangeGuildEntrance);
         locations.add(SinclairMansion);
         locations.add(SinclairMansionGate);
@@ -77,6 +78,16 @@ public class SeersVillage implements Region {
         GalahadsHouseEntrance = new Location("SeersVillage, GalahadsHouseEntrance", new Area(
                 new Tile(2615, 3483, 0),
                 new Tile(2610, 3481, 0)
+        ));
+
+        HemensterNorthHouse = new Location("SeersVillage, HemensterNorthHouse", new Area(
+                new Tile(2641, 3454, 0),
+                new Tile(2635, 3448, 0)
+        ));
+
+        KeepLeFayeEntrance = new Location("SeersVillage, KeepLeFayeEntrance", new Area(
+                new Tile(2763, 3404, 0),
+                new Tile(2759, 3399, 0)
         ));
 
         RangeGuildEntrance = new Location("SeersVillage, RangeGuildEntrance", new Area(
@@ -128,6 +139,16 @@ public class SeersVillage implements Region {
                 new Step(new Tile(2758, 3477, 0))
         )));
 
+        new TwoWayLink(Bank, KeepLeFayeEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2725, 3490, 0)),
+                new Step(new Tile(2727, 3461, 0)),
+                new Step(new Tile(2733, 3436, 0)),
+                new Step(new Tile(2743, 3420, 0)),
+                new Step(new Tile(2753, 3416, 0)),
+                new Step(new Tile(2751, 3402, 0)),
+                new Step(new Tile(2759, 3401, 0))
+        )));
+
         new TwoWayLink(Bank, RangeGuildEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2726, 3491, 0)),
                 new Step(new Tile(2725, 3483, 0)),
@@ -167,21 +188,21 @@ public class SeersVillage implements Region {
 
         new OneWayLink(CastleCourtyard, CastleGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2758, 3483, 0)),
-                new CamelotCastleGateOut(26082, new Tile(2758, 3482, 0)),
-                new CamelotCastleGateOut(26081, new Tile(2757, 3482, 0)),
+                new CamelotCastleGate(26082, new Tile(2758, 3482, 0), CamelotCastleGate.Direction.OUT),
+                new CamelotCastleGate(26081, new Tile(2757, 3482, 0), CamelotCastleGate.Direction.OUT),
                 new Step(new Tile(2758, 3481, 0))
         )));
 
         new OneWayLink(CastleCourtyard, CastleSouthWestTower, new ArrayList<>(Arrays.asList(
-                new ImportantStep(new Tile(2758, 3503, 0)),
+                new Step(new Tile(2758, 3503, 0)),
                 new Obstacle(25638, "Open", new Tile(2757, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
                 new Obstacle(25640, "Open", new Tile(2758, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
-                new ImportantStep(new Tile(2757, 3505, 0)),
-                new ImportantStep(new Tile(2750, 3505, 0)),
+                new Step(new Tile(2757, 3505, 0)),
+                new Step(new Tile(2750, 3505, 0)),
                 new Obstacle(25642, "Open", new Tile(2750, 3503, 0), new int[]{0, 128, -192, 0, 96, 128}),
-                new ImportantStep(new Tile(2750, 3496, 0)),
+                new Step(new Tile(2750, 3496, 0)),
                 new Obstacle(25642, "Open", new Tile(2750, 3496, 0), new int[]{0, 128, -192, 0, -16, 32}),
-                new ImportantStep(new Tile(2748, 3493, 0)),
+                new Step(new Tile(2748, 3493, 0)),
                 new Obstacle(26107, "Climb-up", new Tile(2747, 3493, 0)),
                 new Step(new Tile(2749, 3492, 1)),
                 new Obstacle(26107, "Climb-up", new Tile(2749, 3491, 1)),
@@ -206,11 +227,22 @@ public class SeersVillage implements Region {
 
         new OneWayLink(CastleGate, CastleCourtyard, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2758, 3481, 0)),
-                new CamelotCastleGateIn(26082, new Tile(2758, 3482, 0)),
-                new CamelotCastleGateIn(26081, new Tile(2757, 3482, 0)),
+                new CamelotCastleGate(26082, new Tile(2758, 3482, 0), CamelotCastleGate.Direction.IN),
+                new CamelotCastleGate(26081, new Tile(2757, 3482, 0), CamelotCastleGate.Direction.IN),
                 new Step(new Tile(2758, 3483, 0)),
                 new Step(new Tile(2758, 3490, 0)),
                 new Step(new Tile(2758, 3496, 0))
+        )));
+
+        new TwoWayLink(CastleGate, KeepLeFayeEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2758, 3477, 0)),
+                new Step(new Tile(2765, 3460, 0)),
+                new Step(new Tile(2770, 3449, 0)),
+                new Step(new Tile(2769, 3432, 0)),
+                new Step(new Tile(2762, 3425, 0)),
+                new Step(new Tile(2754, 3412, 0)),
+                new Step(new Tile(2751, 3401, 0)),
+                new Step(new Tile(2761, 3401, 0))
         )));
 
         new TwoWayLink(CastleGate, SinclairMansionGate, new ArrayList<>(Arrays.asList(
@@ -230,6 +262,14 @@ public class SeersVillage implements Region {
                 new Step(new Tile(2643, 3455, 0)),
                 new Step(new Tile(2644, 3447, 0)),
                 new Step(new Tile(2653, 3441, 0))
+        )));
+
+        new TwoWayLink(HemensterNorthHouse, RangeGuildEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2639, 3451, 0)),
+                new Obstacle(7129, "Open", new Tile(2641, 3452, 0)),
+                new Step(new Tile(2643, 3451, 0)),
+                new Step(new Tile(2644, 3447, 0)),
+                new Step(new Tile(2654, 3441, 0))
         )));
 
         new TwoWayLink(SinclairMansion, SinclairMansionGate, new ArrayList<>(Arrays.asList(

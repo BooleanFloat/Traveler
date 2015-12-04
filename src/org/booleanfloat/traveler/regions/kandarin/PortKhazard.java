@@ -12,12 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PortKhazard implements Region {
+    public static Location Cart;
     public static Location Entrance;
     public static Location FishingTrawler;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(Cart);
         locations.add(Entrance);
         locations.add(FishingTrawler);
 
@@ -25,6 +27,11 @@ public class PortKhazard implements Region {
     }
 
     public static void initLocations() {
+        Cart = new Location("PortKhazard, Cart", new Area(
+                new Tile(2664, 3152, 0),
+                new Tile(2660, 3146, 0)
+        ));
+
         Entrance = new Location("PortKhazard, Entrance", new Area(
                 new Tile(2626, 3174, 0),
                 new Tile(2621, 3169, 0)
@@ -37,6 +44,22 @@ public class PortKhazard implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TwoWayLink(Cart, Entrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2662, 3149, 0)),
+                new Step(new Tile(2662, 3156, 0)),
+                new Step(new Tile(2646, 3157, 0)),
+                new Step(new Tile(2638, 3165, 0)),
+                new Step(new Tile(2628, 3167, 0)),
+                new Step(new Tile(2627, 3172, 0)),
+                new Step(new Tile(2623, 3172, 0))
+        )));
+
+        new TwoWayLink(Cart, FishingTrawler, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2662, 3149, 0)),
+                new Step(new Tile(2662, 3160, 0)),
+                new Step(new Tile(2675, 3161, 0))
+        )));
+
         new TwoWayLink(Entrance, Yanille.EastGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2623, 3171, 0)),
                 new Step(new Tile(2625, 3118, 0)),

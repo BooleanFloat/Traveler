@@ -11,7 +11,7 @@ import org.booleanfloat.traveler.regions.misthalin.Varrock;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.npcs.Shantay;
-import org.booleanfloat.traveler.steps.obstacles.LumbridgeTollGate;
+import org.booleanfloat.traveler.steps.obstacles.AlKharidTollGate;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
@@ -30,6 +30,8 @@ public class AlKharid implements Region {
     public static Location MineDigSpot;
     public static Location NorthFenceOpening;
     public static Location NorthHouse;
+    public static Location PalaceChests;
+    public static Location PalaceThroneRoom;
     public static Location ShantyPass;
     public static Location Tanner;
 
@@ -44,6 +46,8 @@ public class AlKharid implements Region {
         locations.add(MineDigSpot);
         locations.add(NorthFenceOpening);
         locations.add(NorthHouse);
+        locations.add(PalaceChests);
+        locations.add(PalaceThroneRoom);
         locations.add(ShantyPass);
         locations.add(Tanner);
 
@@ -109,6 +113,16 @@ public class AlKharid implements Region {
                 new Tile(3289, 3201, 0)
         ));
 
+        PalaceChests = new Location("AlKharid, PalaceChests", new Area(
+                new Tile(3302, 3169, 1),
+                new Tile(3298, 3167, 1)
+        ));
+
+        PalaceThroneRoom = new Location("AlKharid, PalaceThroneRoom", new Area(
+                new Tile(3304, 3166, 0),
+                new Tile(3282, 3158, 0)
+        ));
+
         ShantyPass = new Location("AlKharid, ShantyPass", new Area(
                 new Tile(3306, 3132, 0),
                 new Tile(3311, 3126, 0),
@@ -132,6 +146,17 @@ public class AlKharid implements Region {
                 new Step(new Tile(3276, 3166, 0)),
                 new Step(new Tile(3283, 3187, 0)),
                 new Step(new Tile(3276, 3226, 0))
+        )));
+
+        new TwoWayLink(Bank, PalaceThroneRoom, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3270, 3165, 0)),
+                new Step(new Tile(3276, 3166, 0)),
+                new Step(new Tile(3280, 3181, 0)),
+                new Step(new Tile(3295, 3180, 0)),
+                new Step(new Tile(3293, 3167, 0)),
+                new Obstacle(6837, "Open", new Tile(3292, 3167, 0)),
+                new Obstacle(6839, "Open", new Tile(3293, 3167, 0)),
+                new Step(new Tile(3293, 3163, 0))
         )));
 
         new TwoWayLink(Bank, ShantyPass, new ArrayList<>(Arrays.asList(
@@ -162,6 +187,16 @@ public class AlKharid implements Region {
                 new Obstacle(7120, "Open", new Tile(3292, 3206, 0), new int[]{0, 100, -224, 0, 112, 128})
         )));
 
+        new TwoWayLink(CrossRoads, PalaceThroneRoom, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3276, 3225, 0)),
+                new Step(new Tile(3282, 3187, 0)),
+                new Step(new Tile(3292, 3179, 0)),
+                new Step(new Tile(3294, 3167, 0)),
+                new Obstacle(6837, "Open", new Tile(3292, 3167, 0)),
+                new Obstacle(6839, "Open", new Tile(3293, 3167, 0)),
+                new Step(new Tile(3293, 3165, 0))
+        )));
+
         new TwoWayLink(CrossRoads, Tanner, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3277, 3226, 0)),
                 new Step(new Tile(3280, 3190, 0)),
@@ -172,8 +207,8 @@ public class AlKharid implements Region {
         new OneWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3277, 3226, 0)),
                 new Step(new Tile(3269, 3227, 0)),
-                new LumbridgeTollGate(2882),
-                new LumbridgeTollGate(2883),
+                new AlKharidTollGate(2882, AlKharidTollGate.Direction.OUT),
+                new AlKharidTollGate(2883, AlKharidTollGate.Direction.OUT),
                 new Step(new Tile(3267, 3227, 0)),
                 new Step(new Tile(3258, 3227, 0))
         )), new Callable<Boolean>() {
@@ -232,6 +267,20 @@ public class AlKharid implements Region {
                 new Step(new Tile(3275, 3429, 0))
         )));
 
+        new TwoWayLink(NorthFenceOpening, Varrock.ExamCenter, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3284, 3331, 0)),
+                new Step(new Tile(3297, 3335, 0)),
+                new Step(new Tile(3310, 3331, 0)),
+                new Obstacle(11766, "Open", new Tile(3311, 3331, 0), new int[]{0, 32, -128, 0, 0, 128}),
+                new Obstacle(11767, "Open", new Tile(3311, 3332, 0), new int[]{0, 32, -128, 0, 0, 128}),
+                new Step(new Tile(3313, 3331, 0)),
+                new Step(new Tile(3326, 3347, 0)),
+                new Step(new Tile(3349, 3346, 0)),
+                new Step(new Tile(3355, 3343, 0)),
+                new Obstacle(17316, "Open", new Tile(3357, 3344, 0)),
+                new Step(new Tile(3358, 3343, 0))
+        )));
+
         new TwoWayLink(NorthFenceOpening, Varrock.SouthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3282, 3332, 0)),
                 new Step(new Tile(3248, 3337, 0)),
@@ -245,6 +294,18 @@ public class AlKharid implements Region {
                 new Step(new Tile(3276, 3358, 0)),
                 new Step(new Tile(3277, 3371, 0)),
                 new Step(new Tile(3287, 3371, 0))
+        )));
+
+        new OneWayLink(PalaceChests, PalaceThroneRoom, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3285, 3164, 1)),
+                new Obstacle(16679, "Climb-down", new Tile(3284, 3165, 1)),
+                new Step(new Tile(3284, 3164, 0))
+        )));
+
+        new OneWayLink(PalaceThroneRoom, PalaceChests, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3284, 3164, 0)),
+                new Obstacle(16683, "Climb-up", new Tile(3284, 3165, 0)),
+                new Step(new Tile(3285, 3164, 1))
         )));
 
         new OneWayLink(ShantyPass, PortSarim.ShantyPassCell, new ArrayList<>(Arrays.asList(

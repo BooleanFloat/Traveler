@@ -105,6 +105,7 @@ public class Traveler {
         EastArdougne.initLocations();
         PortKhazard.initLocations();
         SeersVillage.initLocations();
+        TreeGnomeStronghold.initLocations();
         Yanille.initLocations();
 
         // Karamja
@@ -139,6 +140,7 @@ public class Traveler {
         EastArdougne.initLinks(ctx);
         PortKhazard.initLinks(ctx);
         SeersVillage.initLinks(ctx);
+        TreeGnomeStronghold.initLinks(ctx);
         Yanille.initLinks(ctx);
 
         // Karamja
@@ -175,6 +177,7 @@ public class Traveler {
         locations.addAll(EastArdougne.getLocations());
         locations.addAll(PortKhazard.getLocations());
         locations.addAll(SeersVillage.getLocations());
+        locations.addAll(TreeGnomeStronghold.getLocations());
         locations.addAll(Yanille.getLocations());
 
         // Karamja

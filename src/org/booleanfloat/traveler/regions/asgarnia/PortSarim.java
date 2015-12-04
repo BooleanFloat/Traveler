@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.karamja.MusaPoint;
+import org.booleanfloat.traveler.regions.misthalin.Draynor;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.npcs.PortSarimKaramjaSailor;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 import java.util.concurrent.Callable;
 
 public class PortSarim implements Region {
+    public static Location EntranaBoat;
     public static Location Jail;
     public static Location MudskipperPoint;
     public static Location MusaPointBoat;
@@ -27,6 +29,7 @@ public class PortSarim implements Region {
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(EntranaBoat);
         locations.add(Jail);
         locations.add(MudskipperPoint);
         locations.add(MusaPointBoat);
@@ -36,6 +39,11 @@ public class PortSarim implements Region {
     }
 
     public static void initLocations() {
+        EntranaBoat = new Location("PortSarim, EntranaBoat", new Area(
+                new Tile(3052, 3237, 0),
+                new Tile(3040, 3233, 0)
+        ));
+
         Jail = new Location("PortSarim, Jail", new Area(
                 new Tile(3017, 3196, 0),
                 new Tile(3017, 3190, 0),
@@ -69,6 +77,25 @@ public class PortSarim implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TwoWayLink(EntranaBoat, MusaPointBoat, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3048, 3235, 0)),
+                new Step(new Tile(3027, 3235, 0)),
+                new Step(new Tile(3028, 3218, 0))
+        )));
+
+        new TwoWayLink(EntranaBoat, Draynor.WestFenceOpening, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3047, 3235, 0)),
+                new Step(new Tile(3042, 3235, 0)),
+                new Step(new Tile(3042, 3247, 0)),
+                new Step(new Tile(3053, 3247, 0)),
+                new Step(new Tile(3053, 3252, 0)),
+                new Step(new Tile(3058, 3252, 0)),
+                new Step(new Tile(3065, 3256, 0)),
+                new Step(new Tile(3066, 3265, 0)),
+                new Step(new Tile(3068, 3275, 0)),
+                new Step(new Tile(3069, 3276, 0))
+        )));
+
         new TwoWayLink(Jail, MusaPointBoat, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3011, 3191, 0)),
                 new Obstacle(7122, "Open", new Tile(3011, 3197, 0), new int[]{0, 128, -192, 0, -16, 32}),

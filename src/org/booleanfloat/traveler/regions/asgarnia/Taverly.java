@@ -2,10 +2,12 @@ package org.booleanfloat.traveler.regions.asgarnia;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.kandarin.Catherby;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
+import org.booleanfloat.traveler.steps.obstacles.TaverlyOuthouseStile;
 import org.powerbot.script.Area;
 import org.powerbot.script.ClientContext;
 import org.powerbot.script.Tile;
@@ -17,6 +19,8 @@ public class Taverly implements Region {
     public static Location DruidsCircle;
     public static Location HerbloreStore;
     public static Location MembersGate;
+    public static Location Outhouse;
+    public static Location OuthouseFence;
     public static Location POHPortal;
     public static Location SouthHouse;
     public static Location TwoHandedSwordStore;
@@ -28,6 +32,8 @@ public class Taverly implements Region {
         locations.add(DruidsCircle);
         locations.add(HerbloreStore);
         locations.add(MembersGate);
+        locations.add(Outhouse);
+        locations.add(OuthouseFence);
         locations.add(POHPortal);
         locations.add(SouthHouse);
         locations.add(TwoHandedSwordStore);
@@ -62,6 +68,21 @@ public class Taverly implements Region {
         MembersGate = new Location("Taverly, MembersGate", new Area(
                 new Tile(2933, 3453, 0),
                 new Tile(2929, 3447, 0)
+        ));
+
+        Outhouse = new Location("Taverly, Outhouse", new Area(
+                new Tile(2915, 3435, 0),
+                new Tile(2913, 3432, 0)
+        ));
+
+        OuthouseFence = new Location("Taverly, OuthouseFence", new Area(
+                new Tile(2917, 3439, 0),
+                new Tile(2917, 3436, 0),
+                new Tile(2916, 3435, 0),
+                new Tile(2912, 3435, 0),
+                new Tile(2910, 3437, 0),
+                new Tile(2913, 3437, 0),
+                new Tile(2915, 3439, 0)
         ));
 
         POHPortal = new Location("Taverly, POHPortal", new Area(
@@ -126,6 +147,47 @@ public class Taverly implements Region {
                 new Step(new Tile(2931, 3450, 0))
         )));
 
+        new OneWayLink(MembersGate, Outhouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2930, 3449, 0)),
+                new Step(new Tile(2920, 3437, 0)),
+                new TaverlyOuthouseStile(TaverlyOuthouseStile.Direction.IN),
+                new Step(new Tile(2916, 3437, 0)),
+                new Step(new Tile(2915, 3435, 0)),
+                new Obstacle(7122, "Open", new Tile(2914, 3435, 0)),
+                new Step(new Tile(2915, 3433, 0))
+        )));
+
+        new OneWayLink(Outhouse, MembersGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2915, 3433, 0)),
+                new Obstacle(7122, "Open", new Tile(2914, 3435, 0)),
+                new Step(new Tile(2915, 3435, 0)),
+                new Step(new Tile(2916, 3437, 0)),
+                new TaverlyOuthouseStile(TaverlyOuthouseStile.Direction.OUT),
+                new Step(new Tile(2920, 3437, 0)),
+                new Step(new Tile(2930, 3449, 0))
+        )));
+
+
+        new TwoWayLink(MembersGate, SouthHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2931, 3450, 0)),
+                new Step(new Tile(2920, 3432, 0)),
+                new Step(new Tile(2909, 3429, 0)),
+                new Step(new Tile(2900, 3421, 0)),
+                new Step(new Tile(2893, 3421, 0)),
+                new Obstacle(7122, "Open", new Tile(2893, 3421, 0), new int[]{0, 128, -192, 0, -32, 32}),
+                new Step(new Tile(2893, 3419, 0))
+        )));
+
+        new TwoWayLink(MembersGate, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2930, 3449, 0)),
+                new Step(new Tile(2919, 3432, 0)),
+                new Step(new Tile(2910, 3429, 0)),
+                new Step(new Tile(2900, 3421, 0)),
+                new Step(new Tile(2892, 3421, 0)),
+                new Step(new Tile(2881, 3428, 0)),
+                new Step(new Tile(2876, 3428, 0))
+        )));
+
         new TwoWayLink(POHPortal, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2896, 3464, 0)),
                 new Step(new Tile(2896, 3454, 0)),
@@ -148,26 +210,6 @@ public class Taverly implements Region {
                 new Step(new Tile(2887, 3452, 0)),
                 new Obstacle(7122, "Open", new Tile(2885, 3453, 0), new int[]{0, 128, -192, 0, 0, 32}),
                 new Step(new Tile(2886, 3450, 0))
-        )));
-
-        new TwoWayLink(MembersGate, SouthHouse, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(2931, 3450, 0)),
-                new Step(new Tile(2920, 3432, 0)),
-                new Step(new Tile(2909, 3429, 0)),
-                new Step(new Tile(2900, 3421, 0)),
-                new Step(new Tile(2893, 3421, 0)),
-                new Obstacle(7122, "Open", new Tile(2893, 3421, 0), new int[]{0, 128, -192, 0, -32, 32}),
-                new Step(new Tile(2893, 3419, 0))
-        )));
-
-        new TwoWayLink(MembersGate, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(2930, 3449, 0)),
-                new Step(new Tile(2919, 3432, 0)),
-                new Step(new Tile(2910, 3429, 0)),
-                new Step(new Tile(2900, 3421, 0)),
-                new Step(new Tile(2892, 3421, 0)),
-                new Step(new Tile(2881, 3428, 0)),
-                new Step(new Tile(2876, 3428, 0))
         )));
 
         new TwoWayLink(SouthHouse, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(

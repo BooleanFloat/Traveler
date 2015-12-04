@@ -189,8 +189,8 @@ public class Lumbridge implements Region {
         new OneWayLink(EastCrossRoads, AlKharid.CrossRoads, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3258, 3227, 0)),
                 new Step(new Tile(3267, 3227, 0)),
-                new AlKharidTollGate(2882),
-                new AlKharidTollGate(2883),
+                new AlKharidTollGate(2882, AlKharidTollGate.Direction.IN),
+                new AlKharidTollGate(2883, AlKharidTollGate.Direction.IN),
                 new Step(new Tile(3269, 3227, 0)),
                 new Step(new Tile(3277, 3226, 0))
         )), new Callable<Boolean>() {

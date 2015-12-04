@@ -5,8 +5,14 @@ import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 
 public class AlKharidTollGate extends Obstacle {
-    public AlKharidTollGate(int id) {
+    public enum Direction { IN, OUT };
+
+    private Direction direction;
+
+    public AlKharidTollGate(int id, Direction direction) {
         super(id, "Pay-toll(10gp)", new Tile(3268, 3227, 0), new int[]{-32, 32, -196, 0, 0, 128});
+
+        this.direction = direction;
     }
 
     @Override
@@ -17,6 +23,11 @@ public class AlKharidTollGate extends Obstacle {
             object.bounds(bounds);
         }
 
-        return object.inViewport() && ctx.players.local().tile().x() <= 3267;
+        if(direction == Direction.IN) {
+            return object.inViewport() && ctx.players.local().tile().x() <= 3267;
+        }
+        else {
+            return object.inViewport() && ctx.players.local().tile().x() >= 3268;
+        }
     }
 }

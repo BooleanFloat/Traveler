@@ -33,6 +33,7 @@ public class EastArdougne implements Region {
     public static Location NorthBank;
     public static Location NorthGate;
     public static Location NorthShed;
+    public static Location NorthWestGate;
     public static Location PicnicArea;
     public static Location Pub;
     public static Location PubUpstairs;
@@ -53,6 +54,7 @@ public class EastArdougne implements Region {
         locations.add(MarketNorthHouseUpstairs);
         locations.add(NorthBank);
         locations.add(NorthGate);
+        locations.add(NorthWestGate);
         locations.add(NorthShed);
         locations.add(PicnicArea);
         locations.add(Pub);
@@ -127,6 +129,11 @@ public class EastArdougne implements Region {
                 new Tile(2617, 3347, 0)
         ));
 
+        NorthWestGate = new Location("EastArdougne, NorthWestGate", new Area(
+                new Tile(2590, 3342, 0),
+                new Tile(2586, 3339, 0)
+        ));
+
         PicnicArea = new Location("EastArdougne, PicnicArea", new Area(
                 new Tile(2725, 3341, 0),
                 new Tile(2718, 3335, 0)
@@ -182,24 +189,6 @@ public class EastArdougne implements Region {
             }
         });
 
-        new TwoWayLink(FishingGuildEntrance, NorthGate, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(2611, 3392, 0)),
-                new Step(new Tile(2632, 3379, 0)),
-                new Step(new Tile(2635, 3373, 0)),
-                new Step(new Tile(2636, 3339, 0))
-        )));
-
-        new TwoWayLink(FishingGuildEntrance, SeersVillage.RangeGuildEntrance, new ArrayList<>(Arrays.asList(
-                new Step(new Tile(2611, 3392, 0)),
-                new Step(new Tile(2620, 3391, 0)),
-                new Step(new Tile(2630, 3395, 0)),
-                new Step(new Tile(2638, 3407, 0)),
-                new Step(new Tile(2639, 3412, 0)),
-                new Step(new Tile(2647, 3418, 0)),
-                new Step(new Tile(2645, 3431, 0)),
-                new Step(new Tile(2656, 3440, 0))
-        )));
-
         new TwoWayLink(BrimhavenBoat, SouthBank, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2680, 3274, 0)),
                 new Step(new Tile(2673, 3275, 0)),
@@ -252,6 +241,32 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2729, 3437, 0)),
                 new Step(new Tile(2727, 3463, 0)),
                 new Step(new Tile(2725, 3490, 0))
+        )));
+
+        new TwoWayLink(FishingGuildEntrance, NorthGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2611, 3392, 0)),
+                new Step(new Tile(2632, 3379, 0)),
+                new Step(new Tile(2635, 3373, 0)),
+                new Step(new Tile(2636, 3339, 0))
+        )));
+
+        new TwoWayLink(FishingGuildEntrance, SeersVillage.RangeGuildEntrance, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2611, 3392, 0)),
+                new Step(new Tile(2620, 3391, 0)),
+                new Step(new Tile(2630, 3395, 0)),
+                new Step(new Tile(2638, 3407, 0)),
+                new Step(new Tile(2639, 3412, 0)),
+                new Step(new Tile(2647, 3418, 0)),
+                new Step(new Tile(2645, 3431, 0)),
+                new Step(new Tile(2656, 3440, 0))
+        )));
+
+        new TwoWayLink(FishingGuildEntrance, NorthWestGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2611, 3392, 0)),
+                new Step(new Tile(2588, 3383, 0)),
+                new Step(new Tile(2582, 3369, 0)),
+                new Step(new Tile(2582, 3351, 0)),
+                new Step(new Tile(2587, 3341, 0))
         )));
 
         new TwoWayLink(GeneralStore, Market, new ArrayList<>(Arrays.asList(
@@ -366,6 +381,16 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2618, 3344, 0))
         )));
 
+        new TwoWayLink(NorthBank, NorthWestGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2617, 3334, 0)),
+                new Step(new Tile(2617, 3337, 0)),
+                new Step(new Tile(2613, 3339, 0)),
+                new Step(new Tile(2611, 3369, 0)),
+                new Step(new Tile(2582, 3370, 0)),
+                new Step(new Tile(2582, 3351, 0)),
+                new Step(new Tile(2587, 3341, 0))
+        )));
+
         new TwoWayLink(NorthGate, SeersVillage.RangeGuildEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2636, 3339, 0)),
                 new Step(new Tile(2636, 3373, 0)),
@@ -376,6 +401,25 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2645, 3419, 0)),
                 new Step(new Tile(2646, 3431, 0)),
                 new Step(new Tile(2655, 3441, 0))
+        )));
+
+        new TwoWayLink(NorthWestGate, Pub, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2587, 3340, 0)),
+                new Step(new Tile(2587, 3332, 0)),
+                new Step(new Tile(2582, 3328, 0)),
+                new Step(new Tile(2581, 3320, 0)),
+                new Step(new Tile(2578, 3318, 0)),
+                new Obstacle(7129, "Open", new Tile(2576, 3320, 0), new int[]{-16, 32, -192, 0, 0, 128}),
+                new Step(new Tile(2576, 3320, 0))
+        )));
+
+        new TwoWayLink(NorthWestGate, TreeGnomeStronghold.GateOutside, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2588, 3341, 0)),
+                new Step(new Tile(2587, 3345, 0)),
+                new Step(new Tile(2554, 3345, 0)),
+                new Step(new Tile(2519, 3348, 0)),
+                new Step(new Tile(2471, 3356, 0)),
+                new Step(new Tile(2460, 3382, 0))
         )));
 
         new TwoWayLink(PicnicArea, Catherby.GeneralStore, new ArrayList<>(Arrays.asList(
