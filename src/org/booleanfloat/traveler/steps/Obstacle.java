@@ -64,6 +64,10 @@ public class Obstacle implements Traversable {
 
     @Override
     public boolean traverse(ClientContext ctx) {
+        if(object == null || !object.inViewport()) {
+            return ctx.input.click(position.matrix(ctx).mapPoint(), true);
+        }
+
         boolean isInteracting = object != null && object.interact(interaction);
 
         if(isInteracting) {

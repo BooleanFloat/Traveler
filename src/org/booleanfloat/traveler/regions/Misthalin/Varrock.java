@@ -38,6 +38,7 @@ public class Varrock implements Region {
     public static Location NorthGate;
     public static Location RiverDigSpot;
     public static Location SouthGate;
+    public static Location SouthGateHouse;
     public static Location SouthMine;
     public static Location SouthMineDigSpot;
     public static Location WestBank;
@@ -66,6 +67,7 @@ public class Varrock implements Region {
         locations.add(NorthGate);
         locations.add(RiverDigSpot);
         locations.add(SouthGate);
+        locations.add(SouthGateHouse);
         locations.add(SouthMine);
         locations.add(SouthMineDigSpot);
         locations.add(WestBank);
@@ -189,6 +191,16 @@ public class Varrock implements Region {
         SouthGate = new Location("Varrock, SouthGate", new Area(
                 new Tile(3213, 3382, 0),
                 new Tile(3210, 3380, 0)
+        ));
+
+        SouthGateHouse = new Location("Varrock, SouthGateHouse", new Area(
+                new Tile(3207, 3389, 0),
+                new Tile(3207, 3384, 0),
+                new Tile(3202, 3384, 0),
+                new Tile(3201, 3385, 0),
+                new Tile(3201, 3388, 0),
+                new Tile(3203, 3390, 0),
+                new Tile(3206, 3390, 0)
         ));
 
         SouthMine = new Location("Varrock, SouthMine", new Area(
@@ -418,6 +430,13 @@ public class Varrock implements Region {
         new TwoWayLink(WestBank, WestGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3175, 3428, 0)),
                 new Step(new Tile(3183, 3431, 0))
+        )));
+
+        new TwoWayLink(SouthGate, SouthGateHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3211, 3382, 0)),
+                new Step(new Tile(3208, 3385, 0)),
+                new Obstacle(11777, "Open", new Tile(3208, 3385, 0)),
+                new Step(new Tile(3207, 3385, 0))
         )));
 
         new TwoWayLink(SouthGate, SouthMine, new ArrayList<>(Arrays.asList(

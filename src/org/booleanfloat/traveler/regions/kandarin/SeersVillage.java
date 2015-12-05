@@ -9,6 +9,7 @@ import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.obstacles.CamelotCastleGate;
+import org.booleanfloat.traveler.steps.obstacles.SinclairMansionDoor;
 import org.powerbot.script.Area;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.Tile;
@@ -272,15 +273,26 @@ public class SeersVillage implements Region {
                 new Step(new Tile(2654, 3441, 0))
         )));
 
-        new TwoWayLink(SinclairMansion, SinclairMansionGate, new ArrayList<>(Arrays.asList(
+        new OneWayLink(SinclairMansion, SinclairMansionGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2740, 3574, 0)),
-                new Obstacle(25748, "Open", new Tile(2740, 3572, 0), new int[]{0, 128, -160, 0, 112, 144}),
-                new Obstacle(25750, "Open", new Tile(2741, 3572, 0), new int[]{0, 128, -160, 0, 112, 144}),
+                new SinclairMansionDoor(25748, new Tile(2740, 3572, 0), SinclairMansionDoor.Direction.OUT),
+                new SinclairMansionDoor(25750, new Tile(2741, 3572, 0), SinclairMansionDoor.Direction.OUT),
                 new Step(new Tile(2742, 3570, 0)),
                 new Step(new Tile(2742, 3556, 0)),
                 new Obstacle(26130, "Open", new Tile(2741, 3555, 0), new int[]{0, 128, -160, 0, 112, 144}),
                 new Obstacle(26131, "Open", new Tile(2742, 3555, 0), new int[]{0, 128, -160, 0, 112, 144}),
                 new Step(new Tile(2742, 3553, 0))
+        )));
+
+        new OneWayLink(SinclairMansionGate, SinclairMansion, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2742, 3553, 0)),
+                new Obstacle(26131, "Open", new Tile(2742, 3555, 0), new int[]{0, 128, -160, 0, 112, 144}),
+                new Obstacle(26130, "Open", new Tile(2741, 3555, 0), new int[]{0, 128, -160, 0, 112, 144}),
+                new Step(new Tile(2742, 3556, 0)),
+                new Step(new Tile(2742, 3570, 0)),
+                new SinclairMansionDoor(25750, new Tile(2741, 3572, 0), SinclairMansionDoor.Direction.IN),
+                new SinclairMansionDoor(25748, new Tile(2740, 3572, 0), SinclairMansionDoor.Direction.IN),
+                new Step(new Tile(2740, 3574, 0))
         )));
 
         new TwoWayLink(SinclairMansion, SinclairMansionKitchen, new ArrayList<>(Arrays.asList(

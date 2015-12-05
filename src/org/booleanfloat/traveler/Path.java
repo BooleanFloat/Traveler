@@ -59,7 +59,7 @@ public class Path {
             }
 
             if(step instanceof Obstacle || step instanceof Npc) {
-                if(matrix.inViewport() && step.isObstructing(ctx)) {
+                if(!matrix.inViewport() && matrix.onMap() || matrix.inViewport() && step.isObstructing(ctx)) {
                     furthestStep = step;
                     break;
                 }

@@ -25,7 +25,8 @@ public class AlKharid implements Region {
     public static Location Bank;
     public static Location CrossRoads;
     public static Location DuelArenaEntrance;
-    public static Location DuelAreanTicketOffice;
+    public static Location DuelArenaTicketOffice;
+    public static Location DuelArenaSpectators;
     public static Location Mine;
     public static Location MineDigSpot;
     public static Location NorthFenceOpening;
@@ -41,7 +42,8 @@ public class AlKharid implements Region {
         locations.add(Bank);
         locations.add(CrossRoads);
         locations.add(DuelArenaEntrance);
-        locations.add(DuelAreanTicketOffice);
+        locations.add(DuelArenaTicketOffice);
+        locations.add(DuelArenaSpectators);
         locations.add(Mine);
         locations.add(MineDigSpot);
         locations.add(NorthFenceOpening);
@@ -70,9 +72,28 @@ public class AlKharid implements Region {
                 new Tile(3315, 3232, 0)
         ));
 
-        DuelAreanTicketOffice = new Location("AlKharid, DuelAreanTicketOffice", new Area(
+        DuelArenaTicketOffice = new Location("AlKharid, DuelArenaTicketOffice", new Area(
                 new Tile(3316, 3243, 0),
                 new Tile(3312, 3239, 0)
+        ));
+
+        DuelArenaSpectators = new Location("AlKharid, DuelArenaSpectators", new Area(
+                new Tile(3362, 3251, 0),
+                new Tile(3362, 3246, 0),
+                new Tile(3366, 3242, 0),
+                new Tile(3372, 3242, 0),
+                new Tile(3372, 3240, 0),
+                new Tile(3366, 3240, 0),
+                new Tile(3362, 3236, 0),
+                new Tile(3362, 3232, 0),
+                new Tile(3360, 3232, 0),
+                new Tile(3360, 3236, 0),
+                new Tile(3356, 3240, 0),
+                new Tile(3351, 3240, 0),
+                new Tile(3351, 3242, 0),
+                new Tile(3356, 3242, 0),
+                new Tile(3360, 3246, 0),
+                new Tile(3360, 3251, 0)
         ));
 
         Mine = new Location("Alkharid, Mine", new Area(
@@ -219,12 +240,21 @@ public class AlKharid implements Region {
             }
         });
 
-        new TwoWayLink(DuelArenaEntrance, DuelAreanTicketOffice, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DuelArenaEntrance, DuelArenaTicketOffice, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3313, 3233, 0)),
                 new Step(new Tile(3319, 3235, 0)),
                 new Step(new Tile(3318, 3240, 0)),
                 // door
                 new Step(new Tile(3314, 3241, 0))
+        )));
+
+        new TwoWayLink(DuelArenaEntrance, DuelArenaSpectators, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3313, 3233, 0)),
+                new Step(new Tile(3328, 3239, 0)),
+                new Step(new Tile(3328, 3260, 0)),
+                new Step(new Tile(3330, 3260, 0)),
+                new Step(new Tile(3330, 3241, 0)),
+                new Step(new Tile(3359, 3241, 0))
         )));
 
         new TwoWayLink(Mine, MineDigSpot);

@@ -17,6 +17,7 @@ public class VarrockCastle implements Region {
     public static Location Courtyard;
     public static Location Entrance;
     public static Location Kitchen;
+    public static Location Library;
     public static Location TrainingRoom;
 
     public static ArrayList<Location> getLocations() {
@@ -25,6 +26,7 @@ public class VarrockCastle implements Region {
         locations.add(Courtyard);
         locations.add(Entrance);
         locations.add(Kitchen);
+        locations.add(Library);
         locations.add(TrainingRoom);
 
         return locations;
@@ -44,6 +46,15 @@ public class VarrockCastle implements Region {
         Kitchen = new Location("VarrockCastle, Kitchen", new Area(
                 new Tile(3224, 3496, 0),
                 new Tile(3218, 3491, 0)
+        ));
+
+        Library = new Location("VarrockCastle, Library", new Area(
+                new Tile(3217, 3497, 0),
+                new Tile(3217, 3494, 0),
+                new Tile(3214, 3494, 0),
+                new Tile(3214, 3490, 0),
+                new Tile(3207, 3490, 0),
+                new Tile(3207, 3497, 0)
         ));
 
         TrainingRoom = new Location("VarrockCastle, TraningRoom", new Area(
@@ -70,6 +81,15 @@ public class VarrockCastle implements Region {
                 new Step(new Tile(3216, 3491, 0)),
                 new Obstacle(11773, "Open", new Tile(3217, 3492, 0), new int[]{96, 128, -224, 0, 16, 96}),
                 new Step(new Tile(3219, 3491, 0))
+        )));
+
+        new TwoWayLink(Entrance, Library, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3212, 3470, 0)),
+                new Step(new Tile(3207, 3476, 0)),
+                new Step(new Tile(3207, 3487, 0)),
+                new Step(new Tile(3210, 3488, 0)),
+                new Obstacle(11773, "Open", new Tile(3210, 3490, 0), new int[]{0, 128, -192, 0, -16, 32}),
+                new Step(new Tile(3210, 3490, 0))
         )));
 
         new OneWayLink(Entrance, TrainingRoom, new ArrayList<>(Arrays.asList(

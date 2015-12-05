@@ -28,6 +28,8 @@ public class Falador implements Region {
     public static Location DwarvenMineEntrance;
     public static Location EastBank;
     public static Location EastHouseUpstairs;
+    public static Location GemStore;
+    public static Location GeneralStore;
     public static Location NorthFencedStones;
     public static Location NorthGate;
     public static Location NorthSquare;
@@ -52,6 +54,8 @@ public class Falador implements Region {
         locations.add(DwarvenMineEntrance);
         locations.add(EastBank);
         locations.add(EastHouseUpstairs);
+        locations.add(GemStore);
+        locations.add(GeneralStore);
         locations.add(NorthFencedStones);
         locations.add(NorthGate);
         locations.add(NorthSquare);
@@ -113,6 +117,20 @@ public class Falador implements Region {
         EastHouseUpstairs = new Location("Falador, EastHouseUpstairs", new Area(
                 new Tile(3041, 3348, 1),
                 new Tile(3035, 3341, 1)
+        ));
+
+        GemStore = new Location("Falador, GemStore", new Area(
+                new Tile(2947, 3337, 0),
+                new Tile(2944, 3331, 0)
+        ));
+
+        GeneralStore = new Location("Falador, GeneralStore", new Area(
+                new Tile(2961, 3390, 0),
+                new Tile(2961, 3384, 0),
+                new Tile(2956, 3384, 0),
+                new Tile(2956, 3386, 0),
+                new Tile(2953, 3386, 0),
+                new Tile(2953, 3390, 0)
         ));
 
         NorthFencedStones = new Location("Falador, NorthFencedStones", new Area(
@@ -355,6 +373,34 @@ public class Falador implements Region {
                 new Step(new Tile(3013, 3361, 0)),
                 new Step(new Tile(2979, 3377, 0)),
                 new Step(new Tile(2966, 3379, 0))
+        )));
+
+        new TwoWayLink(GemStore, WestBank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2945, 3335, 0)),
+                new Obstacle(24050, "Open", new Tile(2945, 3338, 0)),
+                new Step(new Tile(2945, 3338, 0)),
+                new Step(new Tile(2950, 3354, 0)),
+                new Step(new Tile(2951, 3366, 0)),
+                new Step(new Tile(2951, 3374, 0)),
+                new Step(new Tile(2945, 3375, 0)),
+                new Step(new Tile(2945, 3371, 0))
+        )));
+
+        new TwoWayLink(GeneralStore, Square, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2958, 3385, 0)),
+                new Obstacle(24056, "Open", new Tile(2958, 3384, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new Step(new Tile(2958, 3382, 0)),
+                new Step(new Tile(2963, 3380, 0))
+        )));
+
+        new TwoWayLink(GeneralStore, WestBank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2959, 3387, 0)),
+                new Obstacle(24056, "Open", new Tile(2958, 3384, 0), new int[]{0, 128, -192, 0, 96, 128}),
+                new Step(new Tile(2958, 3381, 0)),
+                new Step(new Tile(2951, 3379, 0)),
+                new Step(new Tile(2950, 3375, 0)),
+                new Step(new Tile(2946, 3374, 0)),
+                new Step(new Tile(2946, 3371, 0))
         )));
 
         new TwoWayLink(NorthFencedStones, NorthGate, new ArrayList<>(Arrays.asList(
