@@ -21,18 +21,22 @@ import java.util.concurrent.Callable;
 
 public class PortSarim implements Region {
     public static Location EntranaBoat;
+    public static Location FishingStore;
     public static Location Jail;
     public static Location MudskipperPoint;
     public static Location MusaPointBoat;
+    public static Location RustyAnchor;
     public static Location ShantyPassCell;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(EntranaBoat);
+        locations.add(FishingStore);
         locations.add(Jail);
         locations.add(MudskipperPoint);
         locations.add(MusaPointBoat);
+        locations.add(RustyAnchor);
         locations.add(ShantyPassCell);
 
         return locations;
@@ -42,6 +46,14 @@ public class PortSarim implements Region {
         EntranaBoat = new Location("PortSarim, EntranaBoat", new Area(
                 new Tile(3052, 3237, 0),
                 new Tile(3040, 3233, 0)
+        ));
+
+        FishingStore = new Location("PortSarim, FishingStore", new Area(
+                new Tile(3018, 3229, 0),
+                new Tile(3018, 3222, 0),
+                new Tile(3015, 3219, 0),
+                new Tile(3011, 3219, 0),
+                new Tile(3011, 3229, 0)
         ));
 
         Jail = new Location("PortSarim, Jail", new Area(
@@ -70,6 +82,11 @@ public class PortSarim implements Region {
                 new Tile(3027, 3212, 0)
         ));
 
+        RustyAnchor = new Location("PortSarim, RustyAnchor", new Area(
+                new Tile(3055, 3258, 0),
+                new Tile(3044, 3254, 0)
+        ));
+
         ShantyPassCell = new Location("PortSarim, ShantyPassCell", new Area(
                 new Tile(3016, 3182, 0),
                 new Tile(3013, 3179, 0)
@@ -81,6 +98,15 @@ public class PortSarim implements Region {
                 new Step(new Tile(3048, 3235, 0)),
                 new Step(new Tile(3027, 3235, 0)),
                 new Step(new Tile(3028, 3218, 0))
+        )));
+
+        new TwoWayLink(EntranaBoat, RustyAnchor, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3042, 3235, 0)),
+                new Step(new Tile(3042, 3247, 0)),
+                new Step(new Tile(3053, 3247, 0)),
+                new Step(new Tile(3053, 3252, 0)),
+                new Obstacle(7122, "Open", new Tile(3053, 3254, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(3053, 3255, 0))
         )));
 
         new TwoWayLink(EntranaBoat, Draynor.WestFenceOpening, new ArrayList<>(Arrays.asList(
@@ -96,9 +122,25 @@ public class PortSarim implements Region {
                 new Step(new Tile(3069, 3276, 0))
         )));
 
+        new TwoWayLink(FishingStore, MusaPointBoat, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3014, 3221, 0)),
+                new Obstacle(7122, "Open", new Tile(3014, 3219, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(3014, 3217, 0)),
+                new Step(new Tile(3028, 3217, 0))
+        )));
+
+        new TwoWayLink(FishingStore, Rimmington.Mine, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3014, 3220, 0)),
+                new Obstacle(7122, "Open", new Tile(3014, 3219, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(3014, 3217, 0)),
+                new Step(new Tile(3006, 3218, 0)),
+                new Step(new Tile(2989, 3231, 0)),
+                new Step(new Tile(2986, 3233, 0))
+        )));
+
         new TwoWayLink(Jail, MusaPointBoat, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3011, 3191, 0)),
-                new Obstacle(7122, "Open", new Tile(3011, 3197, 0), new int[]{0, 128, -192, 0, -16, 32}),
+                new Obstacle(7122, "Open", new Tile(3011, 3197, 0), Obstacle.Hitbox.DOOR_SOUTH),
                 new Step(new Tile(3012, 3198, 0)),
                 new Step(new Tile(3017, 3201, 0)),
                 new Step(new Tile(3028, 3210, 0)),
@@ -152,6 +194,13 @@ public class PortSarim implements Region {
                 new Step(new Tile(3007, 3217, 0)),
                 new Step(new Tile(2990, 3231, 0)),
                 new Step(new Tile(2983, 3233, 0))
+        )));
+
+        new TwoWayLink(RustyAnchor, Draynor.WestFenceOpening, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3053, 3257, 0)),
+                new Obstacle(7122, "Open", new Tile(3053, 3260, 0), Obstacle.Hitbox.DOOR_SOUTH),
+                new Step(new Tile(3053, 3260, 0)),
+                new Step(new Tile(3069, 3277, 0))
         )));
 
         new OneWayLink(ShantyPassCell, Jail, new ArrayList<>(Arrays.asList(

@@ -14,7 +14,6 @@ import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Magic;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
@@ -25,8 +24,10 @@ public class Falador implements Region {
     public static Location CastleThroneRoom;
     public static Location ChainMailStore;
     public static Location DoricsHouse;
+    public static Location DoricsHouseCrossRoads;
     public static Location DwarvenMineEntrance;
     public static Location EastBank;
+    public static Location EastBankHouse;
     public static Location EastHouseUpstairs;
     public static Location GemStore;
     public static Location GeneralStore;
@@ -51,8 +52,10 @@ public class Falador implements Region {
         locations.add(CastleThroneRoom);
         locations.add(ChainMailStore);
         locations.add(DoricsHouse);
+        locations.add(DoricsHouseCrossRoads);
         locations.add(DwarvenMineEntrance);
         locations.add(EastBank);
+        locations.add(EastBankHouse);
         locations.add(EastHouseUpstairs);
         locations.add(GemStore);
         locations.add(GeneralStore);
@@ -100,6 +103,11 @@ public class Falador implements Region {
         ));
 
         DoricsHouse = new Location("Falador, DoricsHouse", new Area(
+                new Tile(2954, 3454, 0),
+                new Tile(2950, 3448, 0)
+        ));
+
+        DoricsHouseCrossRoads = new Location("Falador, DoricsHouseCrossRoads", new Area(
                 new Tile(2949, 3452, 0),
                 new Tile(2945, 3448, 0)
         ));
@@ -112,6 +120,11 @@ public class Falador implements Region {
         EastBank = new Location("Falador, EastBank", new Area(
                 new Tile(3015, 3357, 0),
                 new Tile(3009, 3354, 0)
+        ));
+
+        EastBankHouse = new Location("Falador, EastBankHouse", new Area(
+                new Tile(3030, 3355, 0),
+                new Tile(3026, 3351, 0)
         ));
 
         EastHouseUpstairs = new Location("Falador, EastHouseUpstairs", new Area(
@@ -297,13 +310,19 @@ public class Falador implements Region {
                 new Step(new Tile(2946, 3371, 0))
         )));
 
-        new TwoWayLink(DoricsHouse, NorthSquare, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DoricsHouse, DoricsHouseCrossRoads, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2951, 3450, 0)),
+                new Obstacle(7122, "Open", new Tile(2949, 3450, 0), new int[]{112, 128, -196, 0, 0, 100}),
+                new Step(new Tile(2948, 3450, 0))
+        )));
+
+        new TwoWayLink(DoricsHouseCrossRoads, NorthSquare, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2947, 3450, 0)),
                 new Step(new Tile(2951, 3423, 0)),
                 new Step(new Tile(2966, 3413, 0))
         )));
 
-        new TwoWayLink(DoricsHouse, Taverly.MembersGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DoricsHouseCrossRoads, Taverly.MembersGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2945, 3451, 0)),
                 new Step(new Tile(2936, 3450, 0)),
                 new Obstacle(7168, "Open", new Tile(2935, 3451, 0), new int[]{112, 128, -196, 0, 0, 100}),
@@ -325,8 +344,16 @@ public class Falador implements Region {
 
         new OneWayLink(DwarvenMineEntrance, DwarvenMine.ScorpionPit, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3061, 3377, 0)),
-                new Obstacle(16664, "Climb-dpwn", new Tile(3059, 3377, 0)),
+                new Obstacle(16664, "Climb-down", new Tile(3059, 3377, 0)),
                 new Step(new Tile(3058, 9776, 0))
+        )));
+
+        new TwoWayLink(EastBank, EastBankHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3012, 3356, 0)),
+                new Step(new Tile(3013, 3360, 0)),
+                new Step(new Tile(3028, 3357, 0)),
+                new Obstacle(24050, "Open", new Tile(3028, 3356, 0), new int[]{0, 128, -196, 0, -32, 32}),
+                new Step(new Tile(3028, 3354, 0))
         )));
 
         new OneWayLink(EastBank, EastHouseUpstairs, new ArrayList<>(Arrays.asList(

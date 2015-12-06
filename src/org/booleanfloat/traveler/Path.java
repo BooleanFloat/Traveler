@@ -42,7 +42,7 @@ public class Path {
 
 //        System.out.println(start);
 
-        for(int i = Math.max(0, start - 2); i < Math.min(start + 10, steps.size()); i++) {
+        for(int i = Math.max(0, start - 2); i < Math.min(start + 15, steps.size()); i++) {
             Traversable step = steps.get(i);
             Tile tile = step.getTile(ctx);
 

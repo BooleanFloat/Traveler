@@ -61,8 +61,8 @@ public class Draynor implements Region {
         ));
 
         NedsHouse = new Location("Draynor, NedsHouse", new Area(
-                new Tile(3101, 3260, 0),
-                new Tile(3096, 3255, 0)
+                new Tile(3101, 3261, 0),
+                new Tile(3096, 3256, 0)
         ));
 
         NorthHouse = new Location("Draynor, NorthHouse", new Area(

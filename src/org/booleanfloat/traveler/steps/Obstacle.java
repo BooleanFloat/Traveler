@@ -6,6 +6,8 @@ import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.GameObject;
 
+import java.util.HashMap;
+
 public class Obstacle implements Traversable {
     protected int id;
     protected String interaction;
@@ -13,6 +15,13 @@ public class Obstacle implements Traversable {
     protected int[] bounds;
     protected int interactionDelay;
     protected GameObject object;
+
+    public static class Hitbox {
+        public static int[] DOOR_NORTH = new int[]{ 16, 112, -192, -16, 112, 128};
+        public static int[] DOOR_EAST = new int[]{ -16, 0, -192, -16, 16, 112};
+        public static int[] DOOR_SOUTH = new int[]{ 16, 112, -192, -16, -16, 0};
+        public static int[] DOOR_WEST = new int[]{ 112, 128, -192, -16, 16, 112};
+    }
 
     public Obstacle(int id, String interaction, Tile position) {
         this(id, interaction, position, null);

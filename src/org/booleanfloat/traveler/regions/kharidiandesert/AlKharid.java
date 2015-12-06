@@ -35,6 +35,7 @@ public class AlKharid implements Region {
     public static Location PalaceThroneRoom;
     public static Location ShantyPass;
     public static Location Tanner;
+    public static Location Tent;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
@@ -52,6 +53,7 @@ public class AlKharid implements Region {
         locations.add(PalaceThroneRoom);
         locations.add(ShantyPass);
         locations.add(Tanner);
+        locations.add(Tent);
 
         return locations;
     }
@@ -159,6 +161,11 @@ public class AlKharid implements Region {
                 new Tile(3277, 3193, 0),
                 new Tile(3271, 3189, 0)
         ));
+
+        Tent = new Location("AlKharid, Tent", new Area(
+                new Tile(3310, 3206, 0),
+                new Tile(3304, 3201, 0)
+        ));
     }
 
     public static void initLinks(ClientContext ctx) {
@@ -186,6 +193,16 @@ public class AlKharid implements Region {
                 new Step(new Tile(3279, 3154, 0)),
                 new Step(new Tile(3303, 3138, 0)),
                 new Step(new Tile(3303, 3127, 0))
+        )));
+
+        new TwoWayLink(Bank, Tent, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3270, 3166, 0)),
+                new Step(new Tile(3277, 3166, 0)),
+                new Step(new Tile(3281, 3181, 0)),
+                new Step(new Tile(3293, 3186, 0)),
+                new Step(new Tile(3297, 3195, 0)),
+                new Step(new Tile(3303, 3203, 0)),
+                new Step(new Tile(3305, 3203, 0))
         )));
 
         new TwoWayLink(CrossRoads, DuelArenaEntrance, new ArrayList<>(Arrays.asList(
@@ -223,6 +240,14 @@ public class AlKharid implements Region {
                 new Step(new Tile(3280, 3190, 0)),
                 new Step(new Tile(3276, 3190, 0)),
                 new Obstacle(7122, "Open", new Tile(3277, 3191, 0), new int[]{112, 128, -224, 0, 10, 130})
+        )));
+
+        new TwoWayLink(CrossRoads, Tent, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3278, 3225, 0)),
+                new Step(new Tile(3282, 3217, 0)),
+                new Step(new Tile(3298, 3216, 0)),
+                new Step(new Tile(3301, 3204, 0)),
+                new Step(new Tile(3307, 3203, 0))
         )));
 
         new OneWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
@@ -278,8 +303,8 @@ public class AlKharid implements Region {
                 new Step(new Tile(3283, 3331, 0)),
                 new Step(new Tile(3297, 3334, 0)),
                 new Step(new Tile(3310, 3331, 0)),
-                new Obstacle(11766, "Open", new Tile(3311, 3331, 0), new int[]{0, 32, -128, 0, 0, 128}),
-                new Obstacle(11767, "Open", new Tile(3311, 3332, 0), new int[]{0, 32, -128, 0, 0, 128}),
+                new Obstacle(11766, "Open", new Tile(3312, 3331, 0), new int[]{0, 32, -128, 0, 0, 128}),
+                new Obstacle(11767, "Open", new Tile(3312, 3332, 0), new int[]{0, 32, -128, 0, 0, 128}),
                 new Step(new Tile(3313, 3331, 0)),
                 new Step(new Tile(3334, 3355, 0)),
                 new Step(new Tile(3343, 3366, 0)),
@@ -301,8 +326,8 @@ public class AlKharid implements Region {
                 new Step(new Tile(3284, 3331, 0)),
                 new Step(new Tile(3297, 3335, 0)),
                 new Step(new Tile(3310, 3331, 0)),
-                new Obstacle(11766, "Open", new Tile(3311, 3331, 0), new int[]{0, 32, -128, 0, 0, 128}),
-                new Obstacle(11767, "Open", new Tile(3311, 3332, 0), new int[]{0, 32, -128, 0, 0, 128}),
+                new Obstacle(11766, "Open", new Tile(3312, 3331, 0), new int[]{0, 32, -128, 0, 0, 128}),
+                new Obstacle(11767, "Open", new Tile(3312, 3332, 0), new int[]{0, 32, -128, 0, 0, 128}),
                 new Step(new Tile(3313, 3331, 0)),
                 new Step(new Tile(3326, 3347, 0)),
                 new Step(new Tile(3349, 3346, 0)),

@@ -96,7 +96,7 @@ public class Burthorpe implements Region {
                 new Step(new Tile(2900, 3565, 0)),
                 new Obstacle(4624, "Climb-down", new Tile(2900, 3567, 0), new int[]{-96, 96, -64, 0, -128, 196}),
                 new Step(new Tile(2207, 4934, 1)),
-                new Obstacle(4620, "Climb-down", new Tile(2208, 4936, 1), new int[]{-96, 96, -64, 0, -64, 256})
+                new Obstacle(4620, "Climb-down", new Tile(2208, 4936, 1), new int[]{-96, 96, -64, 0, -64, 0})
         )));
 
         new OneWayLink(GamesRoomEntrance, Castle, new ArrayList<>(Arrays.asList(
@@ -121,7 +121,6 @@ public class Burthorpe implements Region {
                 new Step(new Tile(2916, 3545, 0)),
                 new Step(new Tile(2933, 3563, 0)),
                 new Obstacle(7122, "Open", new Tile(2932, 3564, 0), new int[]{0, 128, -192, 0, 96, 144}),
-                // door
                 new Step(new Tile(2932, 3566, 0))
         )));
 

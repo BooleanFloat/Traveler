@@ -69,7 +69,7 @@ public class Rimmington implements Region {
     public static void initLinks(ClientContext ctx) {
         new OneWayLink(EastHouseUpstairs, POHPortal, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2968, 3215, 1)),
-                new Obstacle(18992, "Climb-down", new Tile(2966, 3216, 1)),
+                new Obstacle(18992, "Climb-down", new Tile(2967, 3216, 1)),
                 new Step(new Tile(2965, 3215, 0)),
                 new Obstacle(7129, "Open", new Tile(2962, 3213, 0), new int[]{96, 128, -192, 0, 0, 128}),
                 new Step(new Tile(2964, 3212, 0)),
