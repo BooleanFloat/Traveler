@@ -15,9 +15,11 @@ import java.util.Arrays;
 
 public class Edgeville implements Region {
     public static Location Bank;
+    public static Location CoffinHouse;
     public static Location EastBridge;
     public static Location EvilDavesHouse;
-    public static Location CoffinHouse;
+    public static Location Monastery;
+    public static Location MonasteryClueBookcase;
     public static Location SouthFenceOpening;
     public static Location Yews;
 
@@ -25,9 +27,11 @@ public class Edgeville implements Region {
         ArrayList<Location> locations = new ArrayList<>();
 
         locations.add(Bank);
+        locations.add(CoffinHouse);
         locations.add(EastBridge);
         locations.add(EvilDavesHouse);
-        locations.add(CoffinHouse);
+        locations.add(Monastery);
+        locations.add(MonasteryClueBookcase);
         locations.add(SouthFenceOpening);
         locations.add(Yews);
 
@@ -40,6 +44,11 @@ public class Edgeville implements Region {
                 new Tile(3092, 3489, 0)
         ));
 
+        CoffinHouse = new Location("Edgeville, CoffinHouse", new Area(
+                new Tile(3098, 3482, 0),
+                new Tile(3090, 3473, 0)
+        ));
+
         EastBridge = new Location("Edgeville, EastBridge", new Area(
                 new Tile(3134, 3518, 0),
                 new Tile(3129, 3515, 0)
@@ -50,9 +59,14 @@ public class Edgeville implements Region {
                 new Tile(3077, 3488, 0)
         ));
 
-        CoffinHouse = new Location("Edgeville, CoffinHouse", new Area(
-                new Tile(3098, 3482, 0),
-                new Tile(3090, 3473, 0)
+        Monastery = new Location("Edgeville, Monastery", new Area(
+                new Tile(3057, 3495, 0),
+                new Tile(3047, 3486, 0)
+        ));
+
+        MonasteryClueBookcase = new Location("Edgeville, MonasteryClueBookcase", new Area(
+                new Tile(3056, 3484, 0),
+                new Tile(3054, 3482, 0)
         ));
 
         SouthFenceOpening = new Location("Edgeville, SouthFenceOpening", new Area(
@@ -78,6 +92,15 @@ public class Edgeville implements Region {
                 new Step(new Tile(3101, 3496, 0)),
                 new Step(new Tile(3104, 3502, 0)),
                 new Step(new Tile(3129, 3516, 0))
+        )));
+
+        new TwoWayLink(Bank, Monastery, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3094, 3495, 0)),
+                new Step(new Tile(3092, 3501, 0)),
+                new Step(new Tile(3083, 3519, 0)),
+                new Step(new Tile(3061, 3520, 0)),
+                new Step(new Tile(3052, 3509, 0)),
+                new Step(new Tile(3052, 3491, 0))
         )));
 
         new TwoWayLink(Bank, SouthFenceOpening, new ArrayList<>(Arrays.asList(
@@ -123,6 +146,13 @@ public class Edgeville implements Region {
                 new Step(new Tile(3142, 3519, 0)),
                 new Step(new Tile(3206, 3517, 0)),
                 new Step(new Tile(3246, 3502, 0))
+        )));
+
+        new TwoWayLink(Monastery, MonasteryClueBookcase, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3052, 3489, 0)),
+                new Step(new Tile(3058, 3490, 0)),
+                new Step(new Tile(3059, 3483, 0)),
+                new Step(new Tile(3055, 3483, 0))
         )));
     }
 }

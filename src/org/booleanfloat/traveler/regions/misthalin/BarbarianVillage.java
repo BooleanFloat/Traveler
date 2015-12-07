@@ -124,6 +124,14 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3083, 3428, 0))
         )));
 
+        new TwoWayLink(Mine, Edgeville.Monastery, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3079, 3420, 0)),
+                new Step(new Tile(3069, 3428, 0)),
+                new Step(new Tile(3069, 3442, 0)),
+                new Step(new Tile(3051, 3467, 0)),
+                new Step(new Tile(3052, 3489, 0))
+        )));
+
         new TwoWayLink(Mine, Edgeville.SouthFenceOpening, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3079, 3422, 0)),
                 new Step(new Tile(3079, 3433, 0)),

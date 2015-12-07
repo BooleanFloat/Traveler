@@ -25,6 +25,7 @@ public class Varrock implements Region {
     public static Location ClothesStoreUpstairs;
     public static Location DigSiteBush;
     public static Location EastBank;
+    public static Location EastBankUpstairs;
     public static Location EastGate;
     public static Location ExamCenter;
     public static Location Fountain;
@@ -54,6 +55,7 @@ public class Varrock implements Region {
         locations.add(ClothesStoreUpstairs);
         locations.add(DigSiteBush);
         locations.add(EastBank);
+        locations.add(EastBankUpstairs);
         locations.add(EastGate);
         locations.add(ExamCenter);
         locations.add(Fountain);
@@ -112,6 +114,12 @@ public class Varrock implements Region {
                 new Tile(3254, 3422, 0),
                 new Tile(3250, 3420, 0)
         ));
+
+        EastBankUpstairs = new Location("Varrock, EastBankUpstairs", new Area(
+                new Tile(3254, 3422, 1),
+                new Tile(3250, 3420, 1)
+        ));
+
 
         EastGate = new Location("Varrock, EastGate", new Area(
                 new Tile(3275, 3431, 0),
@@ -287,6 +295,18 @@ public class Varrock implements Region {
 
         new TwoWayLink(ClothesStore, SouthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3210, 3415, 0))
+        )));
+
+        new OneWayLink(EastBank, EastBankUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3254, 3421, 0)),
+                new Obstacle(11789, "Climb-up", new Tile(3256, 3422, 0)),
+                new Step(new Tile(3254, 3421, 1))
+        )));
+
+        new OneWayLink(EastBankUpstairs, EastBank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3254, 3421, 1)),
+                new Obstacle(11793, "Climb-down", new Tile(3256, 3422, 1)),
+                new Step(new Tile(3254, 3421, 0))
         )));
 
         new TwoWayLink(EastBank, EastGate, new ArrayList<>(Arrays.asList(

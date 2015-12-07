@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class Catherby implements Region {
     public static Location ArcheryStore;
     public static Location Bank;
+    public static Location Beehives;
     public static Location FarmingPatch;
     public static Location FishingSpot;
     public static Location GeneralStore;
@@ -26,6 +27,7 @@ public class Catherby implements Region {
 
         locations.add(ArcheryStore);
         locations.add(Bank);
+        locations.add(Beehives);
         locations.add(FarmingPatch);
         locations.add(FishingSpot);
         locations.add(GeneralStore);
@@ -43,6 +45,15 @@ public class Catherby implements Region {
         Bank = new Location("Catherby, Bank", new Area(
                 new Tile(2812, 3441, 0),
                 new Tile(2806, 3437, 0)
+        ));
+
+        Beehives = new Location("Catherby, Beehives", new Area(
+                new Tile(2752, 3449, 0),
+                new Tile(2765, 3449, 0),
+                new Tile(2766, 3448, 0),
+                new Tile(2766, 3438, 0),
+                new Tile(2765, 3436, 0),
+                new Tile(2752, 3436, 0)
         ));
 
         FarmingPatch = new Location("Catherby, FarmingPatch", new Area(
@@ -106,6 +117,22 @@ public class Catherby implements Region {
                 new Obstacle(7129, "Open", new Tile(2806, 3452, 0), new int[]{-32, 32, -196, 0, 0, 128}),
                 new Step(new Tile(2808, 3452, 0)),
                 new Obstacle(16683, "Climb-up", new Tile(2807, 3454, 0))
+        )));
+
+        new TwoWayLink(Beehives, GeneralStore, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2765, 3442, 0)),
+                new Obstacle(7158, "Open", new Tile(2766, 3444, 0), Obstacle.Hitbox.DOOR_EAST),
+                new Obstacle(7160, "Open", new Tile(2766, 3443, 0), Obstacle.Hitbox.DOOR_EAST),
+                new Step(new Tile(2769, 3443, 0)),
+                new Step(new Tile(2776, 3435, 0)),
+                new Step(new Tile(2803, 3431, 0))
+        )));
+
+        new TwoWayLink(Beehives, SeersVillage.Bank, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2756, 3443, 0)),
+                new Step(new Tile(2734, 3442, 0)),
+                new Step(new Tile(2727, 3455, 0)),
+                new Step(new Tile(2726, 3490, 0))
         )));
 
         new OneWayLink(FarmingPatch, NorthWestHouseUpstairs, new ArrayList<>(Arrays.asList(

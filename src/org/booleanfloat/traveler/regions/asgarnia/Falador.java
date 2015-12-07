@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.regions.misthalin.Edgeville;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
@@ -447,6 +448,17 @@ public class Falador implements Region {
                 new Step(new Tile(2983, 3436, 0))
         )));
 
+        new TwoWayLink(NorthSquare, Edgeville.Monastery, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2971, 3414, 0)),
+                new Step(new Tile(2987, 3419, 0)),
+                new Step(new Tile(2988, 3428, 0)),
+                new Step(new Tile(3022, 3432, 0)),
+                new Step(new Tile(3038, 3446, 0)),
+                new Step(new Tile(3050, 3463, 0)),
+                new Step(new Tile(3052, 3468, 0)),
+                new Step(new Tile(3051, 3487, 0))
+        )));
+
         new OneWayLink(PartyRoom, PartyRoomUpstairs, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3053, 3382, 0)),
                 new Obstacle(24249, "Climb-up", new Tile(3054, 3384, 0)),
@@ -492,6 +504,15 @@ public class Falador implements Region {
                 new Step(new Tile(3019, 3245, 0)),
                 new Step(new Tile(3028, 3239, 0)),
                 new Step(new Tile(3028, 3216, 0))
+        )));
+
+        new TwoWayLink(SouthCrossRoads, PortSarim.NorthHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3007, 3279, 0)),
+                new Step(new Tile(3019, 3260, 0)),
+                new Step(new Tile(3020, 3255, 0)),
+                new Step(new Tile(3026, 3256, 0)),
+                new Obstacle(7122, "Open", new Tile(3028, 3258, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(3026, 3259, 0))
         )));
 
         new TwoWayLink(SouthCrossRoads, Rimmington.NorthCrossRoads, new ArrayList<>(Arrays.asList(

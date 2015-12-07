@@ -18,9 +18,9 @@ public class Obstacle implements Traversable {
 
     public static class Hitbox {
         public static int[] DOOR_NORTH = new int[]{ 16, 112, -192, -16, 112, 128};
-        public static int[] DOOR_EAST = new int[]{ -16, 0, -192, -16, 16, 112};
+        public static int[] DOOR_EAST = new int[]{ 112, 128, -192, -16, 16, 112};
         public static int[] DOOR_SOUTH = new int[]{ 16, 112, -192, -16, -16, 0};
-        public static int[] DOOR_WEST = new int[]{ 112, 128, -192, -16, 16, 112};
+        public static int[] DOOR_WEST = new int[]{ -16, 0, -192, -16, 16, 112};
     }
 
     public Obstacle(int id, String interaction, Tile position) {

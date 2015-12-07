@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class VarrockCastle implements Region {
+    public static Location Cart;
     public static Location Courtyard;
     public static Location Entrance;
     public static Location Kitchen;
@@ -23,6 +24,7 @@ public class VarrockCastle implements Region {
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
 
+        locations.add(Cart);
         locations.add(Courtyard);
         locations.add(Entrance);
         locations.add(Kitchen);
@@ -33,6 +35,11 @@ public class VarrockCastle implements Region {
     }
 
     public static void initLocations() {
+        Cart = new Location("VarrockCastle, Cart", new Area(
+                new Tile(3229, 3453, 0),
+                new Tile(3224, 3448, 0)
+        ));
+
         Courtyard = new Location("VarrockCastle, Courtyard", new Area(
                 new Tile(3214, 3449, 0),
                 new Tile(3211, 3448, 0)
@@ -64,6 +71,7 @@ public class VarrockCastle implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
+        new TwoWayLink(Cart, Courtyard);
         new TwoWayLink(Courtyard, Entrance);
         new TwoWayLink(Courtyard, Varrock.Fountain);
 

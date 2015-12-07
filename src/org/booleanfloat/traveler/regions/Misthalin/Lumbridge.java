@@ -260,6 +260,8 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3173, 9619, 0)),
                 new Obstacle(7122, "Open", new Tile(3171, 9621, 0), new int[]{148, 116, -220, 0, -14, 132}),
                 new Step(new Tile(3171, 9623, 0)),
+                new Step(new Tile(3171, 9627, 0)),
+                new Step(new Tile(3172, 9631, 0)),
                 new Step(new Tile(3173, 9638, 0)),
                 new Obstacle(7122, "Open", new Tile(3174, 9641, 0))
         )));

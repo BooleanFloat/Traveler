@@ -267,7 +267,7 @@ public class SeersVillage implements Region {
 
         new TwoWayLink(HemensterNorthHouse, RangeGuildEntrance, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(2639, 3451, 0)),
-                new Obstacle(7129, "Open", new Tile(2641, 3452, 0)),
+                new Obstacle(7129, "Open", new Tile(2641, 3452, 0), Obstacle.Hitbox.DOOR_WEST),
                 new Step(new Tile(2643, 3451, 0)),
                 new Step(new Tile(2644, 3447, 0)),
                 new Step(new Tile(2654, 3441, 0))

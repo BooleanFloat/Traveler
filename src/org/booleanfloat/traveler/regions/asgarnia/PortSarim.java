@@ -25,6 +25,7 @@ public class PortSarim implements Region {
     public static Location Jail;
     public static Location MudskipperPoint;
     public static Location MusaPointBoat;
+    public static Location NorthHouse;
     public static Location RustyAnchor;
     public static Location ShantyPassCell;
 
@@ -36,6 +37,7 @@ public class PortSarim implements Region {
         locations.add(Jail);
         locations.add(MudskipperPoint);
         locations.add(MusaPointBoat);
+        locations.add(NorthHouse);
         locations.add(RustyAnchor);
         locations.add(ShantyPassCell);
 
@@ -82,6 +84,11 @@ public class PortSarim implements Region {
                 new Tile(3027, 3212, 0)
         ));
 
+        NorthHouse = new Location("PortSarim, NorthHouse", new Area(
+                new Tile(3030, 3261, 0),
+                new Tile(3023, 3258, 0)
+        ));
+
         RustyAnchor = new Location("PortSarim, RustyAnchor", new Area(
                 new Tile(3055, 3258, 0),
                 new Tile(3044, 3254, 0)
@@ -98,6 +105,14 @@ public class PortSarim implements Region {
                 new Step(new Tile(3048, 3235, 0)),
                 new Step(new Tile(3027, 3235, 0)),
                 new Step(new Tile(3028, 3218, 0))
+        )));
+
+        new TwoWayLink(EntranaBoat, NorthHouse, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3043, 3235, 0)),
+                new Step(new Tile(3041, 3255, 0)),
+                new Step(new Tile(3026, 3256, 0)),
+                new Obstacle(7122, "Open", new Tile(3028, 3258, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(3026, 3259, 0))
         )));
 
         new TwoWayLink(EntranaBoat, RustyAnchor, new ArrayList<>(Arrays.asList(
