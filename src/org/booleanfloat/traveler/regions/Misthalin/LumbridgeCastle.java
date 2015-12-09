@@ -23,6 +23,7 @@ public class LumbridgeCastle implements Region {
     public static Location BackEntrance;
     public static Location Courtyard;
     public static Location DukesRoom;
+    public static Location SouthTowerUpstairs;
 
     public static ArrayList<Location> getLocations() {
         ArrayList<Location> locations = new ArrayList<>();
@@ -31,6 +32,7 @@ public class LumbridgeCastle implements Region {
         locations.add(BackEntrance);
         locations.add(Courtyard);
         locations.add(DukesRoom);
+        locations.add(SouthTowerUpstairs);
 
         return locations;
     }
@@ -54,6 +56,11 @@ public class LumbridgeCastle implements Region {
         DukesRoom = new Location("LumbridgeCastle, DukesRoom", new Area(
                 new Tile(3213, 3225, 1),
                 new Tile(3208, 3218, 1)
+        ));
+
+        SouthTowerUpstairs = new Location("LumbridgeCastle, SouthTowerUpstairs", new Area(
+                new Tile(3231, 3216, 1),
+                new Tile(3227, 3211, 1)
         ));
     }
 
@@ -155,6 +162,14 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3210, 3222, 1))
         )));
 
+        new OneWayLink(Courtyard, SouthTowerUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3222, 3218, 0)),
+                new Step(new Tile(3225, 3214, 0)),
+                new Obstacle(7122, "Open", new Tile(3226, 3214, 0), Obstacle.Hitbox.DOOR_EAST),
+                new Step(new Tile(3228, 3213, 0)),
+                new Obstacle(16683, "Climb-up", new Tile(3229, 3213, 0))
+        )));
+
         new TwoWayLink(Courtyard, Lumbridge.Center);
 
         new OneWayLink(DukesRoom, BackEntrance, new ArrayList<>(Arrays.asList(
@@ -186,6 +201,14 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3208, 3210, 0)),
                 new Step(new Tile(3215, 3211, 0)),
                 new Step(new Tile(3215, 3218, 0))
+        )));
+
+        new OneWayLink(SouthTowerUpstairs, Courtyard, new ArrayList<>(Arrays.asList(
+                new Obstacle(16684, "Climb-down", new Tile(3229, 3213, 1)),
+                new Step(new Tile(3228, 3213, 0)),
+                new Obstacle(7122, "Open", new Tile(3226, 3214, 0), Obstacle.Hitbox.DOOR_EAST),
+                new Step(new Tile(3225, 3214, 0)),
+                new Step(new Tile(3222, 3218, 0))
         )));
     }
 }

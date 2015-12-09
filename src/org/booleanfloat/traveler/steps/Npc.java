@@ -1,7 +1,6 @@
 package org.booleanfloat.traveler.steps;
 
 import org.booleanfloat.traveler.interfaces.Traversable;
-import org.powerbot.Con;
 import org.powerbot.script.Area;
 import org.powerbot.script.Condition;
 import org.powerbot.script.Tile;

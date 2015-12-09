@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
+import org.booleanfloat.traveler.regions.misthalin.Draynor;
 import org.booleanfloat.traveler.regions.misthalin.Edgeville;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
@@ -30,6 +31,7 @@ public class Falador implements Region {
     public static Location EastBank;
     public static Location EastBankHouse;
     public static Location EastHouseUpstairs;
+    public static Location Farm;
     public static Location GemStore;
     public static Location GeneralStore;
     public static Location NorthFencedStones;
@@ -58,6 +60,7 @@ public class Falador implements Region {
         locations.add(EastBank);
         locations.add(EastBankHouse);
         locations.add(EastHouseUpstairs);
+        locations.add(Farm);
         locations.add(GemStore);
         locations.add(GeneralStore);
         locations.add(NorthFencedStones);
@@ -131,6 +134,15 @@ public class Falador implements Region {
         EastHouseUpstairs = new Location("Falador, EastHouseUpstairs", new Area(
                 new Tile(3041, 3348, 1),
                 new Tile(3035, 3341, 1)
+        ));
+
+        Farm = new Location("Falador, Farm", new Area(
+                new Tile(3041, 3296, 0),
+                new Tile(3041, 3288, 0),
+                new Tile(3038, 3288, 0),
+                new Tile(3037, 3290, 0),
+                new Tile(3030, 3290, 0),
+                new Tile(3030, 3296, 0)
         ));
 
         GemStore = new Location("Falador, GemStore", new Area(
@@ -401,6 +413,33 @@ public class Falador implements Region {
                 new Step(new Tile(3013, 3361, 0)),
                 new Step(new Tile(2979, 3377, 0)),
                 new Step(new Tile(2966, 3379, 0))
+        )));
+
+        new TwoWayLink(Farm, SouthCrossRoads, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3034, 3292, 0)),
+                new Obstacle(8695, "Open", new Tile(3034, 3291, 0), Obstacle.Hitbox.DOOR_SOUTH),
+                new Step(new Tile(3034, 3289, 0)),
+                new Step(new Tile(3034, 3278, 0)),
+                new Step(new Tile(3008, 3278, 0))
+        )));
+
+        new TwoWayLink(Farm, SouthGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3039, 3295, 0)),
+                new Obstacle(8695, "Open", new Tile(3039, 3297, 0), Obstacle.Hitbox.DOOR_SOUTH),
+                new Step(new Tile(3039, 3297, 0)),
+                new Step(new Tile(3032, 3312, 0)),
+                new Obstacle(7161, "Open", new Tile(3031, 3313, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Obstacle(7162, "Open", new Tile(3032, 3313, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(3032, 3314, 0)),
+                new Step(new Tile(3008, 3321, 0))
+        )));
+
+        new TwoWayLink(Farm, Draynor.WestFenceOpening, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3034, 3291, 0)),
+                new Obstacle(8695, "Open", new Tile(3034, 3291, 0), Obstacle.Hitbox.DOOR_SOUTH),
+                new Step(new Tile(3034, 3289, 0)),
+                new Step(new Tile(3033, 3277, 0)),
+                new Step(new Tile(3070, 3276, 0))
         )));
 
         new TwoWayLink(GemStore, WestBank, new ArrayList<>(Arrays.asList(

@@ -22,6 +22,8 @@ import java.util.concurrent.Callable;
 public class PortSarim implements Region {
     public static Location EntranaBoat;
     public static Location FishingStore;
+    public static Location FoodStore;
+    public static Location FoodStoreUpstairs;
     public static Location Jail;
     public static Location MudskipperPoint;
     public static Location MusaPointBoat;
@@ -34,6 +36,8 @@ public class PortSarim implements Region {
 
         locations.add(EntranaBoat);
         locations.add(FishingStore);
+        locations.add(FoodStore);
+        locations.add(FoodStoreUpstairs);
         locations.add(Jail);
         locations.add(MudskipperPoint);
         locations.add(MusaPointBoat);
@@ -56,6 +60,22 @@ public class PortSarim implements Region {
                 new Tile(3015, 3219, 0),
                 new Tile(3011, 3219, 0),
                 new Tile(3011, 3229, 0)
+        ));
+
+        FoodStore = new Location("PortSarim, FoodStore", new Area(
+                new Tile(3014, 3210, 0),
+                new Tile(3017, 3207, 0),
+                new Tile(3017, 3201, 0),
+                new Tile(3012, 3201, 0),
+                new Tile(3012, 3210, 0)
+        ));
+
+        FoodStoreUpstairs = new Location("PortSarim, FoodStoreUpstairs", new Area(
+                new Tile(3014, 3210, 1),
+                new Tile(3017, 3207, 1),
+                new Tile(3017, 3201, 1),
+                new Tile(3008, 3201, 1),
+                new Tile(3008, 3210, 1)
         ));
 
         Jail = new Location("PortSarim, Jail", new Area(
@@ -151,6 +171,24 @@ public class PortSarim implements Region {
                 new Step(new Tile(3006, 3218, 0)),
                 new Step(new Tile(2989, 3231, 0)),
                 new Step(new Tile(2986, 3233, 0))
+        )));
+
+        new OneWayLink(FoodStore, FoodStoreUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3014, 3204, 0)),
+                new Obstacle(16683, "Climb-up", new Tile(3013, 3203, 0))
+        )));
+
+        new TwoWayLink(FoodStore, MusaPointBoat, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3015, 3204, 0)),
+                new Obstacle(7122, "Open", new Tile(3016, 3206, 0), Obstacle.Hitbox.DOOR_EAST),
+                new Step(new Tile(3018, 3204, 0)),
+                new Step(new Tile(3028, 3209, 0)),
+                new Step(new Tile(3028, 3214, 0))
+        )));
+
+        new OneWayLink(FoodStoreUpstairs, FoodStore, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3013, 3204, 1)),
+                new Obstacle(16679, "Climb-down", new Tile(3013, 3203, 1))
         )));
 
         new TwoWayLink(Jail, MusaPointBoat, new ArrayList<>(Arrays.asList(

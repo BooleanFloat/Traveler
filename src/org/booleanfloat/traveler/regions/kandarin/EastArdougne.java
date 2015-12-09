@@ -29,6 +29,7 @@ public class EastArdougne implements Region {
     public static Location EastGate;
     public static Location FishingGuildEntrance;
     public static Location GeneralStore;
+    public static Location LegendsGuildEntrance;
     public static Location Market;
     public static Location MarketArmourStoreOutside;
     public static Location MarketNorthHouseUpstairs;
@@ -55,6 +56,7 @@ public class EastArdougne implements Region {
         locations.add(EastGate);
         locations.add(FishingGuildEntrance);
         locations.add(GeneralStore);
+        locations.add(LegendsGuildEntrance);
         locations.add(Market);
         locations.add(MarketArmourStoreOutside);
         locations.add(MarketNorthHouseUpstairs);
@@ -104,6 +106,11 @@ public class EastArdougne implements Region {
         GeneralStore = new Location("EastArdougne, GeneralStore", new Area(
                 new Tile(2617, 3294, 0),
                 new Tile(2612, 3290, 0)
+        ));
+
+        LegendsGuildEntrance = new Location("EastArdougne, LegendsGuildEntrance", new Area(
+                new Tile(2731, 3349, 0),
+                new Tile(2727, 3347, 0)
         ));
 
         Market = new Location("EastArdougne, Market", new Area(
@@ -401,6 +408,8 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2600, 3283, 0)),
                 new Step(new Tile(2598, 3280, 0))
         )));
+
+        new TwoWayLink(LegendsGuildEntrance, PicnicArea);
 
         new TwoWayLink(Market, MarketArmourStoreOutside);
 

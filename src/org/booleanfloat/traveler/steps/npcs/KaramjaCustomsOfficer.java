@@ -2,7 +2,6 @@ package org.booleanfloat.traveler.steps.npcs;
 
 import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.steps.Npc;
-import org.powerbot.Con;
 import org.powerbot.script.Area;
 import org.powerbot.script.Condition;
 import org.powerbot.script.rt4.ClientContext;
