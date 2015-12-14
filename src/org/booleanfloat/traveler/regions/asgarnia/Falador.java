@@ -38,6 +38,7 @@ public class Falador implements Region {
     public static Location NorthGate;
     public static Location NorthSquare;
     public static Location PartyRoom;
+    public static Location PartyRoomSouthHouseUpstairs;
     public static Location PartyRoomUpstairs;
     public static Location Rusty;
     public static Location ShieldStore;
@@ -67,6 +68,7 @@ public class Falador implements Region {
         locations.add(NorthGate);
         locations.add(NorthSquare);
         locations.add(PartyRoom);
+        locations.add(PartyRoomSouthHouseUpstairs);
         locations.add(PartyRoomUpstairs);
         locations.add(Rusty);
         locations.add(ShieldStore);
@@ -177,6 +179,11 @@ public class Falador implements Region {
         PartyRoom = new Location("Falador, PartyRoom", new Area(
                 new Tile(3055, 3384, 0),
                 new Tile(3037, 3371, 0)
+        ));
+
+        PartyRoomSouthHouseUpstairs = new Location("Falador, PartyRoomSouthHouseUpstairs", new Area(
+                new Tile(3042, 3364, 1),
+                new Tile(3034, 3359, 1)
         ));
 
         PartyRoomUpstairs = new Location("Falador, PartyRoomUpstairs", new Area(
@@ -403,6 +410,15 @@ public class Falador implements Region {
                 new Step(new Tile(3046, 3374, 0))
         )));
 
+        new OneWayLink(EastBank, PartyRoomSouthHouseUpstairs, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(3013, 3356, 0)),
+                new Step(new Tile(3012, 3359, 0)),
+                new Step(new Tile(3039, 3360, 0)),
+                new Obstacle(24050, "Open", new Tile(3038, 3361, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(3039, 3362, 0)),
+                new Obstacle(24075, "Climb-up", new Tile(3035, 3364, 0))
+        )));
+
         new TwoWayLink(EastBank, SouthGate, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3013, 3359, 0)),
                 new Step(new Tile(3006, 3359, 0)),
@@ -502,6 +518,15 @@ public class Falador implements Region {
                 new Step(new Tile(3053, 3382, 0)),
                 new Obstacle(24249, "Climb-up", new Tile(3054, 3384, 0)),
                 new Step(new Tile(3053, 3382, 1))
+        )));
+
+        new OneWayLink(PartyRoomSouthHouseUpstairs, EastBank, new ArrayList<>(Arrays.asList(
+                new Obstacle(24076, "Climb-down", new Tile(3035, 3363, 1)),
+                new Step(new Tile(3039, 3362, 0)),
+                new Obstacle(24050, "Open", new Tile(3038, 3361, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(3039, 3360, 0)),
+                new Step(new Tile(3012, 3359, 0)),
+                new Step(new Tile(3013, 3356, 0))
         )));
 
         new OneWayLink(PartyRoomUpstairs, PartyRoom, new ArrayList<>(Arrays.asList(

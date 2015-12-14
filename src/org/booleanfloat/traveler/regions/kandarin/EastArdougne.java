@@ -131,7 +131,7 @@ public class EastArdougne implements Region {
         ));
 
         MarketNorthHouseUpstairs = new Location("EastArdougne, MarketNorthHouseUpstairs", new Area(
-                new Tile(2656, 3322, 1),
+                new Tile(2657, 3322, 1),
                 new Tile(2653, 3317, 1)
         ));
 

@@ -39,7 +39,7 @@ public class PortKhazard implements Region {
 
         FishingTrawler = new Location("PortKhazard, FishingTrawler", new Area(
                 new Tile(2679, 3167, 0),
-                new Tile(2673, 3158, 0)
+                new Tile(2673, 3163, 0)
         ));
     }
 

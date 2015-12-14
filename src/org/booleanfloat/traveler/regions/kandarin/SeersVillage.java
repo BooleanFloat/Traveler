@@ -62,8 +62,8 @@ public class SeersVillage implements Region {
         ));
 
         CastleCourtyard = new Location("SeersVillage, CastleCourtyard", new Area(
-                new Tile(2764, 3502, 0),
-                new Tile(2753, 3492, 0)
+                new Tile(2764, 3503, 0),
+                new Tile(2752, 3493, 0)
         ));
 
         CastleGate = new Location("SeersVillage, CastleGate", new Area(

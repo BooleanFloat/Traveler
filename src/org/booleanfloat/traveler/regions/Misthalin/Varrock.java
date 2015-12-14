@@ -14,7 +14,6 @@ import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Constants;
 import org.powerbot.script.rt4.Magic;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
@@ -404,7 +403,7 @@ public class Varrock implements Region {
                 new Step(new Tile(3319, 3467, 0))
         )));
 
-        new TwoWayLink(NorthGate, VarrockCastle.Courtyard, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthGate, VarrockCastle.Crossroads, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3245, 3500, 0)),
                 new Step(new Tile(3246, 3465, 0)),
                 new Step(new Tile(3232, 3464, 0)),

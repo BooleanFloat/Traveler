@@ -48,7 +48,7 @@ public class LumbridgeCastle implements Region {
                 new Tile(3199, 3217, 0)
         ));
 
-        Courtyard = new Location("LumbridgeCastle, Courtyard", new Area(
+        Courtyard = new Location("LumbridgeCastle, Crossroads", new Area(
                 new Tile(3224, 3220, 0),
                 new Tile(3221, 3217, 0)
         ));

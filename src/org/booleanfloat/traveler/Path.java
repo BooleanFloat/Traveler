@@ -12,12 +12,16 @@ public class Path {
     private Location start;
     private Location end;
     private ArrayList<Traversable> steps;
+    private ArrayList<Location> locations;
+    private double weight;
     public Traversable lastTraversal;
 
-    public Path(Location start, Location end, ArrayList<Traversable> steps) {
+    public Path(Location start, Location end, ArrayList<Traversable> steps, ArrayList<Location> locations, double weight) {
         this.start = start;
         this.end = end;
         this.steps = steps;
+        this.locations = locations;
+        this.weight = weight;
     }
 
     public boolean traverse(ClientContext ctx) {
@@ -40,13 +44,9 @@ public class Path {
             }
         }
 
-//        System.out.println(start);
-
-        for(int i = Math.max(0, start - 2); i < Math.min(start + 15, steps.size()); i++) {
+        for(int i = Math.max(0, start - 1); i < Math.min(start + 15, steps.size()); i++) {
             Traversable step = steps.get(i);
             Tile tile = step.getTile(ctx);
-
-//            System.out.println(i + " - " + step);
             TileMatrix matrix = tile.matrix(ctx);
 
             if(Math.abs(pos.x() - tile.x()) > 50 || Math.abs(pos.y() - tile.y()) > 50
@@ -83,5 +83,26 @@ public class Path {
 
         lastTraversal = furthestStep;
         return furthestStep.traverse(ctx);
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public String toString() {
+        if(locations.size() == 0) {
+            return "";
+        }
+
+        StringBuilder string = new StringBuilder();
+
+        string.append(locations.get(0).name + " -> " + locations.get(locations.size() - 1).name);
+        string.append("\n");
+
+        for(Location location : locations) {
+            string.append("\t" + location.name + "\n");
+        }
+
+        return string.toString();
     }
 }

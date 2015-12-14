@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class VarrockCastle implements Region {
     public static Location Cart;
     public static Location Courtyard;
+    public static Location Crossroads;
     public static Location Entrance;
     public static Location Kitchen;
     public static Location Library;
@@ -26,6 +27,7 @@ public class VarrockCastle implements Region {
 
         locations.add(Cart);
         locations.add(Courtyard);
+        locations.add(Crossroads);
         locations.add(Entrance);
         locations.add(Kitchen);
         locations.add(Library);
@@ -41,8 +43,13 @@ public class VarrockCastle implements Region {
         ));
 
         Courtyard = new Location("VarrockCastle, Courtyard", new Area(
-                new Tile(3214, 3449, 0),
-                new Tile(3211, 3448, 0)
+                new Tile(3218, 3466, 0),
+                new Tile(3209, 3459, 0)
+        ));
+
+        Crossroads = new Location("VarrockCastle, Crossroads", new Area(
+                new Tile(3214, 3452, 0),
+                new Tile(3212, 3444, 0)
         ));
 
         Entrance = new Location("VarrockCastle, Entrance", new Area(
@@ -71,11 +78,12 @@ public class VarrockCastle implements Region {
     }
 
     public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Cart, Courtyard);
+        new TwoWayLink(Cart, Crossroads);
+        new TwoWayLink(Courtyard, Crossroads);
         new TwoWayLink(Courtyard, Entrance);
-        new TwoWayLink(Courtyard, Varrock.Fountain);
+        new TwoWayLink(Crossroads, Varrock.Fountain);
 
-        new TwoWayLink(Courtyard, Varrock.GrandExchange, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Crossroads, Varrock.GrandExchange, new ArrayList<>(Arrays.asList(
                 new Step(new Tile(3202, 3454, 0)),
                 new Step(new Tile(3197, 3462, 0)),
                 new Step(new Tile(3195, 3489, 0))

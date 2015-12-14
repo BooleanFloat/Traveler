@@ -10,6 +10,7 @@ import org.booleanfloat.traveler.regions.misthalin.Draynor;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
 import org.booleanfloat.traveler.steps.npcs.PortSarimKaramjaSailor;
+import org.booleanfloat.traveler.steps.obstacles.PortSarimJailDoor;
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
@@ -257,7 +258,7 @@ public class PortSarim implements Region {
         )));
 
         new OneWayLink(ShantyPassCell, Jail, new ArrayList<>(Arrays.asList(
-                new Obstacle(9565, "Pick-lock", new Tile(3014, 3182, 0), new int[]{0, 128, -192, 0, -16, 32})
+                new PortSarimJailDoor()
         )));
     }
 }

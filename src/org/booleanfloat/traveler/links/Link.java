@@ -19,9 +19,7 @@ public class Link {
 
     private double weight;
 
-    public Link() {
-
-    }
+    public Link() {}
 
     public Link(Location start, Location end, ArrayList<Traversable> steps) {
         this(start, end, steps, null);
@@ -122,5 +120,13 @@ public class Link {
 
     public String toString() {
         return this.start + " -> " + this.end;
+    }
+
+    public Location getEnd() {
+        return end;
+    }
+
+    public Location getStart() {
+        return start;
     }
 }

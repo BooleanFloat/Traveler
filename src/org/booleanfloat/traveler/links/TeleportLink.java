@@ -6,6 +6,7 @@ import org.booleanfloat.traveler.Traveler;
 import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.steps.Spell;
 import org.booleanfloat.traveler.steps.Step;
+import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.Magic;
 
@@ -16,6 +17,7 @@ public class TeleportLink extends Link {
     private Magic.Spell spell;
 
     public TeleportLink(Location end, Magic.Spell spell, Callable<Boolean> requirement) {
+        this.start = new Location("Teleport", new Area(new Tile(0,0,0), new Tile(0,0,0)));
         this.end = end;
         this.spell = spell;
         this.requirement = requirement;

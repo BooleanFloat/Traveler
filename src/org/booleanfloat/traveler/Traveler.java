@@ -1,6 +1,5 @@
 package org.booleanfloat.traveler;
 
-import org.booleanfloat.traveler.interfaces.Region;
 import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.Link;
 import org.booleanfloat.traveler.regions.asgarnia.*;
@@ -17,16 +16,47 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 public class Traveler {
+    public static Path getPath(Location start, Location end) {
+        ArrayList<Link> links = Dijkstra.getLinks(start, end);
+        ArrayList<Traversable> steps = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<>();
+        double weight = 0;
+
+        for(Link link : links) {
+            steps.addAll(link.getSteps());
+            locations.add(link.getStart());
+            weight += link.getWeight();
+        }
+
+        if(links.size() > 0) {
+            locations.add(links.get(links.size() - 1).getEnd());
+        }
+
+        Path path = new Path(start, end, steps, locations, weight);
+        System.out.println(path);
+        return path;
+    }
+
     public static Path getPath(Tile start, Location end) {
+        ArrayList<Location> locations = getLocations();
+        locations.remove(end);
+        return getPath(getNearestLocation(locations, start), end);
+    }
+
+    public static Path getPathToNearestBank(Tile start) {
+        ArrayList<Location> locations = getLocations();
+        Location end = getNearestLocation(getBanks(), start);
+        locations.remove(end);
+
+        return getPath(getNearestLocation(locations, start), end);
+    }
+
+    private static Location getNearestLocation(ArrayList<Location> locations, Tile tile) {
         double minDistance = Double.MAX_VALUE;
         Location closestLocation = null;
 
-        for(Location location : getLocations()) {
-            double distance = start.distanceTo(location.area.getCentralTile());
-
-            if(location == end) {
-                continue;
-            }
+        for(Location location : locations) {
+            double distance = tile.distanceTo(location.area.getCentralTile());
 
             if(distance < minDistance) {
                 minDistance = distance;
@@ -34,22 +64,7 @@ public class Traveler {
             }
         }
 
-
-        return getPath(closestLocation, end);
-    }
-
-    public static Path getPath(Location start, Location end) {
-        ArrayList<Link> links = Dijkstra.getLinks(start, end);
-        ArrayList<Traversable> steps = new ArrayList<>();
-
-        System.out.println(start.name + " -> " + end.name);
-        for(Link link : links) {
-            System.out.println("\t" + link.toString());
-            steps.addAll(link.getSteps());
-        }
-        System.out.println("");
-
-        return new Path(start, end, steps);
+        return closestLocation;
     }
 
     public static Callable<Boolean> getConditionWaiter(ClientContext ctx, Path path) {
@@ -198,5 +213,18 @@ public class Traveler {
         locations.addAll(WizardsTower.getLocations());
 
         return locations;
+    }
+
+    public static ArrayList<Location> getBanks() {
+        ArrayList<Location> locations = getLocations();
+        ArrayList<Location> banks = new ArrayList<>();
+
+        for(Location location : locations) {
+            if(location.name.toLowerCase().endsWith("bank")) {
+                banks.add(location);
+            }
+        }
+
+        return banks;
     }
 }
