@@ -19,6 +19,7 @@ public class Taverly implements Region {
     public static Location DruidsCircle;
     public static Location HerbloreStore;
     public static Location MembersGate;
+    public static Location LadyOfTheLake;
     public static Location Outhouse;
     public static Location OuthouseFence;
     public static Location POHPortal;
@@ -32,6 +33,7 @@ public class Taverly implements Region {
         locations.add(DruidsCircle);
         locations.add(HerbloreStore);
         locations.add(MembersGate);
+        locations.add(LadyOfTheLake);
         locations.add(Outhouse);
         locations.add(OuthouseFence);
         locations.add(POHPortal);
@@ -68,6 +70,16 @@ public class Taverly implements Region {
         MembersGate = new Location("Taverly, MembersGate", new Area(
                 new Tile(2933, 3453, 0),
                 new Tile(2929, 3447, 0)
+        ));
+
+        LadyOfTheLake = new Location("Taverly, LadyOfTheLake", new Area(
+                new Tile(2927, 3409, 0),
+                new Tile(2930, 3406, 0),
+                new Tile(2930, 3399, 0),
+                new Tile(2924, 3397, 0),
+                new Tile(2919, 3401, 0),
+                new Tile(2918, 3407, 0),
+                new Tile(2924, 3410, 0)
         ));
 
         Outhouse = new Location("Taverly, Outhouse", new Area(
@@ -145,6 +157,14 @@ public class Taverly implements Region {
                 new Step(new Tile(2907, 3427, 0)),
                 new Step(new Tile(2920, 3432, 0)),
                 new Step(new Tile(2931, 3450, 0))
+        )));
+
+        new TwoWayLink(MembersGate, LadyOfTheLake, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2931, 3449, 0)),
+                new Step(new Tile(2934, 3441, 0)),
+                new Step(new Tile(2934, 3430, 0)),
+                new Step(new Tile(2938, 3417, 0)),
+                new Step(new Tile(2927, 3408, 0))
         )));
 
         new OneWayLink(MembersGate, Outhouse, new ArrayList<>(Arrays.asList(

@@ -29,6 +29,7 @@ public class EastArdougne implements Region {
     public static Location EastGate;
     public static Location FishingGuildEntrance;
     public static Location GeneralStore;
+    public static Location GuardsHouse;
     public static Location LegendsGuildEntrance;
     public static Location Market;
     public static Location MarketArmourStoreOutside;
@@ -56,6 +57,7 @@ public class EastArdougne implements Region {
         locations.add(EastGate);
         locations.add(FishingGuildEntrance);
         locations.add(GeneralStore);
+        locations.add(GuardsHouse);
         locations.add(LegendsGuildEntrance);
         locations.add(Market);
         locations.add(MarketArmourStoreOutside);
@@ -106,6 +108,11 @@ public class EastArdougne implements Region {
         GeneralStore = new Location("EastArdougne, GeneralStore", new Area(
                 new Tile(2617, 3294, 0),
                 new Tile(2612, 3290, 0)
+        ));
+
+        GuardsHouse = new Location("EastArdougne, GuardsHouse", new Area(
+                new Tile(2650, 3339, 0),
+                new Tile(2643, 3333, 0)
         ));
 
         LegendsGuildEntrance = new Location("EastArdougne, LegendsGuildEntrance", new Area(
@@ -407,6 +414,22 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2604, 3284, 0)),
                 new Step(new Tile(2600, 3283, 0)),
                 new Step(new Tile(2598, 3280, 0))
+        )));
+
+        new TwoWayLink(GuardsHouse, NorthGate, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2645, 3335, 0)),
+                new Obstacle(7122, "Open", new Tile(2644, 3333, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(2644, 3332, 0)),
+                new Step(new Tile(2639, 3333, 0)),
+                new Step(new Tile(2637, 3339, 0))
+        )));
+
+        new TwoWayLink(GuardsHouse, Market, new ArrayList<>(Arrays.asList(
+                new Step(new Tile(2644, 3335, 0)),
+                new Obstacle(7122, "Open", new Tile(2644, 3333, 0), Obstacle.Hitbox.DOOR_NORTH),
+                new Step(new Tile(2644, 3331, 0)),
+                new Step(new Tile(2648, 3329, 0)),
+                new Step(new Tile(2654, 3312, 0))
         )));
 
         new TwoWayLink(LegendsGuildEntrance, PicnicArea);
