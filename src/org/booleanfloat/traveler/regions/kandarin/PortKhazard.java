@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.kandarin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Step;
 import org.powerbot.script.Area;
@@ -17,7 +18,7 @@ public class PortKhazard implements Region {
     public static Location FishingTrawler;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Cart);
         locations.add(Entrance);
@@ -43,8 +44,8 @@ public class PortKhazard implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Cart, Entrance, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(Cart, Entrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2662, 3149, 0)),
                 new Step(new Tile(2662, 3156, 0)),
                 new Step(new Tile(2646, 3157, 0)),
@@ -54,19 +55,19 @@ public class PortKhazard implements Region {
                 new Step(new Tile(2623, 3172, 0))
         )));
 
-        new TwoWayLink(Cart, FishingTrawler, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Cart, FishingTrawler, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2662, 3149, 0)),
                 new Step(new Tile(2662, 3160, 0)),
                 new Step(new Tile(2675, 3161, 0))
         )));
 
-        new TwoWayLink(Entrance, Yanille.EastGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Entrance, Yanille.EastGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2623, 3171, 0)),
                 new Step(new Tile(2625, 3118, 0)),
                 new Step(new Tile(2615, 3104, 0))
         )));
 
-        new TwoWayLink(Entrance, FishingTrawler, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Entrance, FishingTrawler, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2624, 3172, 0)),
                 new Step(new Tile(2627, 3172, 0)),
                 new Step(new Tile(2627, 3168, 0)),

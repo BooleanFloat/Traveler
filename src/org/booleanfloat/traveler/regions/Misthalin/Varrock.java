@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.Resources;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
@@ -47,7 +48,7 @@ public class Varrock implements Region {
     public static Location WestGate;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(BlueMoonInn);
         locations.add(ClothesStore);
@@ -250,7 +251,7 @@ public class Varrock implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
+    public static void initLinks(final ClientContext ctx) {
         new TeleportLink(Fountain, Magic.Spell.VARROCK_TELEPORT, new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -261,65 +262,65 @@ public class Varrock implements Region {
             }
         });
 
-        new TwoWayLink(BlueMoonInn, SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(BlueMoonInn, SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3221, 3394, 0)),
                 new Obstacle(11775, "Open", new Tile(3215, 3395, 0)),
                 new Step(new Tile(3212, 3394, 0)),
                 new Step(new Tile(3212, 3381, 0))
         )));
 
-        new TwoWayLink(BlueMoonInn, Fountain, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(BlueMoonInn, Fountain, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3221, 3395, 0)),
                 new Obstacle(11775, "Open", new Tile(3215, 3395, 0)),
                 new Step(new Tile(3212, 3394, 0)),
                 new Step(new Tile(3212, 3427, 0))
         )));
 
-        new OneWayLink(ClothesStore, ClothesStoreUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ClothesStore, ClothesStoreUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3202, 3417, 0)),
                 new Obstacle(11794, "Climb-up", new Tile(3202, 3416, 0)),
                 new Step(new Tile(3202, 3417, 1))
         )));
 
-        new OneWayLink(ClothesStoreUpstairs, ClothesStore, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ClothesStoreUpstairs, ClothesStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3202, 3417, 1)),
                 new Obstacle(11795, "Climb-down", new Tile(3202, 3416, 1)),
                 new Step(new Tile(3202, 3417, 0))
         )));
 
-        new TwoWayLink(ClothesStore, Fountain, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(ClothesStore, Fountain, new ArrayList<Traversable>(Arrays.asList(
                 new Obstacle(11775, "Open", new Tile(3209, 3415, 0)),
                 new Step(new Tile(3210, 3415, 0))
         )));
 
-        new TwoWayLink(ClothesStore, SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(ClothesStore, SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3210, 3415, 0))
         )));
 
-        new OneWayLink(EastBank, EastBankUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(EastBank, EastBankUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3254, 3421, 0)),
                 new Obstacle(11789, "Climb-up", new Tile(3256, 3422, 0)),
                 new Step(new Tile(3254, 3421, 1))
         )));
 
-        new OneWayLink(EastBankUpstairs, EastBank, new ArrayList<>(Arrays.asList(
+        new OneWayLink(EastBankUpstairs, EastBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3254, 3421, 1)),
                 new Obstacle(11793, "Climb-down", new Tile(3256, 3422, 1)),
                 new Step(new Tile(3254, 3421, 0))
         )));
 
-        new TwoWayLink(EastBank, EastGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastBank, EastGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3255, 3427, 0))
         )));
 
-        new TwoWayLink(EastBank, NorthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastBank, NorthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3254, 3421, 0)),
                 new Step(new Tile(3254, 3428, 0)),
                 new Step(new Tile(3246, 3429, 0)),
                 new Step(new Tile(3245, 3499, 0))
         )));
 
-        new TwoWayLink(EastGate, LumberYard, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastGate, LumberYard, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3274, 3427, 0)),
                 new Step(new Tile(3283, 3428, 0)),
                 new Step(new Tile(3288, 3437, 0)),
@@ -328,7 +329,7 @@ public class Varrock implements Region {
                 new Step(new Tile(3306, 3490, 0))
         )));
 
-        new TwoWayLink(EastGate, MembersGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastGate, MembersGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3273, 3429, 0)),
                 new Step(new Tile(3283, 3429, 0)),
                 new Step(new Tile(3287, 3438, 0)),
@@ -337,7 +338,7 @@ public class Varrock implements Region {
                 new Step(new Tile(3318, 3467, 0))
         )));
 
-        new TwoWayLink(EastGate, SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastGate, SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3272, 3428, 0)),
                 new Step(new Tile(3276, 3428, 0)),
                 new Step(new Tile(3290, 3409, 0)),
@@ -347,11 +348,11 @@ public class Varrock implements Region {
 
         new TwoWayLink(Fountain, EastGate);
 
-        new TwoWayLink(Fountain, EastBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Fountain, EastBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3253, 3428, 0))
         )));
 
-        new TwoWayLink(Fountain, HorviksArmoury, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Fountain, HorviksArmoury, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3213, 3428, 0)),
                 new Step(new Tile(3230, 3429, 0)),
                 new Step(new Tile(3230, 3435, 0))
@@ -359,17 +360,17 @@ public class Varrock implements Region {
 
         new TwoWayLink(Fountain, SouthGate);
 
-        new TwoWayLink(Fountain, WestBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Fountain, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3183, 3429, 0))
         )));
 
-        new TwoWayLink(GertrudesBedroom, GertrudesHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GertrudesBedroom, GertrudesHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3154, 3405, 0)),
                 new Obstacle(11780, "Open", new Tile(3154, 3405, 0)),
                 new Step(new Tile(3153, 3405, 0))
         )));
 
-        new TwoWayLink(GertrudesHouse, WestGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GertrudesHouse, WestGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3152, 3411, 0)),
                 new Obstacle(11775, "Open", new Tile(3151, 3412, 0)),
                 new Step(new Tile(3151, 3416, 0)),
@@ -378,19 +379,19 @@ public class Varrock implements Region {
                 new Step(new Tile(3173, 3427, 0))
         )));
 
-        new TwoWayLink(GrandExchange, WestBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GrandExchange, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3166, 3461, 0)),
                 new Step(new Tile(3183, 3448, 0))
         )));
 
-         new TwoWayLink(GrandExchange, WestGate, new ArrayList<>(Arrays.asList(
+         new TwoWayLink(GrandExchange, WestGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3164, 3484, 0)),
                 new Step(new Tile(3165, 3465, 0)),
                 new Step(new Tile(3176, 3445, 0)),
                 new Step(new Tile(3175, 3430, 0))
         )));
 
-        new TwoWayLink(LimeStoneMine, MembersGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(LimeStoneMine, MembersGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3371, 3499, 0)),
                 new Step(new Tile(3369, 3494, 0)),
                 new Step(new Tile(3373, 3488, 0)),
@@ -403,7 +404,7 @@ public class Varrock implements Region {
                 new Step(new Tile(3319, 3467, 0))
         )));
 
-        new TwoWayLink(NorthGate, VarrockCastle.Crossroads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthGate, VarrockCastle.Crossroads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3245, 3500, 0)),
                 new Step(new Tile(3246, 3465, 0)),
                 new Step(new Tile(3232, 3464, 0)),
@@ -411,7 +412,7 @@ public class Varrock implements Region {
                 new Step(new Tile(3213, 3448, 0))
         )));
 
-        new TwoWayLink(RiverDigSpot, SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(RiverDigSpot, SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3165, 3359, 0)),
                 new Step(new Tile(3179, 3361, 0)),
                 new Step(new Tile(3191, 3368, 0)),
@@ -419,14 +420,14 @@ public class Varrock implements Region {
                 new Step(new Tile(3211, 3382, 0))
         )));
 
-        new TwoWayLink(RiverDigSpot, WestBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(RiverDigSpot, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3165, 3358, 0)),
                 new Step(new Tile(3173, 3377, 0)),
                 new Step(new Tile(3171, 3424, 0)),
                 new Step(new Tile(3173, 3427, 0))
         )));
 
-        new OneWayLink(WestBank, WestBankBasement, new ArrayList<>(Arrays.asList(
+        new OneWayLink(WestBank, WestBankBasement, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3184, 3434, 0)),
                 new Obstacle(11775, "Open", new Tile(3186, 3434, 0), new int[]{-16, 32, -196, 0, 16, 128}),
                 new Step(new Tile(3186, 3434, 0)),
@@ -435,7 +436,7 @@ public class Varrock implements Region {
                 new Step(new Tile(3191, 9829, 0))
         )));
 
-        new OneWayLink(WestBankBasement, WestBank, new ArrayList<>(Arrays.asList(
+        new OneWayLink(WestBankBasement, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3191, 9829, 0)),
                 new Step(new Tile(3190, 9834, 0)),
                 new Obstacle(11805, "Climb-up", new Tile(3188, 9834, 0), new int[]{-128, 128, -64, 0, -64, 64}),
@@ -446,19 +447,19 @@ public class Varrock implements Region {
 
         new TwoWayLink(WestBankBasement, WestBankBasementClueSpot);
 
-        new TwoWayLink(WestBank, WestGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(WestBank, WestGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3175, 3428, 0)),
                 new Step(new Tile(3183, 3431, 0))
         )));
 
-        new TwoWayLink(SouthGate, SouthGateHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthGate, SouthGateHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3211, 3382, 0)),
                 new Step(new Tile(3208, 3385, 0)),
                 new Obstacle(11777, "Open", new Tile(3208, 3385, 0)),
                 new Step(new Tile(3207, 3385, 0))
         )));
 
-        new TwoWayLink(SouthGate, SouthMine, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthGate, SouthMine, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3211, 3381, 0)),
                 new Step(new Tile(3213, 3378, 0)),
                 new Step(new Tile(3237, 3379, 0)),

@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.asgarnia.Falador;
@@ -32,7 +33,7 @@ public class Draynor implements Region {
     public static Location WitchAgiesHouse;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Bank);
         locations.add(CrossRoads);
@@ -112,23 +113,23 @@ public class Draynor implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Bank, Market, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(Bank, Market, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3093, 3247, 0))
         )));
 
-        new TwoWayLink(Bank, GloryTeleport, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, GloryTeleport, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3093, 3247, 0))
         )));
 
-        new TwoWayLink(CrossRoads, GloryTeleport, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, GloryTeleport, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3110, 3294, 0)),
                 new Step(new Tile(3109, 3282, 0)),
                 new Step(new Tile(3105, 3275, 0)),
                 new Step(new Tile(3104, 3249, 0))
         )));
 
-        new TwoWayLink(CrossRoads, ManorEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, ManorEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3110, 3294, 0)),
                 new Step(new Tile(3110, 3298, 0)),
                 new Step(new Tile(3113, 3302, 0)),
@@ -146,7 +147,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3108, 3354, 0))
         )));
 
-        new TwoWayLink(CrossRoads, ManorFountain, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, ManorFountain, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3110, 3295, 0)),
                 new Step(new Tile(3110, 3298, 0)),
                 new Step(new Tile(3113, 3302, 0)),
@@ -160,7 +161,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3089, 3335, 0))
         )));
 
-        new TwoWayLink(CrossRoads, NorthHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, NorthHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3110, 3293, 0)),
                 new Step(new Tile(3109, 3282, 0)),
                 new Step(new Tile(3103, 3271, 0)),
@@ -168,7 +169,7 @@ public class Draynor implements Region {
                 new Obstacle(7122, "Open", new Tile(3100, 3276, 0), Obstacle.Hitbox.DOOR_NORTH)
         )));
 
-        new TwoWayLink(CrossRoads, WestFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, WestFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3110, 3295, 0)),
                 new Step(new Tile(3096, 3293, 0)),
                 new Step(new Tile(3091, 3289, 0)),
@@ -176,14 +177,14 @@ public class Draynor implements Region {
                 new Step(new Tile(3072, 3277, 0))
         )));
 
-        new TwoWayLink(CrossRoads, Lumbridge.HamBuilding, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, Lumbridge.HamBuilding, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3110, 3295, 0)),
                 new Step(new Tile(3132, 3293, 0)),
                 new Step(new Tile(3138, 3265, 0)),
                 new Step(new Tile(3166, 3248, 0))
         )));
 
-        new TwoWayLink(CrossRoads, Lumbridge.WindMillCrossroads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, Lumbridge.WindMillCrossroads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3110, 3295, 0)),
                 new Step(new Tile(3136, 3293, 0)),
                 new Step(new Tile(3155, 3293, 0)),
@@ -193,14 +194,14 @@ public class Draynor implements Region {
 
         new TwoWayLink(GloryTeleport, Market);
 
-        new TwoWayLink(GloryTeleport, NedsHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GloryTeleport, NedsHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3104, 3250, 0)),
                 new Step(new Tile(3104, 3258, 0)),
                 new Obstacle(7122, "Open", new Tile(3101, 3258, 0), new int[]{96, 128, -192, 0, 0, 128}),
                 new Step(new Tile(3100, 3258, 0))
         )));
 
-        new TwoWayLink(GloryTeleport, WitchAgiesHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GloryTeleport, WitchAgiesHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3105, 3250, 0)),
                 new Step(new Tile(3104, 3263, 0)),
                 new Step(new Tile(3095, 3262, 0)),
@@ -209,7 +210,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3087, 3258, 0))
         )));
 
-        new TwoWayLink(GloryTeleport, Lumbridge.HamBuilding, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GloryTeleport, Lumbridge.HamBuilding, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3104, 3249, 0)),
                 new Step(new Tile(3112, 3261, 0)),
                 new Step(new Tile(3133, 3261, 0)),
@@ -217,7 +218,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3166, 3248, 0))
         )));
 
-        new TwoWayLink(GloryTeleport, WizardsTower.Causeway, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GloryTeleport, WizardsTower.Causeway, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3104, 3249, 0)),
                 new Step(new Tile(3106, 3241, 0)),
                 new Step(new Tile(3106, 3235, 0)),
@@ -226,7 +227,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3114, 3206, 0))
         )));
 
-        new TwoWayLink(GloryTeleport, NorthHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GloryTeleport, NorthHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3105, 3249, 0)),
                 new Step(new Tile(3106, 3272, 0)),
                 new Step(new Tile(3099, 3271, 0)),
@@ -234,14 +235,14 @@ public class Draynor implements Region {
                 new Obstacle(7122, "Open", new Tile(3100, 3276, 0), Obstacle.Hitbox.DOOR_NORTH)
         )));
 
-        new TwoWayLink(GloryTeleport, LumbridgeCastle.BackEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GloryTeleport, LumbridgeCastle.BackEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3104, 3248, 0)),
                 new Step(new Tile(3105, 3236, 0)),
                 new Step(new Tile(3116, 3225, 0)),
                 new Step(new Tile(3198, 3218, 0))
         )));
 
-        new OneWayLink(ManorEntrance, ManorAttic, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ManorEntrance, ManorAttic, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3109, 3357, 0)),
                 new Obstacle(11470, "Open", new Tile(3109, 3358, 0), Obstacle.Hitbox.DOOR_SOUTH),
                 new Step(new Tile(3109, 3361, 0)),
@@ -251,7 +252,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3105, 3364, 2))
         )));
 
-        new OneWayLink(ManorAttic, ManorKitchen, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ManorAttic, ManorKitchen, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3105, 3364, 2)),
                 new Obstacle(9584, "Climb-down", new Tile(3105, 3363, 2)),
                 new Step(new Tile(3108, 3366, 1)),
@@ -266,7 +267,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3122, 3357, 0))
         )));
 
-        new OneWayLink(ManorEntrance, ManorKitchen, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ManorEntrance, ManorKitchen, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3109, 3357, 0)),
                 new Obstacle(11470, "Open", new Tile(3109, 3358, 0), Obstacle.Hitbox.DOOR_SOUTH),
                 new Step(new Tile(3109, 3361, 0)),
@@ -279,7 +280,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3122, 3357, 0))
         )));
 
-        new OneWayLink(ManorKitchen, CrossRoads, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ManorKitchen, CrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3123, 3359, 0)),
                 new DraynorManorBackDoor(),
                 new Step(new Tile(3124, 3361, 0)),
@@ -298,7 +299,7 @@ public class Draynor implements Region {
                 new Step(new Tile(3110, 3295, 0))
         )));
 
-        new TwoWayLink(Market, WestFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Market, WestFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3081, 3253, 0)),
                 new Step(new Tile(3082, 3264, 0)),
                 new Step(new Tile(3070, 3276, 0))
@@ -306,7 +307,7 @@ public class Draynor implements Region {
 
         new TwoWayLink(WestFenceOpening, Falador.SouthCrossRoads);
 
-        new TwoWayLink(WestFenceOpening, PortSarim.MusaPointBoat, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(WestFenceOpening, PortSarim.MusaPointBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3071, 3277, 0)),
                 new Step(new Tile(3062, 3271, 0)),
                 new Step(new Tile(3042, 3260, 0)),

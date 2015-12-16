@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.kharidiandesert;
 import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.asgarnia.PortSarim;
@@ -38,7 +39,7 @@ public class AlKharid implements Region {
     public static Location Tent;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Bank);
         locations.add(CrossRoads);
@@ -168,15 +169,15 @@ public class AlKharid implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Bank, CrossRoads, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(Bank, CrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3270, 3166, 0)),
                 new Step(new Tile(3276, 3166, 0)),
                 new Step(new Tile(3283, 3187, 0)),
                 new Step(new Tile(3276, 3226, 0))
         )));
 
-        new TwoWayLink(Bank, PalaceThroneRoom, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, PalaceThroneRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3270, 3165, 0)),
                 new Step(new Tile(3276, 3166, 0)),
                 new Step(new Tile(3280, 3181, 0)),
@@ -187,7 +188,7 @@ public class AlKharid implements Region {
                 new Step(new Tile(3293, 3163, 0))
         )));
 
-        new TwoWayLink(Bank, ShantyPass, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, ShantyPass, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3270, 3165, 0)),
                 new Step(new Tile(3276, 3165, 0)),
                 new Step(new Tile(3279, 3154, 0)),
@@ -195,7 +196,7 @@ public class AlKharid implements Region {
                 new Step(new Tile(3303, 3127, 0))
         )));
 
-        new TwoWayLink(Bank, Tent, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, Tent, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3270, 3166, 0)),
                 new Step(new Tile(3277, 3166, 0)),
                 new Step(new Tile(3281, 3181, 0)),
@@ -205,13 +206,13 @@ public class AlKharid implements Region {
                 new Step(new Tile(3305, 3203, 0))
         )));
 
-        new TwoWayLink(CrossRoads, DuelArenaEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, DuelArenaEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3278, 3226, 0)),
                 new Step(new Tile(3294, 3237, 0)),
                 new Step(new Tile(3313, 3234, 0))
         )));
 
-        new TwoWayLink(CrossRoads, Mine, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, Mine, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3277, 3226, 0)),
                 new Step(new Tile(3292, 3269, 0)),
                 new Step(new Tile(3299, 3275, 0))
@@ -219,13 +220,13 @@ public class AlKharid implements Region {
 
         new TwoWayLink(CrossRoads, NorthFenceOpening);
 
-        new TwoWayLink(CrossRoads, NorthHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, NorthHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3278, 3224, 0)),
                 new Step(new Tile(3292, 3206, 0)),
                 new Obstacle(7120, "Open", new Tile(3292, 3206, 0), new int[]{0, 100, -224, 0, 112, 128})
         )));
 
-        new TwoWayLink(CrossRoads, PalaceThroneRoom, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, PalaceThroneRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3276, 3225, 0)),
                 new Step(new Tile(3282, 3187, 0)),
                 new Step(new Tile(3292, 3179, 0)),
@@ -235,14 +236,14 @@ public class AlKharid implements Region {
                 new Step(new Tile(3293, 3165, 0))
         )));
 
-        new TwoWayLink(CrossRoads, Tanner, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, Tanner, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3277, 3226, 0)),
                 new Step(new Tile(3280, 3190, 0)),
                 new Step(new Tile(3276, 3190, 0)),
                 new Obstacle(7122, "Open", new Tile(3277, 3191, 0), new int[]{112, 128, -224, 0, 10, 130})
         )));
 
-        new TwoWayLink(CrossRoads, Tent, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossRoads, Tent, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3278, 3225, 0)),
                 new Step(new Tile(3282, 3217, 0)),
                 new Step(new Tile(3298, 3216, 0)),
@@ -250,7 +251,7 @@ public class AlKharid implements Region {
                 new Step(new Tile(3307, 3203, 0))
         )));
 
-        new OneWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<>(Arrays.asList(
+        new OneWayLink(CrossRoads, Lumbridge.EastCrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3277, 3226, 0)),
                 new Step(new Tile(3269, 3227, 0)),
                 new AlKharidTollGate(2882, AlKharidTollGate.Direction.OUT),
@@ -265,7 +266,7 @@ public class AlKharid implements Region {
             }
         });
 
-        new TwoWayLink(DuelArenaEntrance, DuelArenaTicketOffice, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DuelArenaEntrance, DuelArenaTicketOffice, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3313, 3233, 0)),
                 new Step(new Tile(3319, 3235, 0)),
                 new Step(new Tile(3318, 3240, 0)),
@@ -273,7 +274,7 @@ public class AlKharid implements Region {
                 new Step(new Tile(3314, 3241, 0))
         )));
 
-        new TwoWayLink(DuelArenaEntrance, DuelArenaSpectators, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DuelArenaEntrance, DuelArenaSpectators, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3313, 3233, 0)),
                 new Step(new Tile(3328, 3239, 0)),
                 new Step(new Tile(3328, 3260, 0)),
@@ -284,14 +285,14 @@ public class AlKharid implements Region {
 
         new TwoWayLink(Mine, MineDigSpot);
 
-        new TwoWayLink(Mine, NorthFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Mine, NorthFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3300, 3272, 0)),
                 new Step(new Tile(3287, 3273, 0)),
                 new Step(new Tile(3288, 3293, 0)),
                 new Step(new Tile(3283, 3327, 0))
         )));
 
-        new TwoWayLink(NorthFenceOpening, Lumbridge.NorthBridge, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthFenceOpening, Lumbridge.NorthBridge, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3282, 3330, 0)),
                 new Step(new Tile(3270, 3330, 0)),
                 new Step(new Tile(3257, 3324, 0)),
@@ -299,7 +300,7 @@ public class AlKharid implements Region {
                 new Step(new Tile(3242, 3263, 0))
         )));
 
-        new TwoWayLink(NorthFenceOpening, Varrock.DigSiteBush, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthFenceOpening, Varrock.DigSiteBush, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3283, 3331, 0)),
                 new Step(new Tile(3297, 3334, 0)),
                 new Step(new Tile(3310, 3331, 0)),
@@ -315,14 +316,14 @@ public class AlKharid implements Region {
                 new Step(new Tile(3345, 3379, 0))
         )));
 
-        new TwoWayLink(NorthFenceOpening, Varrock.EastGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthFenceOpening, Varrock.EastGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3283, 3332, 0)),
                 new Step(new Tile(3298, 3358, 0)),
                 new Step(new Tile(3291, 3407, 0)),
                 new Step(new Tile(3275, 3429, 0))
         )));
 
-        new TwoWayLink(NorthFenceOpening, Varrock.ExamCenter, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthFenceOpening, Varrock.ExamCenter, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3284, 3331, 0)),
                 new Step(new Tile(3297, 3335, 0)),
                 new Step(new Tile(3310, 3331, 0)),
@@ -336,7 +337,7 @@ public class AlKharid implements Region {
                 new Step(new Tile(3358, 3343, 0))
         )));
 
-        new TwoWayLink(NorthFenceOpening, Varrock.SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthFenceOpening, Varrock.SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3282, 3332, 0)),
                 new Step(new Tile(3248, 3337, 0)),
                 new Step(new Tile(3229, 3337, 0)),
@@ -344,26 +345,26 @@ public class AlKharid implements Region {
                 new Step(new Tile(3210, 3381, 0))
         )));
 
-        new TwoWayLink(NorthFenceOpening, Varrock.SouthMine, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthFenceOpening, Varrock.SouthMine, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3283, 3329, 0)),
                 new Step(new Tile(3276, 3358, 0)),
                 new Step(new Tile(3277, 3371, 0)),
                 new Step(new Tile(3287, 3371, 0))
         )));
 
-        new OneWayLink(PalaceChests, PalaceThroneRoom, new ArrayList<>(Arrays.asList(
+        new OneWayLink(PalaceChests, PalaceThroneRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3285, 3164, 1)),
                 new Obstacle(16679, "Climb-down", new Tile(3284, 3165, 1)),
                 new Step(new Tile(3284, 3164, 0))
         )));
 
-        new OneWayLink(PalaceThroneRoom, PalaceChests, new ArrayList<>(Arrays.asList(
+        new OneWayLink(PalaceThroneRoom, PalaceChests, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3284, 3164, 0)),
                 new Obstacle(16683, "Climb-up", new Tile(3284, 3165, 0)),
                 new Step(new Tile(3285, 3164, 1))
         )));
 
-        new OneWayLink(ShantyPass, PortSarim.ShantyPassCell, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ShantyPass, PortSarim.ShantyPassCell, new ArrayList<Traversable>(Arrays.asList(
                 new Shantay()
         )));
     }

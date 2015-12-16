@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.kandarin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
@@ -23,7 +24,7 @@ public class Catherby implements Region {
     public static Location NorthWestHouseUpstairs;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(ArcheryStore);
         locations.add(Bank);
@@ -82,8 +83,8 @@ public class Catherby implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(ArcheryStore, Bank, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(ArcheryStore, Bank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2823, 3442, 0)),
                 new Obstacle(7122, "Open", new Tile(2822, 3441, 0)),
                 new Step(new Tile(2823, 3438, 0)),
@@ -92,7 +93,7 @@ public class Catherby implements Region {
                 new Step(new Tile(2808, 3439, 0))
         )));
 
-        new TwoWayLink(ArcheryStore, FishingSpot, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(ArcheryStore, FishingSpot, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2824, 3441, 0)),
                 new Obstacle(7122, "Open", new Tile(2822, 3441, 0)),
                 new Step(new Tile(2823, 3436, 0)),
@@ -102,7 +103,7 @@ public class Catherby implements Region {
 
         new TwoWayLink(Bank, GeneralStore);
 
-        new TwoWayLink(Bank, FishingSpot, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, FishingSpot, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2809, 3437, 0)),
                 new Step(new Tile(2809, 3436, 0)),
                 new Step(new Tile(2828, 3437, 0)),
@@ -110,7 +111,7 @@ public class Catherby implements Region {
                 new Step(new Tile(2842, 3432, 0))
         )));
 
-        new OneWayLink(Bank, NorthWestHouseUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Bank, NorthWestHouseUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2809, 3436, 0)),
                 new Step(new Tile(2804, 3436, 0)),
                 new Step(new Tile(2804, 3452, 0)),
@@ -119,7 +120,7 @@ public class Catherby implements Region {
                 new Obstacle(16683, "Climb-up", new Tile(2807, 3454, 0))
         )));
 
-        new TwoWayLink(Beehives, GeneralStore, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Beehives, GeneralStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2765, 3442, 0)),
                 new Obstacle(7158, "Open", new Tile(2766, 3444, 0), Obstacle.Hitbox.DOOR_EAST),
                 new Obstacle(7160, "Open", new Tile(2766, 3443, 0), Obstacle.Hitbox.DOOR_EAST),
@@ -128,14 +129,14 @@ public class Catherby implements Region {
                 new Step(new Tile(2803, 3431, 0))
         )));
 
-        new TwoWayLink(Beehives, SeersVillage.Bank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Beehives, SeersVillage.Bank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2756, 3443, 0)),
                 new Step(new Tile(2734, 3442, 0)),
                 new Step(new Tile(2727, 3455, 0)),
                 new Step(new Tile(2726, 3490, 0))
         )));
 
-        new OneWayLink(FarmingPatch, NorthWestHouseUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(FarmingPatch, NorthWestHouseUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2805, 3463, 0)),
                 new Step(new Tile(2804, 3463, 0)),
                 new Step(new Tile(2805, 3451, 0)),
@@ -144,12 +145,12 @@ public class Catherby implements Region {
                 new Obstacle(16683, "Climb-up", new Tile(2807, 3454, 0))
         )));
 
-        new TwoWayLink(FarmingPatch, SeersVillage.CastleGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FarmingPatch, SeersVillage.CastleGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2805, 3463, 0)),
                 new Step(new Tile(2759, 3477, 0))
         )));
 
-        new TwoWayLink(GeneralStore, SeersVillage.CastleGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, SeersVillage.CastleGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2804, 3431, 0)),
                 new Step(new Tile(2793, 3433, 0)),
                 new Step(new Tile(2774, 3451, 0)),
@@ -157,7 +158,7 @@ public class Catherby implements Region {
                 new Step(new Tile(2758, 3476, 0))
         )));
 
-        new TwoWayLink(GeneralStore, SeersVillage.KeepLeFayeEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, SeersVillage.KeepLeFayeEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2804, 3431, 0)),
                 new Step(new Tile(2796, 3432, 0)),
                 new Step(new Tile(2776, 3435, 0)),
@@ -166,7 +167,7 @@ public class Catherby implements Region {
                 new Step(new Tile(2760, 3401, 0))
         )));
 
-        new OneWayLink(NorthWestHouseUpstairs, Bank, new ArrayList<>(Arrays.asList(
+        new OneWayLink(NorthWestHouseUpstairs, Bank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2807, 3453, 1)),
                 new Obstacle(16679, "Climb-down", new Tile(2807, 3454, 1)),
                 new Step(new Tile(2808, 3451, 0)),
@@ -177,7 +178,7 @@ public class Catherby implements Region {
                 new Step(new Tile(2808, 3439, 0))
         )));
 
-        new OneWayLink(NorthWestHouseUpstairs, FarmingPatch, new ArrayList<>(Arrays.asList(
+        new OneWayLink(NorthWestHouseUpstairs, FarmingPatch, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2807, 3453, 1)),
                 new Obstacle(16679, "Climb-down", new Tile(2807, 3454, 1)),
                 new Step(new Tile(2808, 3451, 0)),

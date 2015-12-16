@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.kharidiandesert.AlKharid;
@@ -40,7 +41,7 @@ public class Lumbridge implements Region {
     public static Location WindMillCrossroads;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Center);
         locations.add(Church);
@@ -156,20 +157,20 @@ public class Lumbridge implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Center, Church, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(Center, Church, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3235, 3210, 0)),
                 new Obstacle(7129, "Open", new Tile(3238, 3210, 0)),
                 new Step(new Tile(3242, 3210, 0))
         )));
 
-        new TwoWayLink(Center, EastCrossRoads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Center, EastCrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3236, 3219, 0)),
                 new Step(new Tile(3236, 3225, 0)),
                 new Step(new Tile(3257, 3225, 0))
         )));
 
-        new TwoWayLink(Center, HamBuilding, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Center, HamBuilding, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3235, 3218, 0)),
                 new Step(new Tile(3236, 3226, 0)),
                 new Step(new Tile(3223, 3237, 0)),
@@ -177,14 +178,14 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3166, 3250, 0))
         )));
 
-        new TwoWayLink(Center, NorthBridge, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Center, NorthBridge, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3235, 3219, 0)),
                 new Step(new Tile(3219, 3243, 0)),
                 new Step(new Tile(3219, 3260, 0)),
                 new Step(new Tile(3235, 3261, 0))
         )));
 
-        new TwoWayLink(Center, SwampShack, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Center, SwampShack, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3235, 3218, 0)),
                 new Step(new Tile(3235, 3201, 0)),
                 new Step(new Tile(3244, 3199, 0)),
@@ -199,7 +200,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3203, 3168, 0))
         )));
 
-        new TwoWayLink(EastCrossRoads, GoblinHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastCrossRoads, GoblinHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3260, 3228, 0)),
                 new Step(new Tile(3260, 3232, 0)),
                 new Step(new Tile(3246, 3241, 0)),
@@ -207,7 +208,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3247, 3244, 0))
         )));
 
-        new OneWayLink(EastCrossRoads, AlKharid.CrossRoads, new ArrayList<>(Arrays.asList(
+        new OneWayLink(EastCrossRoads, AlKharid.CrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3258, 3227, 0)),
                 new Step(new Tile(3267, 3227, 0)),
                 new AlKharidTollGate(2882, AlKharidTollGate.Direction.IN),
@@ -222,7 +223,7 @@ public class Lumbridge implements Region {
             }
         });
 
-        new TwoWayLink(GoblinHouse, NorthBridge, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GoblinHouse, NorthBridge, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3247, 3246, 0)),
                 new Obstacle(7122, "Open", new Tile(3246, 3244, 0), new int[]{0, 128, -192, 0, -16, 32}),
                 new Step(new Tile(3246, 3241, 0)),
@@ -233,7 +234,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3239, 3261, 0))
         )));
 
-        new TwoWayLink(FatherUrhneyHouse, WizardsTower.Causeway, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FatherUrhneyHouse, WizardsTower.Causeway, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3148, 3174, 0)),
                 new Obstacle(11616, "Open", new Tile(3147, 3172, 0), Obstacle.Hitbox.DOOR_NORTH),
                 new Step(new Tile(3148, 3171, 0)),
@@ -243,7 +244,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3113, 3205, 0))
         )));
 
-        new TwoWayLink(FatherUrhneyHouse, SwampShack, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FatherUrhneyHouse, SwampShack, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3147, 3173, 0)),
                 new Obstacle(11616, "Open", new Tile(3147, 3172, 0), Obstacle.Hitbox.DOOR_NORTH),
                 new Step(new Tile(3147, 3170, 0)),
@@ -253,7 +254,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3203, 3168, 0))
         )));
 
-        new TwoWayLink(HamBarracks, HamEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(HamBarracks, HamEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3174, 9641, 0)),
                 new Obstacle(7122, "Open", new Tile(3174, 9641, 0)),
                 new Step(new Tile(3173, 9638, 0)),
@@ -263,7 +264,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3157, 9641, 0))
         )));
 
-        new TwoWayLink(HamBuilding, NorthBridge, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(HamBuilding, NorthBridge, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3166, 3247, 0)),
                 new Step(new Tile(3168, 3244, 0)),
                 new Step(new Tile(3190, 3243, 0)),
@@ -271,12 +272,12 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3230, 3261, 0))
         )));
 
-        new OneWayLink(HamBuilding, HamEntrance, new ArrayList<>(Arrays.asList(
+        new OneWayLink(HamBuilding, HamEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Obstacle(5490, "Pick-Lock", 3000, new Tile(3166, 3252, 0), new int[]{0, 128, 10, 0, 0, 128}),
                 new Obstacle(5491, "Climb-down", new Tile(3166, 3252, 0), new int[]{0, 128, -64, 0, 0, 128})
         )));
 
-        new TwoWayLink(HamBuilding, WindMillCrossroads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(HamBuilding, WindMillCrossroads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3165, 3249, 0)),
                 new Step(new Tile(3161, 3245, 0)),
                 new Step(new Tile(3159, 3250, 0)),
@@ -284,7 +285,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3168, 3287, 0))
         )));
 
-        new TwoWayLink(HamBuilding, WizardsTower.Causeway, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(HamBuilding, WizardsTower.Causeway, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3165, 3250, 0)),
                 new Step(new Tile(3165, 3247, 0)),
                 new Step(new Tile(3146, 3231, 0)),
@@ -292,7 +293,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3114, 3206, 0))
         )));
 
-        new OneWayLink(HamEntrance, HamBuilding, new ArrayList<>(Arrays.asList(
+        new OneWayLink(HamEntrance, HamBuilding, new ArrayList<Traversable>(Arrays.asList(
                 new Obstacle(5493, "Climb-up", new Tile(3149, 9653, 0))
         )));
 
@@ -302,7 +303,7 @@ public class Lumbridge implements Region {
         new OneWayLink(HamForceExit4, HamBuilding);
         new OneWayLink(HamForceExit5, HamBuilding);
 
-        new OneWayLink(HamJail, HamBarracks, new ArrayList<>(Arrays.asList(
+        new OneWayLink(HamJail, HamBarracks, new ArrayList<Traversable>(Arrays.asList(
                 new HamJailDoor(),
                 new Step(new Tile(3182, 9611, 0)),
                 new Step(new Tile(3178, 9615, 0)),
@@ -315,7 +316,7 @@ public class Lumbridge implements Region {
                 new Obstacle(7122, "Open", new Tile(3174, 9641, 0))
         )));
 
-        new OneWayLink(HamJail, HamEntrance, new ArrayList<>(Arrays.asList(
+        new OneWayLink(HamJail, HamEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new ImportantStep(new Tile(3183, 9611, 0)),
                 new HamJailDoor(),
                 new Step(new Tile(3182, 9611, 0)),
@@ -328,13 +329,13 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3157, 9641, 0))
         )));
 
-        new TwoWayLink(EastCrossRoads, NorthBridge, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastCrossRoads, NorthBridge, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3258, 3227, 0)),
                 new Step(new Tile(3260, 3240, 0)),
                 new Step(new Tile(3244, 3263, 0))
         )));
 
-        new TwoWayLink(NorthBridge, WindMillCrossroads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthBridge, WindMillCrossroads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3229, 3262, 0)),
                 new Step(new Tile(3220, 3261, 0)),
                 new Step(new Tile(3214, 3277, 0)),
@@ -342,7 +343,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3167, 3287, 0))
         )));
 
-        new TwoWayLink(NorthBridge, Varrock.SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthBridge, Varrock.SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3243, 3263, 0)),
                 new Step(new Tile(3239, 3282, 0)),
                 new Step(new Tile(3239, 3304, 0)),
@@ -352,7 +353,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3211, 3382, 0))
         )));
 
-        new TwoWayLink(SwampShack, WizardsTower.Causeway, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SwampShack, WizardsTower.Causeway, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3203, 3169, 0)),
                 new Obstacle(2406, "Open", new Tile(3202, 3169, 0), new int[]{-32, 32, -192, 0, 0, 128}),
                 new Step(new Tile(3200, 3168, 0)),
@@ -365,7 +366,7 @@ public class Lumbridge implements Region {
                 new Step(new Tile(3114, 3205, 0))
         )));
 
-        new TwoWayLink(WheatField, WindMillCrossroads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(WheatField, WindMillCrossroads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3158, 3297, 0)),
                 new Step(new Tile(3162, 3290, 0)),
                 new Obstacle(7158, "Open", new Tile(3163, 3290, 0), Obstacle.Hitbox.DOOR_SOUTH),

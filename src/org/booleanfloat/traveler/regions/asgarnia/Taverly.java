@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.asgarnia;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.kandarin.Catherby;
@@ -28,7 +29,7 @@ public class Taverly implements Region {
     public static Location WhiteWolfMountainEntrance;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(DruidsCircle);
         locations.add(HerbloreStore);
@@ -130,28 +131,28 @@ public class Taverly implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(DruidsCircle, POHPortal, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(DruidsCircle, POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2923, 3484, 0)),
                 new Step(new Tile(2899, 3477, 0)),
                 new Step(new Tile(2897, 3464, 0))
         )));
 
-        new TwoWayLink(DruidsCircle, MembersGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DruidsCircle, MembersGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2926, 3483, 0)),
                 new Step(new Tile(2938, 3469, 0)),
                 new Step(new Tile(2938, 3458, 0)),
                 new Step(new Tile(2931, 3450, 0))
         )));
 
-        new TwoWayLink(HerbloreStore, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(HerbloreStore, WhiteWolfMountainEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2898, 3427, 0)),
                 new Obstacle(7122, "Open", new Tile(2894, 3428, 0), new int[]{112, 144, -192, 0, 0, 128}),
                 new Step(new Tile(2894, 3427, 0)),
                 new Step(new Tile(2875, 3428, 0))
         )));
 
-        new TwoWayLink(HerbloreStore, MembersGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(HerbloreStore, MembersGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2899, 3427, 0)),
                 new Obstacle(7122, "Open", new Tile(2902, 3428, 0), new int[]{0, 32, -192, 0, 0, 128}),
                 new Step(new Tile(2907, 3427, 0)),
@@ -159,7 +160,7 @@ public class Taverly implements Region {
                 new Step(new Tile(2931, 3450, 0))
         )));
 
-        new TwoWayLink(MembersGate, LadyOfTheLake, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(MembersGate, LadyOfTheLake, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2931, 3449, 0)),
                 new Step(new Tile(2934, 3441, 0)),
                 new Step(new Tile(2934, 3430, 0)),
@@ -167,7 +168,7 @@ public class Taverly implements Region {
                 new Step(new Tile(2927, 3408, 0))
         )));
 
-        new OneWayLink(MembersGate, Outhouse, new ArrayList<>(Arrays.asList(
+        new OneWayLink(MembersGate, Outhouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2930, 3449, 0)),
                 new Step(new Tile(2920, 3437, 0)),
                 new TaverlyOuthouseStile(TaverlyOuthouseStile.Direction.IN),
@@ -177,7 +178,7 @@ public class Taverly implements Region {
                 new Step(new Tile(2915, 3433, 0))
         )));
 
-        new OneWayLink(Outhouse, MembersGate, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Outhouse, MembersGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2915, 3433, 0)),
                 new Obstacle(7122, "Open", new Tile(2914, 3435, 0)),
                 new Step(new Tile(2915, 3435, 0)),
@@ -188,7 +189,7 @@ public class Taverly implements Region {
         )));
 
 
-        new TwoWayLink(MembersGate, SouthHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(MembersGate, SouthHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2931, 3450, 0)),
                 new Step(new Tile(2920, 3432, 0)),
                 new Step(new Tile(2909, 3429, 0)),
@@ -198,7 +199,7 @@ public class Taverly implements Region {
                 new Step(new Tile(2893, 3419, 0))
         )));
 
-        new TwoWayLink(MembersGate, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(MembersGate, WhiteWolfMountainEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2930, 3449, 0)),
                 new Step(new Tile(2919, 3432, 0)),
                 new Step(new Tile(2910, 3429, 0)),
@@ -208,14 +209,14 @@ public class Taverly implements Region {
                 new Step(new Tile(2876, 3428, 0))
         )));
 
-        new TwoWayLink(POHPortal, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(POHPortal, WhiteWolfMountainEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2896, 3464, 0)),
                 new Step(new Tile(2896, 3454, 0)),
                 new Step(new Tile(2888, 3427, 0)),
                 new Step(new Tile(2875, 3427, 0))
         )));
 
-        new TwoWayLink(POHPortal, MembersGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(POHPortal, MembersGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2895, 3463, 0)),
                 new Step(new Tile(2897, 3463, 0)),
                 new Step(new Tile(2897, 3455, 0)),
@@ -223,7 +224,7 @@ public class Taverly implements Region {
                 new Step(new Tile(2931, 3449, 0))
         )));
 
-        new TwoWayLink(POHPortal, TwoHandedSwordStore, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(POHPortal, TwoHandedSwordStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2897, 3463, 0)),
                 new Step(new Tile(2897, 3455, 0)),
                 new Step(new Tile(2890, 3454, 0)),
@@ -232,7 +233,7 @@ public class Taverly implements Region {
                 new Step(new Tile(2886, 3450, 0))
         )));
 
-        new TwoWayLink(SouthHouse, WhiteWolfMountainEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthHouse, WhiteWolfMountainEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2893, 3419, 0)),
                 new Obstacle(7122, "Open", new Tile(2893, 3421, 0), new int[]{0, 128, -192, 0, -32, 32}),
                 new Step(new Tile(2893, 3421, 0)),
@@ -240,7 +241,7 @@ public class Taverly implements Region {
                 new Step(new Tile(2874, 3428, 0))
         )));
 
-        new TwoWayLink(WhiteWolfMountainEntrance, Catherby.FishingSpot, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(WhiteWolfMountainEntrance, Catherby.FishingSpot, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2874, 3429, 0)),
                 new Step(new Tile(2864, 3444, 0)),
                 new Step(new Tile(2865, 3458, 0)),

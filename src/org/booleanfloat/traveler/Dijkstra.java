@@ -13,7 +13,7 @@ class Vertex implements Comparable<Vertex> {
 
     public Vertex(Location location) {
         this.location = location;
-        edges = new ArrayList<>();
+        edges = new ArrayList<Edge>();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Dijkstra {
     private static HashMap<Location, Vertex> vertices;
 
     public static void init(Location[] locations) {
-        vertices = new HashMap<>();
+        vertices = new HashMap<Location, Vertex>();
 
         for(Location location : locations) {
             vertices.put(location, new Vertex(location));
@@ -51,7 +51,7 @@ public class Dijkstra {
     }
 
     public static ArrayList<Link> getLinks(Location start, Location end) {
-        ArrayList<Link> path = new ArrayList<>();
+        ArrayList<Link> path = new ArrayList<Link>();
 
         reset();
         computePaths(vertices.get(start));
@@ -77,7 +77,7 @@ public class Dijkstra {
     private static void computePaths(Vertex source) {
         source.minDistance = 0.0;
 
-        PriorityQueue<Vertex> vertexQueue = new PriorityQueue<>();
+        PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
         vertexQueue.add(source);
 
         while (!vertexQueue.isEmpty()) {
@@ -104,7 +104,7 @@ public class Dijkstra {
     }
 
     private static ArrayList<Vertex> getShortestPathTo(Vertex target) {
-        ArrayList<Vertex> path = new ArrayList<>();
+        ArrayList<Vertex> path = new ArrayList<Vertex>();
         double weight = 0;
 
         for (Vertex vertex = target; vertex != null; vertex = vertex.previous) {

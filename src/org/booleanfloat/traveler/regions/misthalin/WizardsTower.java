@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
@@ -19,7 +20,7 @@ public class WizardsTower implements Region {
     public static Location Library;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Causeway);
         locations.add(Entrance);
@@ -58,17 +59,17 @@ public class WizardsTower implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
+    public static void initLinks(final ClientContext ctx) {
         new TwoWayLink(Causeway, Entrance);
 
-        new TwoWayLink(DigSpot, Entrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DigSpot, Entrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3110, 3150, 0)),
                 new Step(new Tile(3118, 3154, 0)),
                 new Step(new Tile(3118, 3162, 0)),
                 new Step(new Tile(3112, 3169, 0))
         )));
 
-        new TwoWayLink(Entrance, Library, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Entrance, Library, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3111, 3169, 0)),
                 new Step(new Tile(3109, 3167, 0)),
                 new Obstacle(23972, "Open", new Tile(3109, 3167, 0)),

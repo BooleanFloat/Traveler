@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.kandarin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
 import org.booleanfloat.traveler.steps.Step;
@@ -18,7 +19,7 @@ public class TreeGnomeStronghold implements Region {
     public static Location MushroomDigSpot;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(GateInside);
         locations.add(GateOutside);
@@ -44,14 +45,14 @@ public class TreeGnomeStronghold implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(GateInside, GateOutside, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(GateInside, GateOutside, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2461, 3383, 0)),
                 new Obstacle(190, "Open", new Tile(2461, 3384, 0)),
                 new Step(new Tile(2461, 3382, 0))
         )));
 
-        new TwoWayLink(GateInside, MushroomDigSpot, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GateInside, MushroomDigSpot, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2461, 3384, 0)),
                 new Step(new Tile(2459, 3413, 0)),
                 new Step(new Tile(2462, 3438, 0)),

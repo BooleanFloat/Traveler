@@ -19,7 +19,7 @@ public class Location {
     public Location(String name, Area area) {
         this.name = name;
         this.area = area;
-        this.links = new HashMap<>();
+        this.links = new HashMap<Location, Link>();
         this.center = area.getCentralTile();
 
         new OneWayLink(this, this);

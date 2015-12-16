@@ -18,8 +18,8 @@ import java.util.concurrent.Callable;
 public class Traveler {
     public static Path getPath(Location start, Location end) {
         ArrayList<Link> links = Dijkstra.getLinks(start, end);
-        ArrayList<Traversable> steps = new ArrayList<>();
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Traversable> steps = new ArrayList<Traversable>();
+        ArrayList<Location> locations = new ArrayList<Location>();
         double weight = 0;
 
         for(Link link : links) {
@@ -67,7 +67,7 @@ public class Traveler {
         return closestLocation;
     }
 
-    public static Callable<Boolean> getConditionWaiter(ClientContext ctx, Path path) {
+    public static Callable<Boolean> getConditionWaiter(final ClientContext ctx, final Path path) {
         return new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -177,7 +177,7 @@ public class Traveler {
     }
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         // Asgarnia
         locations.addAll(Burthorpe.getLocations());
@@ -217,7 +217,7 @@ public class Traveler {
 
     public static ArrayList<Location> getBanks() {
         ArrayList<Location> locations = getLocations();
-        ArrayList<Location> banks = new ArrayList<>();
+        ArrayList<Location> banks = new ArrayList<Location>();
 
         for(Location location : locations) {
             if(location.name.toLowerCase().endsWith("bank")) {

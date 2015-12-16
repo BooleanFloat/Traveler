@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.Resources;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
@@ -26,7 +27,7 @@ public class LumbridgeCastle implements Region {
     public static Location SouthTowerUpstairs;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Bank);
         locations.add(BackEntrance);
@@ -64,7 +65,7 @@ public class LumbridgeCastle implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
+    public static void initLinks(final ClientContext ctx) {
         new TeleportLink(Courtyard, Magic.Spell.LUMBRIDGE_TELEPORT, new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -75,14 +76,14 @@ public class LumbridgeCastle implements Region {
             }
         });
 
-        new TwoWayLink(BackEntrance, Lumbridge.Center, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(BackEntrance, Lumbridge.Center, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3202, 3218, 0)),
                 new Step(new Tile(3203, 3214, 0)),
                 new Step(new Tile(3212, 3210, 0)),
                 new Step(new Tile(3216, 3218, 0))
         )));
 
-        new OneWayLink(BackEntrance, Bank,  new ArrayList<>(Arrays.asList(
+        new OneWayLink(BackEntrance, Bank,  new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3202, 3218, 0)),
                 new Step(new Tile(3203, 3214, 0)),
                 new Step(new Tile(3206, 3209, 0)),
@@ -92,7 +93,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3205, 3210, 2))
         )));
 
-        new OneWayLink(BackEntrance, DukesRoom, new ArrayList<>(Arrays.asList(
+        new OneWayLink(BackEntrance, DukesRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3202, 3218, 0)),
                 new Step(new Tile(3203, 3214, 0)),
                 new Step(new Tile(3206, 3209, 0)),
@@ -103,18 +104,18 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3210, 3222, 1))
         )));
 
-        new TwoWayLink(BackEntrance, Lumbridge.HamBuilding, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(BackEntrance, Lumbridge.HamBuilding, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3197, 3218, 0)),
                 new Step(new Tile(3167, 3247, 0))
         )));
 
-        new TwoWayLink(BackEntrance, WizardsTower.Causeway, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(BackEntrance, WizardsTower.Causeway, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3200, 3218, 0)),
                 new Step(new Tile(3129, 3218, 0)),
                 new Step(new Tile(3115, 3208, 0))
         )));
 
-        new OneWayLink(Bank, BackEntrance, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Bank, BackEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3205, 3210, 2)),
                 new Obstacle(16673, "Climb-down", new Tile(3205, 3208, 2), new int[]{-160, 64, -64, 0, -160, 32}),
                 new Step(new Tile(3206, 3208, 1)),
@@ -124,7 +125,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3202, 3218, 0))
         )));
 
-        new OneWayLink(Bank, Courtyard, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Bank, Courtyard, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3205, 3210, 2)),
                 new Obstacle(16673, "Climb-down", new Tile(3205, 3208, 2), new int[]{-160, 64, -64, 0, -160, 32}),
                 new Obstacle(16672, "Climb-down", new Tile(3205, 3208, 1), new int[]{-64, 64, -128, 0, -64, 64}),
@@ -133,7 +134,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3215, 3218, 0))
         )));
 
-        new OneWayLink(Bank, DukesRoom, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Bank, DukesRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3205, 3210, 2)),
                 new Obstacle(16673, "Climb-down", new Tile(3205, 3208, 2), new int[]{-160, 64, -64, 0, -160, 32}),
                 new Step(new Tile(3206, 3210, 1)),
@@ -142,7 +143,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3210, 3222, 1))
         )));
 
-        new OneWayLink(Courtyard, Bank, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Courtyard, Bank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3215, 3218, 0)),
                 new Step(new Tile(3215, 3211, 0)),
                 new Step(new Tile(3208, 3210, 0)),
@@ -151,7 +152,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3205, 3210, 2))
         )));
 
-        new OneWayLink(Courtyard, DukesRoom, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Courtyard, DukesRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3215, 3218, 0)),
                 new Step(new Tile(3215, 3211, 0)),
                 new Step(new Tile(3208, 3210, 0)),
@@ -162,7 +163,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3210, 3222, 1))
         )));
 
-        new OneWayLink(Courtyard, SouthTowerUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Courtyard, SouthTowerUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3222, 3218, 0)),
                 new Step(new Tile(3225, 3214, 0)),
                 new Obstacle(7122, "Open", new Tile(3226, 3214, 0), Obstacle.Hitbox.DOOR_EAST),
@@ -172,7 +173,7 @@ public class LumbridgeCastle implements Region {
 
         new TwoWayLink(Courtyard, Lumbridge.Center);
 
-        new OneWayLink(DukesRoom, BackEntrance, new ArrayList<>(Arrays.asList(
+        new OneWayLink(DukesRoom, BackEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3210, 3222, 1)),
                 new Obstacle(7143, "Open", new Tile(3207, 3222, 1), new int[]{96, 144, -192, 0, 0, 128}),
                 new Step(new Tile(3206, 3222, 1)),
@@ -183,7 +184,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3202, 3218, 0))
         )));
 
-        new OneWayLink(DukesRoom, Bank, new ArrayList<>(Arrays.asList(
+        new OneWayLink(DukesRoom, Bank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3210, 3222, 1)),
                 new Obstacle(7143, "Open", new Tile(3207, 3222, 1), new int[]{96, 144, -192, 0, 0, 128}),
                 new Step(new Tile(3206, 3222, 1)),
@@ -192,7 +193,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3205, 3210, 2))
         )));
 
-        new OneWayLink(DukesRoom, Courtyard, new ArrayList<>(Arrays.asList(
+        new OneWayLink(DukesRoom, Courtyard, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3210, 3222, 1)),
                 new Obstacle(7143, "Open", new Tile(3207, 3222, 1), new int[]{96, 144, -192, 0, 0, 128}),
                 new Step(new Tile(3206, 3222, 1)),
@@ -203,7 +204,7 @@ public class LumbridgeCastle implements Region {
                 new Step(new Tile(3215, 3218, 0))
         )));
 
-        new OneWayLink(SouthTowerUpstairs, Courtyard, new ArrayList<>(Arrays.asList(
+        new OneWayLink(SouthTowerUpstairs, Courtyard, new ArrayList<Traversable>(Arrays.asList(
                 new Obstacle(16684, "Climb-down", new Tile(3229, 3213, 1)),
                 new Step(new Tile(3228, 3213, 0)),
                 new Obstacle(7122, "Open", new Tile(3226, 3214, 0), Obstacle.Hitbox.DOOR_EAST),

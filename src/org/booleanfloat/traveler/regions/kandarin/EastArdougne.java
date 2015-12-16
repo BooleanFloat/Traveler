@@ -4,6 +4,7 @@ import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.Resources;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
@@ -49,7 +50,7 @@ public class EastArdougne implements Region {
     public static Location ZooMonkeyCage;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(BrimhavenBoat);
         locations.add(Church);
@@ -234,7 +235,7 @@ public class EastArdougne implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
+    public static void initLinks(final ClientContext ctx) {
         new TeleportLink(Market, Magic.Spell.ARDOUGNE_TELEPORT, new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -244,7 +245,7 @@ public class EastArdougne implements Region {
             }
         });
 
-        new TwoWayLink(BrimhavenBoat, SouthBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(BrimhavenBoat, SouthBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2680, 3274, 0)),
                 new Step(new Tile(2673, 3275, 0)),
                 new Step(new Tile(2666, 3280, 0)),
@@ -255,14 +256,14 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2654, 3283, 0))
         )));
 
-        new TwoWayLink(BrimhavenBoat, Market, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(BrimhavenBoat, Market, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2679, 3275, 0)),
                 new Step(new Tile(2673, 3275, 0)),
                 new Step(new Tile(2664, 3282, 0)),
                 new Step(new Tile(2663, 3297, 0))
         )));
 
-        new OneWayLink(BrimhavenBoat, Brimhaven.EastArdougneBoat, new ArrayList<>(Arrays.asList(
+        new OneWayLink(BrimhavenBoat, Brimhaven.EastArdougneBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2679, 3276, 0)),
                 new EastArdougneKaramjaCaptain(3649, "Pay-fare", BrimhavenBoat.area),
                 new Step(new Tile(2775, 3234, 1)),
@@ -275,21 +276,21 @@ public class EastArdougne implements Region {
             }
         });
 
-        new TwoWayLink(Church, GeneralStore, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Church, GeneralStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2616, 3306, 0)),
                 new Step(new Tile(2616, 3298, 0)),
                 new Step(new Tile(2613, 3297, 0)),
                 new Step(new Tile(2615, 3293, 0))
         )));
 
-        new OneWayLink(Church, ChurchTower, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Church, ChurchTower, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2613, 3309, 0)),
                 new Obstacle(7129, "Open", new Tile(2612, 3309, 0), new int[]{96, 128, -192, 0, 0, 128}),
                 new Obstacle(7122, "Open", new Tile(2610, 3307, 0), new int[]{0, 128, -196, 0, 96, 128}),
                 new Obstacle(11683, "Climb-up", new Tile(2610, 3306, 0))
         )));
 
-        new OneWayLink(ChurchTower, Church, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ChurchTower, Church, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2611, 3306, 1)),
                 new Obstacle(11684, "Climb-down", new Tile(2610, 3306, 1)),
                 new Obstacle(7122, "Open", new Tile(2610, 3307, 0), new int[]{0, 128, -196, 0, 96, 128}),
@@ -298,7 +299,7 @@ public class EastArdougne implements Region {
 
         new TwoWayLink(EastGate, Market);
 
-        new TwoWayLink(EastGate, PicnicArea, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastGate, PicnicArea, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2688, 3304, 0)),
                 new Step(new Tile(2691, 3306, 0)),
                 new Step(new Tile(2699, 3322, 0)),
@@ -306,7 +307,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2722, 3338, 0))
         )));
 
-        new TwoWayLink(EastGate, SeersVillage.Bank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastGate, SeersVillage.Bank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2687, 3304, 0)),
                 new Step(new Tile(2691, 3306, 0)),
                 new Step(new Tile(2699, 3323, 0)),
@@ -319,21 +320,21 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2725, 3490, 0))
         )));
 
-        new TwoWayLink(FishingGuildEntrance, NorthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FishingGuildEntrance, NorthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2611, 3392, 0)),
                 new Step(new Tile(2632, 3379, 0)),
                 new Step(new Tile(2635, 3373, 0)),
                 new Step(new Tile(2636, 3339, 0))
         )));
 
-        new TwoWayLink(FishingGuildEntrance, NorthMill, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FishingGuildEntrance, NorthMill, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2611, 3392, 0)),
                 new Step(new Tile(2632, 3379, 0)),
                 new Obstacle(7122, "Open", new Tile(2632, 3381, 0), new int[]{0, 128, -196, 0, 96, 128}),
                 new Step(new Tile(2632, 3383, 0))
         )));
 
-        new TwoWayLink(FishingGuildEntrance, NorthWestGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FishingGuildEntrance, NorthWestGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2611, 3392, 0)),
                 new Step(new Tile(2588, 3383, 0)),
                 new Step(new Tile(2582, 3369, 0)),
@@ -341,7 +342,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2587, 3341, 0))
         )));
 
-        new TwoWayLink(FishingGuildEntrance, SeersVillage.RangeGuildEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FishingGuildEntrance, SeersVillage.RangeGuildEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2611, 3392, 0)),
                 new Step(new Tile(2620, 3391, 0)),
                 new Step(new Tile(2630, 3395, 0)),
@@ -352,7 +353,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2656, 3440, 0))
         )));
 
-        new TwoWayLink(GeneralStore, Market, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, Market, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2614, 3292, 0)),
                 new Step(new Tile(2614, 3297, 0)),
                 new Step(new Tile(2629, 3296, 0)),
@@ -361,7 +362,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2662, 3305, 0))
         )));
 
-        new TwoWayLink(GeneralStore, NorthBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, NorthBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2614, 3292, 0)),
                 new Step(new Tile(2614, 3297, 0)),
                 new Step(new Tile(2607, 3297, 0)),
@@ -371,7 +372,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2617, 3333, 0))
         )));
 
-        new TwoWayLink(GeneralStore, Pub, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, Pub, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2614, 3293, 0)),
                 new Step(new Tile(2613, 3297, 0)),
                 new Step(new Tile(2593, 3296, 0)),
@@ -382,7 +383,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2576, 3320, 0))
         )));
 
-        new TwoWayLink(GeneralStore, SouthBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, SouthBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2614, 3293, 0)),
                 new Step(new Tile(2614, 3296, 0)),
                 new Step(new Tile(2630, 3296, 0)),
@@ -392,7 +393,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2652, 3283, 0))
         )));
 
-        new TwoWayLink(GeneralStore, SouthZooEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, SouthZooEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2615, 3293, 0)),
                 new Step(new Tile(2614, 3297, 0)),
                 new Step(new Tile(2609, 3297, 0)),
@@ -406,7 +407,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2601, 3261, 0))
         )));
 
-        new TwoWayLink(GeneralStore, ZooMonkeyCage, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, ZooMonkeyCage, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2615, 3293, 0)),
                 new Step(new Tile(2614, 3297, 0)),
                 new Step(new Tile(2609, 3298, 0)),
@@ -416,7 +417,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2598, 3280, 0))
         )));
 
-        new TwoWayLink(GuardsHouse, NorthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GuardsHouse, NorthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2645, 3335, 0)),
                 new Obstacle(7122, "Open", new Tile(2644, 3333, 0), Obstacle.Hitbox.DOOR_NORTH),
                 new Step(new Tile(2644, 3332, 0)),
@@ -424,7 +425,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2637, 3339, 0))
         )));
 
-        new TwoWayLink(GuardsHouse, Market, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GuardsHouse, Market, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2644, 3335, 0)),
                 new Obstacle(7122, "Open", new Tile(2644, 3333, 0), Obstacle.Hitbox.DOOR_NORTH),
                 new Step(new Tile(2644, 3331, 0)),
@@ -436,21 +437,21 @@ public class EastArdougne implements Region {
 
         new TwoWayLink(Market, MarketArmourStoreOutside);
 
-        new OneWayLink(Market, MarketNorthHouseUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Market, MarketNorthHouseUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2659, 3320, 0)),
                 new Obstacle(7122, "Open", new Tile(2659, 3320, 0), new int[]{0, 128, -196, 0, 96, 128}),
                 new Step(new Tile(2657, 3321, 0)),
                 new Obstacle(17026, "Climb-up", new Tile(2655, 3322, 0))
         )));
 
-        new TwoWayLink(Market, NorthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Market, NorthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2661, 3306, 0)),
                 new Step(new Tile(2652, 3317, 0)),
                 new Step(new Tile(2648, 3329, 0)),
                 new Step(new Tile(2639, 3334, 0))
         )));
 
-        new TwoWayLink(Market, SouthBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Market, SouthBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2662, 3303, 0)),
                 new Step(new Tile(2663, 3289, 0)),
                 new Step(new Tile(2644, 3289, 0)),
@@ -458,7 +459,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2655, 3283, 0))
         )));
 
-        new OneWayLink(MarketNorthHouseUpstairs, Market, new ArrayList<>(Arrays.asList(
+        new OneWayLink(MarketNorthHouseUpstairs, Market, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2655, 3321, 1)),
                 new Obstacle(16685, "Climb-down", new Tile(2655, 3322, 1)),
                 new Step(new Tile(2657, 3321, 0)),
@@ -467,13 +468,13 @@ public class EastArdougne implements Region {
         )));
 
 
-        new TwoWayLink(NorthBank, NorthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthBank, NorthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2617, 3332, 0)),
                 new Step(new Tile(2617, 3337, 0)),
                 new Step(new Tile(2632, 3337, 0))
         )));
 
-        new TwoWayLink(NorthBank, NorthShed, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthBank, NorthShed, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2617, 3333, 0)),
                 new Step(new Tile(2617, 3337, 0)),
                 new Step(new Tile(2613, 3339, 0)),
@@ -482,7 +483,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2618, 3344, 0))
         )));
 
-        new TwoWayLink(NorthBank, NorthWestGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthBank, NorthWestGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2617, 3334, 0)),
                 new Step(new Tile(2617, 3337, 0)),
                 new Step(new Tile(2613, 3339, 0)),
@@ -492,7 +493,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2587, 3341, 0))
         )));
 
-        new TwoWayLink(NorthGate, NorthMill, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthGate, NorthMill, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2636, 3339, 0)),
                 new Step(new Tile(2636, 3373, 0)),
                 new Step(new Tile(2633, 3375, 0)),
@@ -501,7 +502,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2632, 3382, 0))
         )));
 
-        new TwoWayLink(NorthGate, SeersVillage.RangeGuildEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthGate, SeersVillage.RangeGuildEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2636, 3339, 0)),
                 new Step(new Tile(2636, 3373, 0)),
                 new Step(new Tile(2645, 3374, 0)),
@@ -513,21 +514,21 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2655, 3441, 0))
         )));
 
-        new OneWayLink(NorthMill, NorthMillTop, new ArrayList<>(Arrays.asList(
+        new OneWayLink(NorthMill, NorthMillTop, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2631, 3386, 0)),
                 new Obstacle(16683, "Climb-up", new Tile(2630, 3386, 0)),
                 new Obstacle(16684, "Climb-up", new Tile(2630, 3386, 1)),
                 new Step(new Tile(2631, 3385, 2))
         )));
 
-        new OneWayLink(NorthMillTop, NorthMill, new ArrayList<>(Arrays.asList(
+        new OneWayLink(NorthMillTop, NorthMill, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2631, 3385, 2)),
                 new Obstacle(16679, "Climb-down", new Tile(2630, 3386, 2)),
                 new Obstacle(16684, "Climb-down", new Tile(2630, 3386, 1)),
                 new Step(new Tile(2631, 3386, 0))
         )));
 
-        new TwoWayLink(NorthMill, SeersVillage.RangeGuildEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthMill, SeersVillage.RangeGuildEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2633, 3382, 0)),
                 new Obstacle(7122, "Open", new Tile(2632, 3381, 0), new int[]{0, 128, -196, 0, 96, 128}),
                 new Step(new Tile(2633, 3380, 0)),
@@ -540,7 +541,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2655, 3440, 0))
         )));
 
-        new TwoWayLink(NorthWestGate, Pub, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthWestGate, Pub, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2587, 3340, 0)),
                 new Step(new Tile(2587, 3332, 0)),
                 new Step(new Tile(2582, 3328, 0)),
@@ -550,7 +551,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2576, 3320, 0))
         )));
 
-        new TwoWayLink(NorthWestGate, TreeGnomeStronghold.GateOutside, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthWestGate, TreeGnomeStronghold.GateOutside, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2588, 3341, 0)),
                 new Step(new Tile(2587, 3345, 0)),
                 new Step(new Tile(2554, 3345, 0)),
@@ -559,7 +560,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2460, 3382, 0))
         )));
 
-        new TwoWayLink(PicnicArea, Catherby.GeneralStore, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(PicnicArea, Catherby.GeneralStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2722, 3338, 0)),
                 new Step(new Tile(2726, 3344, 0)),
                 new Step(new Tile(2735, 3347, 0)),
@@ -571,7 +572,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2803, 3431, 0))
         )));
 
-        new TwoWayLink(PicnicArea, SeersVillage.CastleGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(PicnicArea, SeersVillage.CastleGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2724, 3340, 0)),
                 new Step(new Tile(2727, 3344, 0)),
                 new Step(new Tile(2736, 3348, 0)),
@@ -583,32 +584,32 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2757, 3478, 0))
         )));
 
-        new OneWayLink(Pub, PubUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Pub, PubUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2574, 3324, 0)),
                 new Obstacle(16671, "Climb-up", new Tile(2573, 3326, 0)),
                 new Step(new Tile(2574, 3324, 1))
         )));
 
-        new OneWayLink(PubUpstairs, Pub, new ArrayList<>(Arrays.asList(
+        new OneWayLink(PubUpstairs, Pub, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2574, 3324, 1)),
                 new Obstacle(16673, "Climb-down", new Tile(2573, 3325, 1)),
                 new Step(new Tile(2574, 3324, 0))
         )));
 
-        new TwoWayLink(SouthBank, SouthGap, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthBank, SouthGap, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2652, 3283, 0)),
                 new Step(new Tile(2642, 3283, 0)),
                 new Step(new Tile(2641, 3266, 0)),
                 new Step(new Tile(2640, 3262, 0))
         )));
 
-        new TwoWayLink(SouthGap, PortKhazard.Entrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthGap, PortKhazard.Entrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2640, 3263, 0)),
                 new Step(new Tile(2631, 3244, 0)),
                 new Step(new Tile(2624, 3171, 0))
         )));
 
-        new TwoWayLink(SouthZooEntrance, ZooMonkeyCage, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthZooEntrance, ZooMonkeyCage, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2601, 3262, 0)),
                 new Step(new Tile(2600, 3266, 0)),
                 new Step(new Tile(2599, 3271, 0)),
@@ -616,7 +617,7 @@ public class EastArdougne implements Region {
                 new Step(new Tile(2597, 3279, 0))
         )));
 
-        new TwoWayLink(SouthZooEntrance, PortKhazard.Entrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthZooEntrance, PortKhazard.Entrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2600, 3262, 0)),
                 new Step(new Tile(2602, 3244, 0)),
                 new Step(new Tile(2619, 3217, 0)),

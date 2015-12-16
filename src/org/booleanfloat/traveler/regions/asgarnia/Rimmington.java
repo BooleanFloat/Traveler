@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.asgarnia;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
@@ -21,7 +22,7 @@ public class Rimmington implements Region {
     public static Location POHPortal;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(EastHouseUpstairs);
         locations.add(GeneralStore);
@@ -66,8 +67,8 @@ public class Rimmington implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new OneWayLink(EastHouseUpstairs, POHPortal, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new OneWayLink(EastHouseUpstairs, POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2968, 3215, 1)),
                 new Obstacle(18992, "Climb-down", new Tile(2967, 3216, 1)),
                 new Step(new Tile(2965, 3215, 0)),
@@ -78,14 +79,14 @@ public class Rimmington implements Region {
                 new Step(new Tile(2956, 3224, 0))
         )));
 
-        new TwoWayLink(GeneralStore, POHPortal, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2950, 3214, 0)),
                 new Obstacle(7129, "Open", new Tile(2950, 3214, 0), new int[]{0, 32, -196, 0, 0, 128}),
                 new Step(new Tile(2955, 3214, 0)),
                 new Step(new Tile(2955, 3222, 0))
         )));
 
-        new TwoWayLink(Mine, POHPortal, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Mine, POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2976, 3236, 0)),
                 new Step(new Tile(2970, 3227, 0)),
                 new Step(new Tile(2962, 3222, 0)),
@@ -94,7 +95,7 @@ public class Rimmington implements Region {
 
         new TwoWayLink(Mine, NorthCrossRoads);
 
-        new OneWayLink(POHPortal, EastHouseUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(POHPortal, EastHouseUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2956, 3224, 0)),
                 new Step(new Tile(2955, 3214, 0)),
                 new Step(new Tile(2962, 3212, 0)),
@@ -105,7 +106,7 @@ public class Rimmington implements Region {
                 new Step(new Tile(2968, 3215, 1))
         )));
 
-        new TwoWayLink(NorthCrossRoads, POHPortal, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthCrossRoads, POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2982, 3275, 0)),
                 new Step(new Tile(2976, 3262, 0)),
                 new Step(new Tile(2963, 3251, 0)),

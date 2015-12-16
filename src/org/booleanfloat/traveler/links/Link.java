@@ -41,7 +41,7 @@ public class Link {
     }
 
     private ArrayList<Traversable> autofillSteps(ArrayList<Traversable> steps) {
-        ArrayList<Traversable> newSteps = new ArrayList<>();
+        ArrayList<Traversable> newSteps = new ArrayList<Traversable>();
 
         for(int i = 0; i < steps.size() -1; i++) {
             Traversable start = steps.get(i);

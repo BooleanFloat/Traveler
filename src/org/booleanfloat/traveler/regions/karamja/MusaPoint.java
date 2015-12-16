@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.karamja;
 import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.asgarnia.PortSarim;
@@ -22,7 +23,7 @@ public class MusaPoint implements Region {
     public static Location VolcanoEntrance;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(PortSarimBoat);
         locations.add(VolcanoEntrance);
@@ -42,8 +43,8 @@ public class MusaPoint implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(PortSarimBoat, VolcanoEntrance, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(PortSarimBoat, VolcanoEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2952, 3145, 0)),
                 new Step(new Tile(2937, 3145, 0)),
                 new Step(new Tile(2929, 3151, 0)),
@@ -55,7 +56,7 @@ public class MusaPoint implements Region {
                 new Step(new Tile(2857, 3166, 0))
         )));
 
-        new OneWayLink(PortSarimBoat, PortSarim.MusaPointBoat, new ArrayList<>(Arrays.asList(
+        new OneWayLink(PortSarimBoat, PortSarim.MusaPointBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2953, 3146, 0)),
                 new KaramjaCustomsOfficer(3648, "Pay-fare", PortSarimBoat.area),
                 new Obstacle(2084, "Cross", new Tile(3031, 3217, 1))

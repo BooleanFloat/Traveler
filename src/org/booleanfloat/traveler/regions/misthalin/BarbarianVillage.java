@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.asgarnia.Falador;
 import org.booleanfloat.traveler.steps.Obstacle;
@@ -21,7 +22,7 @@ public class BarbarianVillage implements Region {
     public static Location SpinningHut;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Bridge);
         locations.add(HelmetStore);
@@ -59,10 +60,10 @@ public class BarbarianVillage implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
+    public static void initLinks(final ClientContext ctx) {
         new TwoWayLink(Bridge, Mine);
 
-        new TwoWayLink(Bridge, Draynor.CrossRoads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bridge, Draynor.CrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3102, 3420, 0)),
                 new Step(new Tile(3097, 3415, 0)),
                 new Step(new Tile(3108, 3391, 0)),
@@ -77,14 +78,14 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3109, 3295, 0))
         )));
 
-        new TwoWayLink(Bridge, Draynor.WestFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bridge, Draynor.WestFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3099, 3419, 0)),
                 new Step(new Tile(3087, 3396, 0)),
                 new Step(new Tile(3073, 3385, 0)),
                 new Step(new Tile(3072, 3276, 0))
         )));
 
-        new TwoWayLink(Bridge, Edgeville.SouthFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bridge, Edgeville.SouthFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3104, 3420, 0)),
                 new Step(new Tile(3101, 3427, 0)),
                 new Step(new Tile(3098, 3436, 0)),
@@ -92,7 +93,7 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3087, 3463, 0))
         )));
 
-        new TwoWayLink(Bridge, Varrock.GrandExchange, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bridge, Varrock.GrandExchange, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3106, 3420, 0)),
                 new Step(new Tile(3122, 3423, 0)),
                 new Step(new Tile(3142, 3431, 0)),
@@ -102,7 +103,7 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3164, 3488, 0))
         )));
 
-        new TwoWayLink(Bridge, Varrock.WestGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bridge, Varrock.WestGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3116, 3420, 0)),
                 new Step(new Tile(3127, 3414, 0)),
                 new Step(new Tile(3155, 3416, 0)),
@@ -110,21 +111,21 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3176, 3428, 0))
         )));
 
-        new TwoWayLink(HelmetStore, Mine, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(HelmetStore, Mine, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3076, 3427, 0)),
                 new Obstacle(11616, "Open", new Tile(3076, 3426, 0), new int[]{0, 128, -192, 0, 96, 144}),
                 new Step(new Tile(3076, 3425, 0)),
                 new Step(new Tile(3080, 3419, 0))
         )));
 
-        new TwoWayLink(Mine, SpinningHut, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Mine, SpinningHut, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3081, 3420, 0)),
                 new Step(new Tile(3083, 3424, 0)),
                 new Obstacle(11616, "Open", new Tile(3082, 3426, 0), new int[]{0, 128, -192, 0, 96, 144}),
                 new Step(new Tile(3083, 3428, 0))
         )));
 
-        new TwoWayLink(Mine, Edgeville.Monastery, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Mine, Edgeville.Monastery, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3079, 3420, 0)),
                 new Step(new Tile(3069, 3428, 0)),
                 new Step(new Tile(3069, 3442, 0)),
@@ -132,7 +133,7 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3052, 3489, 0))
         )));
 
-        new TwoWayLink(Mine, Edgeville.SouthFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Mine, Edgeville.SouthFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3079, 3422, 0)),
                 new Step(new Tile(3079, 3433, 0)),
                 new Step(new Tile(3084, 3435, 0)),
@@ -141,7 +142,7 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3087, 3462, 0))
         )));
 
-        new TwoWayLink(Mine, Falador.NorthFencedStones, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Mine, Falador.NorthFencedStones, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3039, 3399, 0)),
                 new Step(new Tile(3034, 3401, 0)),
                 new Step(new Tile(3034, 3405, 0)),
@@ -153,7 +154,7 @@ public class BarbarianVillage implements Region {
                 new Step(new Tile(3080, 3419, 0))
         )));
 
-        new TwoWayLink(Mine, Falador.NorthSquare, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Mine, Falador.NorthSquare, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3077, 3418, 0)),
                 new Step(new Tile(3071, 3418, 0)),
                 new Step(new Tile(3034, 3425, 0)),

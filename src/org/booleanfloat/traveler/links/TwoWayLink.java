@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
 
 public class TwoWayLink {
     public TwoWayLink(Location location1, Location location2) {
-        this(location1, location2, new ArrayList<>(), null);
+        this(location1, location2, new ArrayList<Traversable>(), null);
     }
 
     public TwoWayLink(Location location1, Location location2, ArrayList<Traversable> steps) {

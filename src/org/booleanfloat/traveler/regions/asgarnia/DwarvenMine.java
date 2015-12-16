@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.asgarnia;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.misthalin.BarbarianVillage;
@@ -22,7 +23,7 @@ public class DwarvenMine implements Region {
     public static Location ScorpionPit;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(CampEntrance);
         locations.add(CrossbowStore);
@@ -58,15 +59,15 @@ public class DwarvenMine implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new OneWayLink(CampEntrance, OreStore, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new OneWayLink(CampEntrance, OreStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3018, 3450, 0)),
                 new Obstacle(11867, "Climb-down", new Tile(3019, 3450, 0)),
                 new Step(new Tile(3018, 9850, 0)),
                 new Step(new Tile(3024, 9847, 0))
         )));
 
-        new TwoWayLink(CampEntrance, BarbarianVillage.Mine, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CampEntrance, BarbarianVillage.Mine, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3016, 3449, 0)),
                 new Step(new Tile(3016, 3455, 0)),
                 new Step(new Tile(3029, 3460, 0)),
@@ -78,21 +79,21 @@ public class DwarvenMine implements Region {
                 new Step(new Tile(3080, 3421, 0))
         )));
 
-        new TwoWayLink(CrossbowStore, OreStore, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CrossbowStore, OreStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3000, 9804, 0)),
                 new Step(new Tile(3001, 9811, 0)),
                 new Step(new Tile(3018, 9814, 0)),
                 new Step(new Tile(3021, 9845, 0))
         )));
 
-        new OneWayLink(OreStore, CampEntrance, new ArrayList<>(Arrays.asList(
+        new OneWayLink(OreStore, CampEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3024, 9847, 0)),
                 new Step(new Tile(3018, 9850, 0)),
                 new Obstacle(17387, "Climb-up", new Tile(3019, 9850, 0)),
                 new Step(new Tile(3018, 3450, 0))
         )));
 
-        new TwoWayLink(OreStore, ScorpionPit, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(OreStore, ScorpionPit, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3022, 9847, 0)),
                 new Step(new Tile(3022, 9837, 0)),
                 new Step(new Tile(3041, 9831, 0)),
@@ -100,7 +101,7 @@ public class DwarvenMine implements Region {
                 new Step(new Tile(3043, 9792, 0))
         )));
 
-        new OneWayLink(ScorpionPit, Falador.DwarvenMineEntrance, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ScorpionPit, Falador.DwarvenMineEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3058, 9776, 0)),
                 new Obstacle(23969, "Climb-up", new Tile(3060, 9777, 0)),
                 new Step(new Tile(3061, 3377, 0))

@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
@@ -23,7 +24,7 @@ public class VarrockCastle implements Region {
     public static Location TrainingRoom;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Cart);
         locations.add(Courtyard);
@@ -77,19 +78,19 @@ public class VarrockCastle implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
+    public static void initLinks(final ClientContext ctx) {
         new TwoWayLink(Cart, Crossroads);
         new TwoWayLink(Courtyard, Crossroads);
         new TwoWayLink(Courtyard, Entrance);
         new TwoWayLink(Crossroads, Varrock.Fountain);
 
-        new TwoWayLink(Crossroads, Varrock.GrandExchange, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Crossroads, Varrock.GrandExchange, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3202, 3454, 0)),
                 new Step(new Tile(3197, 3462, 0)),
                 new Step(new Tile(3195, 3489, 0))
         )));
 
-        new TwoWayLink(Entrance, Kitchen, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Entrance, Kitchen, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3212, 3470, 0)),
                 new Step(new Tile(3207, 3476, 0)),
                 new Step(new Tile(3207, 3487, 0)),
@@ -99,7 +100,7 @@ public class VarrockCastle implements Region {
                 new Step(new Tile(3219, 3491, 0))
         )));
 
-        new TwoWayLink(Entrance, Library, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Entrance, Library, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3212, 3470, 0)),
                 new Step(new Tile(3207, 3476, 0)),
                 new Step(new Tile(3207, 3487, 0)),
@@ -108,7 +109,7 @@ public class VarrockCastle implements Region {
                 new Step(new Tile(3210, 3490, 0))
         )));
 
-        new OneWayLink(Entrance, TrainingRoom, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Entrance, TrainingRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3212, 3472, 0)),
                 new Obstacle(11807, "Climb-up", new Tile(3213, 3474, 0)),
                 new Step(new Tile(3212, 3476, 1)),
@@ -116,7 +117,7 @@ public class VarrockCastle implements Region {
                 new Obstacle(11773, "Open", new Tile(3207, 3473, 1))
         )));
 
-        new OneWayLink(TrainingRoom, Entrance, new ArrayList<>(Arrays.asList(
+        new OneWayLink(TrainingRoom, Entrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3207, 3473, 1)),
                 new Obstacle(11773, "Open", new Tile(3207, 3473, 1)),
                 new Step(new Tile(3212, 3476, 1)),

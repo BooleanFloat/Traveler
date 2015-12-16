@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.asgarnia;
 import org.booleanfloat.traveler.Config;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.regions.karamja.MusaPoint;
@@ -33,7 +34,7 @@ public class PortSarim implements Region {
     public static Location ShantyPassCell;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(EntranaBoat);
         locations.add(FishingStore);
@@ -121,14 +122,14 @@ public class PortSarim implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(EntranaBoat, MusaPointBoat, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(EntranaBoat, MusaPointBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3048, 3235, 0)),
                 new Step(new Tile(3027, 3235, 0)),
                 new Step(new Tile(3028, 3218, 0))
         )));
 
-        new TwoWayLink(EntranaBoat, NorthHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EntranaBoat, NorthHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3043, 3235, 0)),
                 new Step(new Tile(3041, 3255, 0)),
                 new Step(new Tile(3026, 3256, 0)),
@@ -136,7 +137,7 @@ public class PortSarim implements Region {
                 new Step(new Tile(3026, 3259, 0))
         )));
 
-        new TwoWayLink(EntranaBoat, RustyAnchor, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EntranaBoat, RustyAnchor, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3042, 3235, 0)),
                 new Step(new Tile(3042, 3247, 0)),
                 new Step(new Tile(3053, 3247, 0)),
@@ -145,7 +146,7 @@ public class PortSarim implements Region {
                 new Step(new Tile(3053, 3255, 0))
         )));
 
-        new TwoWayLink(EntranaBoat, Draynor.WestFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EntranaBoat, Draynor.WestFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3047, 3235, 0)),
                 new Step(new Tile(3042, 3235, 0)),
                 new Step(new Tile(3042, 3247, 0)),
@@ -158,14 +159,14 @@ public class PortSarim implements Region {
                 new Step(new Tile(3069, 3276, 0))
         )));
 
-        new TwoWayLink(FishingStore, MusaPointBoat, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FishingStore, MusaPointBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3014, 3221, 0)),
                 new Obstacle(7122, "Open", new Tile(3014, 3219, 0), Obstacle.Hitbox.DOOR_NORTH),
                 new Step(new Tile(3014, 3217, 0)),
                 new Step(new Tile(3028, 3217, 0))
         )));
 
-        new TwoWayLink(FishingStore, Rimmington.Mine, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FishingStore, Rimmington.Mine, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3014, 3220, 0)),
                 new Obstacle(7122, "Open", new Tile(3014, 3219, 0), Obstacle.Hitbox.DOOR_NORTH),
                 new Step(new Tile(3014, 3217, 0)),
@@ -174,12 +175,12 @@ public class PortSarim implements Region {
                 new Step(new Tile(2986, 3233, 0))
         )));
 
-        new OneWayLink(FoodStore, FoodStoreUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(FoodStore, FoodStoreUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3014, 3204, 0)),
                 new Obstacle(16683, "Climb-up", new Tile(3013, 3203, 0))
         )));
 
-        new TwoWayLink(FoodStore, MusaPointBoat, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(FoodStore, MusaPointBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3015, 3204, 0)),
                 new Obstacle(7122, "Open", new Tile(3016, 3206, 0), Obstacle.Hitbox.DOOR_EAST),
                 new Step(new Tile(3018, 3204, 0)),
@@ -187,12 +188,12 @@ public class PortSarim implements Region {
                 new Step(new Tile(3028, 3214, 0))
         )));
 
-        new OneWayLink(FoodStoreUpstairs, FoodStore, new ArrayList<>(Arrays.asList(
+        new OneWayLink(FoodStoreUpstairs, FoodStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3013, 3204, 1)),
                 new Obstacle(16679, "Climb-down", new Tile(3013, 3203, 1))
         )));
 
-        new TwoWayLink(Jail, MusaPointBoat, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Jail, MusaPointBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3011, 3191, 0)),
                 new Obstacle(7122, "Open", new Tile(3011, 3197, 0), Obstacle.Hitbox.DOOR_SOUTH),
                 new Step(new Tile(3012, 3198, 0)),
@@ -201,7 +202,7 @@ public class PortSarim implements Region {
                 new Step(new Tile(3028, 3214, 0))
         )));
 
-        new TwoWayLink(MudskipperPoint, MusaPointBoat, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(MudskipperPoint, MusaPointBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2999, 3124, 0)),
                 new Step(new Tile(3000, 3135, 0)),
                 new Step(new Tile(2997, 3142, 0)),
@@ -215,7 +216,7 @@ public class PortSarim implements Region {
                 new Step(new Tile(3028, 3214, 0))
         )));
 
-        new TwoWayLink(MudskipperPoint, Rimmington.POHPortal, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(MudskipperPoint, Rimmington.POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2999, 3125, 0)),
                 new Step(new Tile(3002, 3140, 0)),
                 new Step(new Tile(3002, 3156, 0)),
@@ -229,7 +230,7 @@ public class PortSarim implements Region {
                 new Step(new Tile(2956, 3223, 0))
         )));
 
-        new OneWayLink(MusaPointBoat, MusaPoint.PortSarimBoat, new ArrayList<>(Arrays.asList(
+        new OneWayLink(MusaPointBoat, MusaPoint.PortSarimBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3027, 3217, 0)),
                 new PortSarimKaramjaSailor(3644, "Pay-fare", MusaPointBoat.area),
                 new PortSarimKaramjaSailor(3645, "Pay-fare", MusaPointBoat.area),
@@ -243,21 +244,21 @@ public class PortSarim implements Region {
             }
         });
 
-        new TwoWayLink(MusaPointBoat, Rimmington.Mine, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(MusaPointBoat, Rimmington.Mine, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3027, 3216, 0)),
                 new Step(new Tile(3007, 3217, 0)),
                 new Step(new Tile(2990, 3231, 0)),
                 new Step(new Tile(2983, 3233, 0))
         )));
 
-        new TwoWayLink(RustyAnchor, Draynor.WestFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(RustyAnchor, Draynor.WestFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3053, 3257, 0)),
                 new Obstacle(7122, "Open", new Tile(3053, 3260, 0), Obstacle.Hitbox.DOOR_SOUTH),
                 new Step(new Tile(3053, 3260, 0)),
                 new Step(new Tile(3069, 3277, 0))
         )));
 
-        new OneWayLink(ShantyPassCell, Jail, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ShantyPassCell, Jail, new ArrayList<Traversable>(Arrays.asList(
                 new PortSarimJailDoor()
         )));
     }

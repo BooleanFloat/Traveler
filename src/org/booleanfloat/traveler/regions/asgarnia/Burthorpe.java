@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.asgarnia;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.Obstacle;
@@ -24,7 +25,7 @@ public class Burthorpe implements Region {
     public static Location Tent;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Castle);
         locations.add(GamesRoom);
@@ -70,8 +71,8 @@ public class Burthorpe implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Castle, Pub, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(Castle, Pub, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2898, 3560, 0)),
                 new Obstacle(7108, "Open", new Tile(2898, 3558, 0), new int[]{0, 128, -192, 0, 96, 144}),
                 new Obstacle(7111, "Open", new Tile(2899, 3558, 0), new int[]{0, 128, -192, 0, 96, 144}),
@@ -81,7 +82,7 @@ public class Burthorpe implements Region {
                 new Step(new Tile(2909, 3539, 0))
         )));
 
-        new TwoWayLink(GamesRoom, GamesRoomEntrance, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GamesRoom, GamesRoomEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2207, 4956, 0)),
                 new Step(new Tile(2208, 4946, 0)),
                 new Obstacle(4629, "Open", new Tile(2208, 4946, 0), new int[]{0, 128, -196, 0, -32, 32}),
@@ -92,21 +93,21 @@ public class Burthorpe implements Region {
                 new Step(new Tile(2207, 4943, 0))
         )));
 
-        new OneWayLink(Castle, GamesRoomEntrance, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Castle, GamesRoomEntrance, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2900, 3565, 0)),
                 new Obstacle(4624, "Climb-down", new Tile(2900, 3567, 0), new int[]{-96, 96, -64, 0, -128, 196}),
                 new Step(new Tile(2207, 4934, 1)),
                 new Obstacle(4620, "Climb-down", new Tile(2208, 4936, 1), new int[]{-96, 96, -64, 0, -64, 0})
         )));
 
-        new OneWayLink(GamesRoomEntrance, Castle, new ArrayList<>(Arrays.asList(
+        new OneWayLink(GamesRoomEntrance, Castle, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2207, 4938, 0)),
                 new Obstacle(4622, "Climb-up", new Tile(2208, 4936, 0), new int[]{-96, 64, -64, 0, -128, 196}),
                 new Step(new Tile(2206, 4934, 1)),
                 new Obstacle(4627, "Climb-up", new Tile(2206, 4936, 1), new int[]{-96, 96, -64, 0, -128, 196})
         )));
 
-        new TwoWayLink(Pub, Tent, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Pub, Tent, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2909, 3540, 0)),
                 new Obstacle(7129, "Open", new Tile(2907, 3544, 0), new int[]{0, 128, -196, 0, -32, 32}),
                 new Step(new Tile(2907, 3545, 0)),
@@ -114,7 +115,7 @@ public class Burthorpe implements Region {
                 new Step(new Tile(2887, 3540, 0))
         )));
 
-        new TwoWayLink(Pub, NorthEastHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Pub, NorthEastHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2907, 3542, 0)),
                 new Obstacle(7129, "Open", new Tile(2907, 3544, 0), new int[]{0, 128, -196, 0, -32, 32}),
                 new Step(new Tile(2907, 3545, 0)),
@@ -124,7 +125,7 @@ public class Burthorpe implements Region {
                 new Step(new Tile(2932, 3566, 0))
         )));
 
-        new TwoWayLink(Pub, Taverly.DruidsCircle, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Pub, Taverly.DruidsCircle, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2908, 3541, 0)),
                 new Obstacle(7129, "Open", new Tile(2907, 3544, 0), new int[]{0, 128, -196, 0, -32, 32}),
                 new Step(new Tile(2908, 3545, 0)),
@@ -134,7 +135,7 @@ public class Burthorpe implements Region {
                 new Step(new Tile(2923, 3486, 0))
         )));
 
-        new TwoWayLink(Pub, Taverly.POHPortal, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Pub, Taverly.POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2909, 3539, 0)),
                 new Obstacle(7129, "Open", new Tile(2907, 3544, 0), new int[]{0, 128, -196, 0, -32, 32}),
                 new Step(new Tile(2907, 3545, 0)),

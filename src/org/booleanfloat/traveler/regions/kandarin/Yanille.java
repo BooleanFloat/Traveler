@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.kandarin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.ImportantStep;
 import org.booleanfloat.traveler.steps.Obstacle;
@@ -21,7 +22,7 @@ public class Yanille implements Region {
     public static Location POHPortal;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Bank);
         locations.add(EastGate);
@@ -61,15 +62,15 @@ public class Yanille implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Bank, EastGate, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(Bank, EastGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2611, 3092, 0)),
                 new Step(new Tile(2606, 3092, 0)),
                 new Step(new Tile(2606, 3097, 0)),
                 new Step(new Tile(2615, 3103, 0))
         )));
 
-        new TwoWayLink(Bank, HunterStore, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, HunterStore, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2610, 3091, 0)),
                 new Step(new Tile(2599, 3097, 0)),
                 new Step(new Tile(2584, 3097, 0)),
@@ -81,7 +82,7 @@ public class Yanille implements Region {
                 new Step(new Tile(2567, 3081, 0))
         )));
 
-        new TwoWayLink(Bank, NorthHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, NorthHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2611, 3090, 0)),
                 new Step(new Tile(2606, 3091, 0)),
                 new Step(new Tile(2595, 3097, 0)),
@@ -90,7 +91,7 @@ public class Yanille implements Region {
                 new Step(new Tile(2594, 3102, 0))
         )));
 
-        new TwoWayLink(Bank, POHPortal, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2611, 3092, 0)),
                 new Step(new Tile(2607, 3091, 0)),
                 new Step(new Tile(2600, 3097, 0)),
@@ -100,7 +101,7 @@ public class Yanille implements Region {
                 new Step(new Tile(2544, 3093, 0))
         )));
 
-        new TwoWayLink(EastGate, POHPortal, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastGate, POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2614, 3103, 0)),
                 new Step(new Tile(2604, 3096, 0)),
                 new Step(new Tile(2584, 3096, 0)),
@@ -109,7 +110,7 @@ public class Yanille implements Region {
                 new Step(new Tile(2544, 3092, 0))
         )));
 
-        new TwoWayLink(HunterStore, POHPortal, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(HunterStore, POHPortal, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2566, 3082, 0)),
                 new Obstacle(7129, "Open", new Tile(2563, 3082, 0), new int[]{96, 144, -196, 0, 0, 128}),
                 new Step(new Tile(2563, 3081, 0)),

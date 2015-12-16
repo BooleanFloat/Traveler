@@ -3,6 +3,7 @@ package org.booleanfloat.traveler.regions.asgarnia;
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.Resources;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.OneWayLink;
 import org.booleanfloat.traveler.links.TeleportLink;
 import org.booleanfloat.traveler.links.TwoWayLink;
@@ -49,7 +50,7 @@ public class Falador implements Region {
     public static Location WestBank;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Barber);
         locations.add(CastleCourtyard);
@@ -241,7 +242,7 @@ public class Falador implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
+    public static void initLinks(final ClientContext ctx) {
         new TeleportLink(Square, Magic.Spell.FALADOR_TELEPORT, new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -252,7 +253,7 @@ public class Falador implements Region {
             }
         });
 
-        new TwoWayLink(Barber, WestBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Barber, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2946, 3379, 0)),
                 new Obstacle(24050, "Open", new Tile(2949, 3379, 0)),
                 new Step(new Tile(2950, 3379, 0)),
@@ -261,20 +262,20 @@ public class Falador implements Region {
                 new Step(new Tile(2945, 3370, 0))
         )));
 
-        new TwoWayLink(Barber, Square, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Barber, Square, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2945, 3379, 0)),
                 new Obstacle(24050, "Open", new Tile(2949, 3379, 0)),
                 new Step(new Tile(2951, 3379, 0)),
                 new Step(new Tile(2965, 3380, 0))
         )));
 
-        new TwoWayLink(CastleCourtyard, Square, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CastleCourtyard, Square, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2971, 3341, 0)),
                 new Step(new Tile(2965, 3345, 0)),
                 new Step(new Tile(2964, 3379, 0))
         )));
 
-        new OneWayLink(CastleCourtyard, CastleThroneRoom, new ArrayList<>(Arrays.asList(
+        new OneWayLink(CastleCourtyard, CastleThroneRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2981, 3341, 0)),
                 new Obstacle(24059, "Open", new Tile(2981, 3341, 0), new int[]{96, 128, -192, 0, 0, 128}),
                 new Obstacle(24064, "Open", new Tile(2981, 3340, 0), new int[]{96, 128, -192, 0, 0, 128}),
@@ -289,7 +290,7 @@ public class Falador implements Region {
                 new Step(new Tile(2983, 3341, 1))
         )));
 
-        new OneWayLink(CastleThroneRoom, CastleCourtyard, new ArrayList<>(Arrays.asList(
+        new OneWayLink(CastleThroneRoom, CastleCourtyard, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2983, 3341, 1)),
                 new Obstacle(24057, "Open", new Tile(2991, 3341, 1), new int[]{-32, 32, -192, 0, 0, 128}),
                 new Step(new Tile(2991, 3341, 1)),
@@ -304,7 +305,7 @@ public class Falador implements Region {
                 new Step(new Tile(2981, 3341, 0))
         )));
 
-        new TwoWayLink(ChainMailStore, SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(ChainMailStore, SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2972, 3312, 0)),
                 new Obstacle(23972, "Open", new Tile(2972, 3315, 0), new int[]{0, 128, -192, 0, -16, 32}),
                 new Step(new Tile(2972, 3315, 0)),
@@ -314,7 +315,7 @@ public class Falador implements Region {
                 new Step(new Tile(3006, 3324, 0))
         )));
 
-        new TwoWayLink(ChainMailStore, WestBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(ChainMailStore, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2971, 3312, 0)),
                 new Obstacle(23972, "Open", new Tile(2972, 3315, 0), new int[]{0, 128, -192, 0, -16, 32}),
                 new Step(new Tile(2971, 3316, 0)),
@@ -330,19 +331,19 @@ public class Falador implements Region {
                 new Step(new Tile(2946, 3371, 0))
         )));
 
-        new TwoWayLink(DoricsHouse, DoricsHouseCrossRoads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DoricsHouse, DoricsHouseCrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2951, 3450, 0)),
                 new Obstacle(7122, "Open", new Tile(2949, 3450, 0), new int[]{112, 128, -196, 0, 0, 100}),
                 new Step(new Tile(2948, 3450, 0))
         )));
 
-        new TwoWayLink(DoricsHouseCrossRoads, NorthSquare, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DoricsHouseCrossRoads, NorthSquare, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2947, 3450, 0)),
                 new Step(new Tile(2951, 3423, 0)),
                 new Step(new Tile(2966, 3413, 0))
         )));
 
-        new TwoWayLink(DoricsHouseCrossRoads, Taverly.MembersGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DoricsHouseCrossRoads, Taverly.MembersGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2945, 3451, 0)),
                 new Step(new Tile(2936, 3450, 0)),
                 new Obstacle(7168, "Open", new Tile(2935, 3451, 0), new int[]{112, 128, -196, 0, 0, 100}),
@@ -352,7 +353,7 @@ public class Falador implements Region {
                 new Step(new Tile(2934, 3450, 0))
         )));
 
-        new TwoWayLink(DwarvenMineEntrance, EastBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(DwarvenMineEntrance, EastBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3061, 3376, 0)),
                 new Obstacle(24057, "Open", new Tile(3061, 3374, 0), new int[]{0, 128, -192, 0, 96, 144}),
                 new Step(new Tile(3062, 3372, 0)),
@@ -362,13 +363,13 @@ public class Falador implements Region {
                 new Step(new Tile(3013, 3356, 0))
         )));
 
-        new OneWayLink(DwarvenMineEntrance, DwarvenMine.ScorpionPit, new ArrayList<>(Arrays.asList(
+        new OneWayLink(DwarvenMineEntrance, DwarvenMine.ScorpionPit, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3061, 3377, 0)),
                 new Obstacle(16664, "Climb-down", new Tile(3059, 3377, 0)),
                 new Step(new Tile(3058, 9776, 0))
         )));
 
-        new TwoWayLink(EastBank, EastBankHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastBank, EastBankHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3012, 3356, 0)),
                 new Step(new Tile(3013, 3360, 0)),
                 new Step(new Tile(3028, 3357, 0)),
@@ -376,7 +377,7 @@ public class Falador implements Region {
                 new Step(new Tile(3028, 3354, 0))
         )));
 
-        new OneWayLink(EastBank, EastHouseUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(EastBank, EastHouseUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3012, 3357, 0)),
                 new Step(new Tile(3013, 3360, 0)),
                 new Step(new Tile(3026, 3360, 0)),
@@ -388,7 +389,7 @@ public class Falador implements Region {
                 new Step(new Tile(3037, 3346, 1))
         )));
 
-        new OneWayLink(EastHouseUpstairs, EastBank, new ArrayList<>(Arrays.asList(
+        new OneWayLink(EastHouseUpstairs, EastBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3037, 3346, 1)),
                 new Obstacle(24085, "Climb-down", new Tile(3035, 3344, 1), new int[]{-48, 64, -64, 0, -48, 64}),
                 new Step(new Tile(3038, 3344, 0)),
@@ -400,7 +401,7 @@ public class Falador implements Region {
                 new Step(new Tile(3012, 3357, 0))
         )));
 
-        new TwoWayLink(EastBank, PartyRoom, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastBank, PartyRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3013, 3356, 0)),
                 new Step(new Tile(3013, 3360, 0)),
                 new Step(new Tile(3033, 3368, 0)),
@@ -410,7 +411,7 @@ public class Falador implements Region {
                 new Step(new Tile(3046, 3374, 0))
         )));
 
-        new OneWayLink(EastBank, PartyRoomSouthHouseUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(EastBank, PartyRoomSouthHouseUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3013, 3356, 0)),
                 new Step(new Tile(3012, 3359, 0)),
                 new Step(new Tile(3039, 3360, 0)),
@@ -419,19 +420,19 @@ public class Falador implements Region {
                 new Obstacle(24075, "Climb-up", new Tile(3035, 3364, 0))
         )));
 
-        new TwoWayLink(EastBank, SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastBank, SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3013, 3359, 0)),
                 new Step(new Tile(3006, 3359, 0)),
                 new Step(new Tile(3007, 3323, 0))
         )));
 
-        new TwoWayLink(EastBank, Square, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastBank, Square, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3013, 3361, 0)),
                 new Step(new Tile(2979, 3377, 0)),
                 new Step(new Tile(2966, 3379, 0))
         )));
 
-        new TwoWayLink(Farm, SouthCrossRoads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Farm, SouthCrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3034, 3292, 0)),
                 new Obstacle(8695, "Open", new Tile(3034, 3291, 0), Obstacle.Hitbox.DOOR_SOUTH),
                 new Step(new Tile(3034, 3289, 0)),
@@ -439,7 +440,7 @@ public class Falador implements Region {
                 new Step(new Tile(3008, 3278, 0))
         )));
 
-        new TwoWayLink(Farm, SouthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Farm, SouthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3039, 3295, 0)),
                 new Obstacle(8695, "Open", new Tile(3039, 3297, 0), Obstacle.Hitbox.DOOR_SOUTH),
                 new Step(new Tile(3039, 3297, 0)),
@@ -450,7 +451,7 @@ public class Falador implements Region {
                 new Step(new Tile(3008, 3321, 0))
         )));
 
-        new TwoWayLink(Farm, Draynor.WestFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Farm, Draynor.WestFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3034, 3291, 0)),
                 new Obstacle(8695, "Open", new Tile(3034, 3291, 0), Obstacle.Hitbox.DOOR_SOUTH),
                 new Step(new Tile(3034, 3289, 0)),
@@ -458,7 +459,7 @@ public class Falador implements Region {
                 new Step(new Tile(3070, 3276, 0))
         )));
 
-        new TwoWayLink(GemStore, WestBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GemStore, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2945, 3335, 0)),
                 new Obstacle(24050, "Open", new Tile(2945, 3338, 0)),
                 new Step(new Tile(2945, 3338, 0)),
@@ -469,14 +470,14 @@ public class Falador implements Region {
                 new Step(new Tile(2945, 3371, 0))
         )));
 
-        new TwoWayLink(GeneralStore, Square, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, Square, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2958, 3385, 0)),
                 new Obstacle(24056, "Open", new Tile(2958, 3384, 0), new int[]{0, 128, -192, 0, 96, 128}),
                 new Step(new Tile(2958, 3382, 0)),
                 new Step(new Tile(2963, 3380, 0))
         )));
 
-        new TwoWayLink(GeneralStore, WestBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(GeneralStore, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2959, 3387, 0)),
                 new Obstacle(24056, "Open", new Tile(2958, 3384, 0), new int[]{0, 128, -192, 0, 96, 128}),
                 new Step(new Tile(2958, 3381, 0)),
@@ -486,7 +487,7 @@ public class Falador implements Region {
                 new Step(new Tile(2946, 3371, 0))
         )));
 
-        new TwoWayLink(NorthFencedStones, NorthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthFencedStones, NorthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3040, 3398, 0)),
                 new Step(new Tile(3034, 3401, 0)),
                 new Step(new Tile(3034, 3404, 0)),
@@ -496,14 +497,14 @@ public class Falador implements Region {
         new TwoWayLink(NorthGate, NorthSquare);
         new TwoWayLink(NorthGate, Square);
 
-        new TwoWayLink(NorthSquare, Rusty, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthSquare, Rusty, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2971, 3414, 0)),
                 new Step(new Tile(2987, 3419, 0)),
                 new Step(new Tile(2988, 3427, 0)),
                 new Step(new Tile(2983, 3436, 0))
         )));
 
-        new TwoWayLink(NorthSquare, Edgeville.Monastery, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(NorthSquare, Edgeville.Monastery, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2971, 3414, 0)),
                 new Step(new Tile(2987, 3419, 0)),
                 new Step(new Tile(2988, 3428, 0)),
@@ -514,13 +515,13 @@ public class Falador implements Region {
                 new Step(new Tile(3051, 3487, 0))
         )));
 
-        new OneWayLink(PartyRoom, PartyRoomUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(PartyRoom, PartyRoomUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3053, 3382, 0)),
                 new Obstacle(24249, "Climb-up", new Tile(3054, 3384, 0)),
                 new Step(new Tile(3053, 3382, 1))
         )));
 
-        new OneWayLink(PartyRoomSouthHouseUpstairs, EastBank, new ArrayList<>(Arrays.asList(
+        new OneWayLink(PartyRoomSouthHouseUpstairs, EastBank, new ArrayList<Traversable>(Arrays.asList(
                 new Obstacle(24076, "Climb-down", new Tile(3035, 3363, 1)),
                 new Step(new Tile(3039, 3362, 0)),
                 new Obstacle(24050, "Open", new Tile(3038, 3361, 0), Obstacle.Hitbox.DOOR_NORTH),
@@ -529,20 +530,20 @@ public class Falador implements Region {
                 new Step(new Tile(3013, 3356, 0))
         )));
 
-        new OneWayLink(PartyRoomUpstairs, PartyRoom, new ArrayList<>(Arrays.asList(
+        new OneWayLink(PartyRoomUpstairs, PartyRoom, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3053, 3382, 1)),
                 new Obstacle(24254, "Climb-down", new Tile(3054, 3384, 1)),
                 new Step(new Tile(3053, 3382, 0))
         )));
 
-        new TwoWayLink(ShieldStore, Square, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(ShieldStore, Square, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2973, 3382, 0)),
                 new Obstacle(24050, "Open", new Tile(2971, 3383, 0), new int[]{96, 128, -192, 0, 0, 128}),
                 new Step(new Tile(2971, 3382, 0)),
                 new Step(new Tile(2967, 3381, 0))
         )));
 
-        new OneWayLink(Square, ShieldStoreUpstairs, new ArrayList<>(Arrays.asList(
+        new OneWayLink(Square, ShieldStoreUpstairs, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2967, 3381, 0)),
                 new Step(new Tile(2971, 3382, 0)),
                 new Obstacle(24050, "Open", new Tile(2971, 3383, 0), new int[]{96, 128, -192, 0, 0, 128}),
@@ -551,7 +552,7 @@ public class Falador implements Region {
                 new Step(new Tile(2972, 3385, 1))
         )));
 
-        new OneWayLink(ShieldStore, Square, new ArrayList<>(Arrays.asList(
+        new OneWayLink(ShieldStore, Square, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2972, 3385, 1)),
                 new Obstacle(24076, "Climb-down", new Tile(2974, 3385, 1)),
                 new Step(new Tile(2972, 3385, 0)),
@@ -562,7 +563,7 @@ public class Falador implements Region {
 
         new TwoWayLink(SouthCrossRoads, SouthGate);
 
-        new TwoWayLink(SouthCrossRoads, PortSarim.MusaPointBoat, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthCrossRoads, PortSarim.MusaPointBoat, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3007, 3278, 0)),
                 new Step(new Tile(3018, 3261, 0)),
                 new Step(new Tile(3019, 3245, 0)),
@@ -570,7 +571,7 @@ public class Falador implements Region {
                 new Step(new Tile(3028, 3216, 0))
         )));
 
-        new TwoWayLink(SouthCrossRoads, PortSarim.NorthHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthCrossRoads, PortSarim.NorthHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3007, 3279, 0)),
                 new Step(new Tile(3019, 3260, 0)),
                 new Step(new Tile(3020, 3255, 0)),
@@ -579,19 +580,19 @@ public class Falador implements Region {
                 new Step(new Tile(3026, 3259, 0))
         )));
 
-        new TwoWayLink(SouthCrossRoads, Rimmington.NorthCrossRoads, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthCrossRoads, Rimmington.NorthCrossRoads, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3007, 3279, 0)),
                 new Step(new Tile(3000, 3277, 0)),
                 new Step(new Tile(2982, 3277, 0))
         )));
 
-        new TwoWayLink(SouthGate, Square, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(SouthGate, Square, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3007, 3323, 0)),
                 new Step(new Tile(3006, 3362, 0)),
                 new Step(new Tile(2966, 3381, 0))
         )));
 
-        new TwoWayLink(Square, WestBank, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Square, WestBank, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(2964, 3380, 0)),
                 new Step(new Tile(2953, 3379, 0)),
                 new Step(new Tile(2945, 3373, 0))

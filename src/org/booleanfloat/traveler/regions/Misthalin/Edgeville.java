@@ -2,6 +2,7 @@ package org.booleanfloat.traveler.regions.misthalin;
 
 import org.booleanfloat.traveler.Location;
 import org.booleanfloat.traveler.interfaces.Region;
+import org.booleanfloat.traveler.interfaces.Traversable;
 import org.booleanfloat.traveler.links.TwoWayLink;
 import org.booleanfloat.traveler.steps.ImportantStep;
 import org.booleanfloat.traveler.steps.Obstacle;
@@ -24,7 +25,7 @@ public class Edgeville implements Region {
     public static Location Yews;
 
     public static ArrayList<Location> getLocations() {
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         locations.add(Bank);
         locations.add(CoffinHouse);
@@ -80,21 +81,21 @@ public class Edgeville implements Region {
         ));
     }
 
-    public static void initLinks(ClientContext ctx) {
-        new TwoWayLink(Bank, CoffinHouse, new ArrayList<>(Arrays.asList(
+    public static void initLinks(final ClientContext ctx) {
+        new TwoWayLink(Bank, CoffinHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3091, 3491, 0)),
                 new Step(new Tile(3089, 3489, 0)),
                 new Step(new Tile(3093, 3480, 0))
         )));
 
-        new TwoWayLink(Bank, EastBridge, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, EastBridge, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3096, 3496, 0)),
                 new Step(new Tile(3101, 3496, 0)),
                 new Step(new Tile(3104, 3502, 0)),
                 new Step(new Tile(3129, 3516, 0))
         )));
 
-        new TwoWayLink(Bank, Monastery, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, Monastery, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3094, 3495, 0)),
                 new Step(new Tile(3092, 3501, 0)),
                 new Step(new Tile(3083, 3519, 0)),
@@ -103,14 +104,14 @@ public class Edgeville implements Region {
                 new Step(new Tile(3052, 3491, 0))
         )));
 
-        new TwoWayLink(Bank, SouthFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, SouthFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3092, 3490, 0)),
                 new Step(new Tile(3080, 3483, 0)),
                 new Step(new Tile(3080, 3466, 0)),
                 new Step(new Tile(3087, 3463, 0))
         )));
 
-        new TwoWayLink(Bank, EvilDavesHouse, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Bank, EvilDavesHouse, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3093, 3495, 0)),
                 new Step(new Tile(3093, 3501, 0)),
                 new Step(new Tile(3079, 3501, 0)),
@@ -121,34 +122,34 @@ public class Edgeville implements Region {
                 new Step(new Tile(3080, 3495, 0))
         )));
 
-        new TwoWayLink(CoffinHouse, EastBridge, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CoffinHouse, EastBridge, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3094, 3481, 0)),
                 new Step(new Tile(3099, 3485, 0)),
                 new Step(new Tile(3117, 3498, 0)),
                 new Step(new Tile(3129, 3517, 0))
         )));
 
-        new TwoWayLink(CoffinHouse, SouthFenceOpening, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CoffinHouse, SouthFenceOpening, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3094, 3482, 0)),
                 new Step(new Tile(3100, 3483, 0)),
                 new Step(new Tile(3099, 3465, 0)),
                 new Step(new Tile(3088, 3463, 0))
         )));
 
-        new TwoWayLink(CoffinHouse, Yews, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(CoffinHouse, Yews, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3094, 3475, 0)),
                 new Step(new Tile(3094, 3469, 0)),
                 new Step(new Tile(3087, 3469, 0))
         )));
 
-        new TwoWayLink(EastBridge, Varrock.NorthGate, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(EastBridge, Varrock.NorthGate, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3133, 3517, 0)),
                 new Step(new Tile(3142, 3519, 0)),
                 new Step(new Tile(3206, 3517, 0)),
                 new Step(new Tile(3246, 3502, 0))
         )));
 
-        new TwoWayLink(Monastery, MonasteryClueBookcase, new ArrayList<>(Arrays.asList(
+        new TwoWayLink(Monastery, MonasteryClueBookcase, new ArrayList<Traversable>(Arrays.asList(
                 new Step(new Tile(3052, 3489, 0)),
                 new Step(new Tile(3058, 3490, 0)),
                 new Step(new Tile(3059, 3483, 0)),

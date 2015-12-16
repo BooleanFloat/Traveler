@@ -22,7 +22,7 @@ public class TeleportLink extends Link {
         this.spell = spell;
         this.requirement = requirement;
 
-        steps = new ArrayList<>();
+        steps = new ArrayList<Traversable>();
         steps.add(new Spell(spell));
 
         Tile tile = end.area.getCentralTile();

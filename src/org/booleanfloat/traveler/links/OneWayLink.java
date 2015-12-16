@@ -8,7 +8,7 @@ import java.util.concurrent.Callable;
 
 public class OneWayLink {
     public OneWayLink(Location start, Location end) {
-        this(start, end, new ArrayList<>(), null);
+        this(start, end, new ArrayList<Traversable>(), null);
     }
 
     public OneWayLink(Location start, Location end, ArrayList<Traversable> steps) {
